@@ -1,0 +1,124 @@
+/* pages/index/details/details.wxss */
+
+.container.details .selects {
+  width: 100%;
+  height: 209rpx;
+  position: fixed;
+  top: 0;
+  background-color: #eaeff4;
+  padding: 0 45rpx;
+  z-index: 1;
+  display: flex;
+  align-items: center; /*垂直居中*/
+  justify-content: space-between;
+}
+
+.container.details .selects .blue {
+  color: #4c75e1;
+}
+
+.container.details .selects .select {
+  width: 125rpx;
+  height: 100%;
+  padding-top: 37rpx;
+  position: relative;
+}
+.container.details .selects .select image{
+  width:100%;
+  height:100rpx;
+}
+.container.details .selects .red {
+  color: #e35d65;
+}
+
+.container.details .selects .red.active::after {
+  background-color: #e35d65;
+}
+
+.container.details .selects .yellow.active::after {
+  background-color: #e6b254;
+}
+
+.container.details .selects .blue.active::after {
+  background-color: #4c75e1;
+}
+
+.container.details .selects .yellow {
+  color: #e6b254;
+}
+
+.container.details .selects .yellow .iconfont {
+  font-size: 90rpx;
+}
+
+.container.details .selects .select text {
+  display: block;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.container.details .selects .select .iconfont {
+  font-size: 94rpx;
+}
+
+.container.details .selects .select::after {
+  content: "";
+  width: 54rpx;
+  height: 6rpx;
+  position: absolute;
+  bottom: 0;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+}
+
+.container.details .content {
+  margin-top: 209rpx;
+  /* height: 600px; */
+  padding-top: 25rpx;
+  padding-right: 24rpx;
+  padding-left: 24rpx;
+}
+
+.container.details .content image {
+  width: 100%;
+  height: 240rpx;
+  display: block;
+  margin-bottom: 30rpx;
+}
+
+.container.details .content .h1 {
+  font-size: 36rpx;
+  color: #333;
+  margin-bottom: 45rpx;
+  text-align: center;
+  width: 100%;
+  display: block;
+  font-weight: bold;
+}
+
+.container.details .content .text {
+  text-indent: 2em;
+  line-height: 2;
+  font-size: 30rpx;
+  display: block;
+}
+
+.container.details .err {
+  width: 100%;
+  /* height:370rpx; */
+  text-align: center;
+}
+
+.container.details .err .iconfont {
+  font-size: 200rpx;
+  color: #cacaca;
+}
+
+.container.details .content  .err .text {
+  margin-top: 20rpx;
+  font-size: 36rpx;
+  display: block;
+  text-indent: 0;
+  text-align: center;
+}

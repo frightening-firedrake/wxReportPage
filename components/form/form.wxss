@@ -1,0 +1,311 @@
+/* components/form/form.wxss */
+
+@font-face {
+  font-family: 'iconfont'; /* project id 886633 */
+  src: url('//at.alicdn.com/t/font_886633_7alxt7uk5ue.eot');
+  src: url('//at.alicdn.com/t/font_886633_7alxt7uk5ue.eot?#iefix') format('embedded-opentype'),
+         url('//at.alicdn.com/t/font_886633_7alxt7uk5ue.woff') format('woff'),
+         url('//at.alicdn.com/t/font_886633_7alxt7uk5ue.ttf') format('truetype'),
+         url('//at.alicdn.com/t/font_886633_7alxt7uk5ue.svg#iconfont') format('svg');
+}
+
+.icon-iconfontnone:before {
+  content: "\e600";
+}
+
+.icon-duigou:before {
+  content: "\e613";
+}
+
+.icon-weibiaoti3:before {
+  content: "\e64b";
+}
+
+.icon-weixin:before {
+  content: "\e649";
+}
+
+.icon-question:before {
+  content: "\e682";
+}
+
+.icon-shangpinzhonglei:before {
+  content: "\e81e";
+}
+
+.icon-dizhi:before {
+  content: "\e679";
+}
+
+.icon-jiantou:before {
+  content: "\e606";
+}
+
+.icon-xinlihuodong:before {
+  content: "\e630";
+}
+
+.icon-home:before {
+  content: "\e601";
+}
+
+.icon-shou:before {
+  content: "\e65a";
+}
+
+.icon-r-jiantou:before {
+  content: "\e605";
+}
+
+.icon-gonggao:before {
+  content: "\e611";
+}
+
+.icon-zhengquan:before {
+  content: "\e697";
+}
+
+.icon-gerenzhongxin:before {
+  content: "\e6d0";
+}
+
+.icon-guanfangbanben:before {
+  content: "\eb63";
+}
+
+.icon-jibenxinxi:before {
+  content: "\e628";
+}
+
+.icon-dingwei:before {
+  content: "\e602";
+}
+
+.icon-gengduofenleicaidanzhongleimianxing:before {
+  content: "\e98b";
+}
+
+.icon-duiwu:before {
+  content: "\e62e";
+}
+
+.icon-wang:before {
+  content: "\e77a";
+}
+
+.icon-zhongguoyidong:before {
+  content: "\e621";
+}
+
+.icon-guanlituandui:before {
+  content: "\e925";
+}
+
+.icon-jiangliguanli:before {
+  content: "\e6ad";
+}
+
+.icon-sizhengjiaoyu:before {
+  content: "\e604";
+}
+
+.icon-dingwei1:before {
+  content: "\e60e";
+}
+
+.icon-jilu:before {
+  content: "\e80e";
+}
+
+.icon-gonggao1:before {
+  content: "\ea32";
+}
+
+.icon-baomizidian:before {
+  content: "\e689";
+}
+
+.icon-dongtai:before {
+  content: "\e612";
+}
+
+.icon-sousuo:before {
+  content: "\e655";
+}
+
+.icon-wuneirong:before {
+  content: "\e65f";
+}
+
+.icon-jibenxinxi1:before {
+  content: "\e6de";
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.component .form .formonly,.form--component .form--form .form--formonly {
+  border: 1rpx solid #e1e1e1;
+  border-bottom: none;
+  padding-left: 20rpx;
+  height: 88rpx;
+  /* padding-top:30rpx; */
+  padding-right: 24rpx;
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  justify-content: flex-start;
+}
+
+.component .form .submit,.form--component .form--form .form--submit {
+  background-color: #4c75e1;
+  width: 700rpx;
+  height: 100rpx;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 44rpx;
+  color: white;
+  margin-top: 50rpx;
+  margin-bottom:40rpx;
+}
+
+.component .form .viewconcent,.form--component .form--form .form--viewconcent {
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.component .form .photoformonly .inputhearder .text,.form--component .form--form .form--photoformonly .form--inputhearder .form--text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 109rpx;
+}
+
+.component .form .photoformonly .inputhearder .image,.form--component .form--form .form--photoformonly .form--inputhearder .form--image {
+  width: 152rpx;
+  height: 152rpx;
+  display: inline-block;
+}
+
+.component .form .photoformonly,.form--component .form--form .form--photoformonly {
+  padding: 0 25rpx;
+  border-bottom: none;
+  border: 1rpx solid #e1e1e1;
+}
+
+.component .form .photoformonly .inputhearder .text .label,.form--component .form--form .form--photoformonly .form--inputhearder .form--text .form--label {
+  font-size: 30rpx;
+  padding-left: 24rpx;
+  color: #333;
+  float: right;
+}
+
+.component .form .photoformonly .inputhearder .imgadd,
+.form--component .form--form .form--photoformonly .form--inputhearder .form--imgadd {
+  width: 152rpx;
+  height: 152rpx;
+  text-align: center;
+  line-height: 1.45;
+  font-family: none;
+  font-size: 90rpx;
+  color: #d2d2d2;
+  display: inline-block;
+  border: 1px solid #bdbdbd;
+  margin-bottom: 40rpx;
+  vertical-align: top;
+}
+
+.component .form .formonly .inputhearder,.form--component .form--form .form--formonly .form--inputhearder {
+  color: #666;
+  width:230rpx;
+  font-size: 32rpx;
+}
+.component .form .formonly .inputhearder .font ,.form--component .form--form .form--formonly .form--inputhearder .form--font{
+  color:black;
+}
+.component .form .formonly .input,.form--component .form--form .form--formonly .form--input {
+  font-size: 30rpx;
+  height: 100%;
+  flex-grow: 2;
+  padding-left: 20rpx;
+  line-height: 88rpx;
+  /* padding-left: 20rpx; */
+}
+
+.component .form .formonly .code,.form--component .form--form .form--formonly .form--code {
+  width: 215rpx;
+  height: 100%;
+  background-color: #4c75e1;
+  color: white;
+  line-height:88rpx;
+  border-radius: 0;
+  font-size: 30rpx;
+  padding:0;
+}
+
+.component .form .formonly .codeno,.form--component .form--form .form--formonly .form--codeno {
+  width: 215rpx;
+  height: 100%;
+  background-color: #c1c1c1;
+  color: white;
+  line-height:88rpx;
+  border:none;
+  border-radius: 0;
+  padding:0;
+  font-size: 30rpx;
+}
+.component .form .formonly .textarea ,.form--component .form--form .form--formonly .form--textarea {
+  padding-top: 20rpx;
+  width: 0;
+  min-height:88rpx;
+  box-sizing: border-box; 
+  line-height: 2;
+  z-index: 0;
+}
+
+.component .form .slottext,.form--component .form--form .form--slottext {
+  height: 88rpx;
+  display: block;
+  width: 100%;
+  /* padding-top: 24rpx; */
+  line-height: 88rpx;
+  background-color: #ececec;
+  padding-left: 22rpx;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.component .form .checkbox,.form--component .form--form .form--checkbox{
+  display:inline-block;
+  height:100%;
+  float:right;
+  line-height:88rpx;
+  margin-right:20rpx;
+}
+.component .form .checkbox .checkbox,.form--component .form--form .form--checkbox .form--checkbox{
+  font-size:30rpx;
+}
+.component .form .viewconcent .slotbackground,.form--component .form--form .form--viewconcent .form--slotbackground{
+  background-color:#ececec;
+}
+.component .form .formonly .iconfont,.component .form--form .form--formonly .form--iconfont {
+  text-align: right;
+  flex-grow: 0;
+}
+
+.component .form .formonly .picker,.form--component .form--form .form--formonly .form--picker {
+  width: 473rpx;
+  flex-grow: 3;
+  /* width:100px; */
+  text-align: center;
+  height: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

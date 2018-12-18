@@ -1,0 +1,78 @@
+/* pages/index/report/report.wxss */
+
+/** 修改button默认的点击态样式类**/
+
+button {
+  background-color: #4c75e1;
+  width: 700rpx;
+  height: 100rpx;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 44rpx;
+  color: white;
+}
+
+.container.report {
+  background-color: #f8f8f8;
+  padding: 23rpx 24rpx;
+}
+
+.container.report text {
+  display: block;
+}
+
+.container.report  .report_hearder {
+  font-size: 48rpx;
+  color: #333;
+  text-align: center;
+  padding-top: 50rpx;
+  margin-bottom: 60rpx;
+}
+
+.container.report   .report_alarm {
+  text-indent: 2em;
+  margin-bottom: 10rpx;
+  line-height: 2;
+  font-size: 34rpx;
+}
+
+.container.report   .report_alarm.red {
+  color: #e5323d;
+}
+
+.container.report   .report_alarm.blue {
+  color: #4c75e1;
+  margin-bottom: 45rpx;
+}
+
+.container.report .section text {
+  text-indent: 1.2em;
+  font-size: 34rpx;
+  line-height: 2;
+  color: #000;
+}
+
+.container.report .section text:first-child {
+  text-indent: 0;
+}
+
+.container.report .section:last-child {
+  margin-bottom: 90rpx;
+}
+
+.container.report .footer {
+  font-size: 30rpx;
+  color: #000;
+  line-height: 2;
+}
+
+.container.report checkbox-group {
+  text-align: right;
+  margin-bottom: 85rpx;
+}
+
+.container.report checkbox-group label {
+  font-size: 24rpx;
+}

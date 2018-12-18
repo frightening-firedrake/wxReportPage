@@ -1,0 +1,4 @@
+<!--pages/logs/information/information.wxml-->
+<view class="container information">
+  <component-form form="{{form}}" prodid="{{prodid}}" buttonhidden="{{buttonhidden}}" bind:picker="picker" bind:submit="submit"></component-form>
+</view>

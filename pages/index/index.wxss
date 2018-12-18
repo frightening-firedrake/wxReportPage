@@ -1,0 +1,146 @@
+.tashow{
+  width:100%;
+  height:100%;
+}
+.tashow .zhezhao{
+  width:100%;
+  height:100%;
+  background-color:rgba(0,0,0,0.6);
+  position: fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  top:0;
+  z-index: 1;
+}
+.tashow .content{
+  width:485rpx;
+  height:523rpx;
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  top:0;
+  margin:auto;
+  z-index: 2;
+  background-color:white;
+  border-radius:10rpx;
+  border-top:1px solid #4c75e1;
+  padding-top:67rpx;
+}
+.tashow .content image{
+  display:block;
+  margin:0 auto;
+  width:123rpx;
+  height:123rpx;
+  margin-bottom:25rpx;
+}
+.tashow .content .UserInfo{
+  width:230rpx;
+  height:72rpx;
+  background-color:#4c75e1;
+  text-align:center;
+  font-size:36rpx;
+  color:#f8f8fa;
+  line-height:2;
+  margin-top:100rpx;
+}
+.tashow .content .font_content{
+  text-align:center;
+  color:#010101;
+  display:block;
+  font-size:30rpx;
+  margin-top:25rpx;
+}
+.container.home {
+  width: 100%;
+  height: 100%;
+  
+}
+
+.container.home .background {
+  width: 100%;
+  height: 70%;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  /* https://report.ityyedu.com/reportingSystem/upload/image/reward_banner.png */
+  background-image:url("https://report.ityyedu.com/reportingSystem/upload/image/background.png");
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-position:50% 50%;
+}
+
+.container.home .background image {
+  width: 100%;
+  height: 100%;
+}
+
+.container.home  .buttons {
+  width: 100%;
+  padding: 0 24rpx;
+  margin-bottom: 20rpx;
+  margin-top: 645rpx;
+  display: flex;
+  align-items: center; /*垂直居中*/
+  justify-content: space-between;
+  position: absolute;
+  bottom: 17%;
+  /* flex-wrap:wrap; */
+}
+
+.container.home  .buttons .button {
+  width: 220rpx;
+  padding-top: 44rpx;
+  height: 220rpx;
+  border-radius: 10rpx;
+  text-align: center;
+}
+
+.container.home  .buttons .button image {
+  width: 110rpx;
+  height: 110rpx;
+  display: block;
+  margin: 0 auto;
+}
+
+.container.home  .buttons .button.red {
+  background-color: #e5323c;
+  box-shadow: 0 4rpx 5rpx rgba(299, 50, 61, 0.7);
+}
+
+.container.home  .buttons .button.blue {
+  width: 220rpx;
+  height: 260rpx;
+  background-color: #2a4286;
+  box-shadow: 0 4rpx 5rpx rgba(42, 66, 134, 0.7);
+}
+
+.container.home  .buttons .button.blue image {
+  width: 110rpx;
+  height: 125rpx;
+  margin-bottom: 20rpx;
+}
+
+.container.home  .buttons .button.yellow {
+  background-color: #eca11b;
+  box-shadow: 0 4rpx 5rpx rgba(236, 161, 27, 0.7);
+}
+
+.container.home  .buttons .button text {
+  color: white;
+  font-family: bold;
+  font-size: 28rpx;
+}
+
+.container.home .report {
+  width: 520rpx;
+  height: 139rpx;
+  margin: 0 auto;
+  display: block;
+  /* margin-top: 45rpx; */
+  position: absolute;
+  bottom: 0%;
+  left: 0;
+  right: 0;
+}

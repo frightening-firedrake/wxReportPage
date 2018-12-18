@@ -1,0 +1,88 @@
+<!-- components/form/form.wxml -->
+<view class="component">
+  <form class="form" bindsubmit="submit">
+    <view class="viewconcent" wx:for="{{form}}" wx:key="{{index}}">
+      <view class="slotbackground">
+        <view wx:if="{{item.type == 'personal'}}" style="height:88rpx;">
+          <text style="margin-left:30rpx;color:#999999;font-size:24rpx;display:inline-block;line-height:88rpx;padding-right:24rpx;clear:both;">注：带有 <text style="color:red;">*</text> 的内容为必填内容</text>
+          <checkbox-group bindchange="checkboxChange" class="checkbox">
+            <label class="checkbox">
+              <checkbox value="1" color="#0cd802" /> 匿名提交
+            </label>
+          </checkbox-group>
+          <view style="clear:both"></view>
+        </view>
+        <text wx:if="{{item.slot}}" class="slottext ">{{item.slot}}</text>
+      </view>
+      <block wx:for="{{item.form}}" wx:key="{{index}}" wx:for-item="formitem">
+        <view class="{{formitem.type == 'photo'||formitem.type == 'video'?'photoformonly':'formonly'}}" style="align-items:{{formitem.type == 'textarea'?'flex-start':''}}; height:{{formitem.height}};padding-right:{{formitem.type=='phone'||formitem.type=='resultMap'?0:''}}">
+          <view class="inputhearder" wx:if="{{formitem.type == 'photo'||formitem.type == 'video'}}">
+            <view class='text'>
+              <text class="label">{{formitem.label}}</text>
+              <text class="label num">{{formitem.index}}/{{formitem.length}}</text>
+            </view>
+            <block wx:if="{{formitem.type=='photo'}}">
+              <block wx:for="{{formitem.value}}" wx:key="{{index}}">
+                <image class="image" src="{{image}}{{item}}" bindtap="preview" data-src="{{item}}" data-list="{{formitem.value}}"></image>
+              </block>
+              <input hidden value="{{formitem.value}}" name="{{formitem.name}}" />
+              <text class="imgadd" wx:if="{{formitem.value.length<formitem.length}}" data-type="{{formitem}}" bindtap="addimage">+</text>
+            </block>
+            <block wx:if="{{formitem.type=='video'}}">
+              <block wx:for="{{formitem.value}}" wx:key="{{index}}">
+                <video class="image" src="{{video}}{{item}}" bindplay="play" bindpause="pause" bindfullscreenchange="plus"></video>
+              </block>
+              <input hidden value="{{formitem.value}}" name="{{formitem.name}}" />
+              <text class="imgadd" wx:if="{{formitem.value.length<formitem.length}}" data-type="{{formitem}}" bindtap="addvideo">+</text>
+            </block>
+            <text style="font-size:24rpx;color:#cccccc;text-align:right;display:block;margin-bottom:22rpx;">{{formitem.placeholder}}</text>
+          </view>
+          <view wx:else class="inputhearder" style="padding-top:{{formitem.type == 'textarea'?'30rpx':''}}">
+            <text wx:if="{{formitem.request}}" style="color:red;text-align:right;display:inline-block">*</text>
+            <text wx:else decode="true">&nbsp;&nbsp;</text>
+            <text class="font">{{formitem.label}}</text>
+          </view>
+          <block wx:if="{{formitem.type == 'map'}}">
+            <!-- <input class="input"  name="{{formitem.name}}" value="{{map}}" placeholder="{{formitem.placeholder}}"/> -->
+            <textarea bindblur="keepvalue" wx:if="{{play}}" data-type="{{formitem.name}}" class="input textarea" name="{{formitem.name}}" value="{{formitem.value}}" placeholder="{{formitem.placeholder}}"></textarea>
+            <text bindtap="tomap" class="iconfont {{formitem.icon}}" style="height:100%;line-height:{{formitem.height}}"></text>
+          </block>
+          <block wx:if="{{formitem.type == 'select'}}">
+            <picker class="picker input" name="{{formitem.name}}" mode="selector" wx:if="{{formitem.value[formitem.reqvalue]}}" data-type="{{formitem}}" value="{{formitem.value[formitem.reqvalue]}}" range="{{formitem.value}}" data-type="{{formitem}}" bindchange="bindPickerChange">{{formitem.value[formitem.index]}}</picker>
+            <picker class="picker input" name="{{formitem.name}}" mode="selector" wx:else="{{formitem.value[formitem.index]}}" data-type="{{formitem}}" value="{{formitem.value[formitem.index]}}" range="{{formitem.value}}" data-type="{{formitem}}" bindchange="bindPickerChange">{{formitem.value[formitem.index]}}</picker>
+            <text class="iconfont {{formitem.icon}}"></text>
+          </block>
+          <block wx:if="{{formitem.type == 'selectcontent'}}">
+            <picker class="picker input" name="{{formitem.name}}" mode="selector" data-type="{{formitem}}" value="{{formitem.value[formitem.index].name}}" range="{{formitem.value}}" range-key="label" bindchange="bindPickerChange">{{formitem.value[formitem.index].label}}</picker>
+            <text style="color:red" bindtap="selectcontent" data-type="{{formitem.value[formitem.index].name}}" class="iconfont icon-question"></text>
+            <text class="iconfont icon-r-jiantou"></text>
+          </block>
+          <block wx:if="{{formitem.type == 'textarea'}}">
+            <textarea bindblur="keepvalue" wx:if="{{play}}" disabled="{{formitem.disabled?'disabled':false}}" data-type="{{formitem.name}}" value="{{formitem.reqvalue||formitem.value}}" class="input textarea" name="{{formitem.name}}" placeholder="{{formitem.placeholder}}"></textarea>
+          </block>
+          <block wx:if="{{formitem.type == 'phone'}}">
+            <input value="{{formitem.reqvalue}}" type="number" class="input" name="{{formitem.name}}" bindinput="entry" placeholder="{{formitem.placeholder}}" disabled='{{entry}}' />
+            <!-- <button hover-class="none" class="{{disabled?'codeno':'code'}}" formType="submit" data-type="codesubmit" disabled="{{disabled}}">{{code}}</button> -->
+          </block>
+          <block wx:if="{{formitem.type == 'id'}}">
+            <input value="{{formitem.reqvalue}}" type="idcard" class="input" name="{{formitem.name}}" placeholder="{{formitem.placeholder}}" />
+            <text class="iconfont {{formitem.icon}}"></text>
+          </block>
+          <block wx:if="{{formitem.type == 'resultMap'}}">
+            <input class="input" name="{{formitem.name}}" placeholder="{{formitem.placeholder}}" />
+            <image wx:if="{{!showImg}}" bindtap="chang" class="image" style="height:100%;width:215rpx;" alt="请点击刷新..." src='{{captchaImg}}' binderror="error"></image>
+            <text bindtap="chang" wx:if="{{showImg}}" style="width:215rpx;text-align:center;font-size:30rpx;color:red;">请点击刷新</text>
+          </block>
+          <block wx:if="{{formitem.type == ''}}">
+            <input value="{{formitem.reqvalue}}" disabled="{{formitem.disabled?'disabled':false}}" type="{{formitem.input||''}}" class="input" name="{{formitem.name}}" placeholder="{{formitem.placeholder}}" />
+            <text class="iconfont {{formitem.icon}}"></text>
+          </block>
+        </view>
+      </block>
+    </view>
+    <block wx:if="{{submittype}}">
+      <button class="submit" formType="submit" data-type="submit" hover-class="none" style="display:{{buttonhidden?'none':'block'}}">提交</button>
+    </block>
+  </form>
+</view>
+<view style="left:0;right:0;color:#999;font-size:30rpx;text-align:center;position:fixed;bottom:0;">硬汉科技</view>

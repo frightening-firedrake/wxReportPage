@@ -1,0 +1,38 @@
+<!-- index.wxml -->
+<view class="tashow" wx:if="{{show}}">
+  <view class="zhezhao"></view>
+  <view class="content">
+    <image src="../../image/index/alert.png"></image>
+    <text class="font_content">欢迎您来到山西省</text>
+    <text class="font_content">公安厅扫黑除恶举报平台小程序</text>
+    <button class="UserInfo" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">授权登录</button>
+  </view>
+</view>
+
+<view class="container home">
+  <!-- 背景 -->
+  <view class="background">
+    <!-- <image src="../../image/index/bakcgorund.png"></image> -->
+  </view>
+  <!-- 按钮 -->
+  <view class="buttons">
+    <view class="button red" data-type="1" data-name="举报种类" bindtap='details'>
+      <image src="../../image/index/type.png"></image>
+      <text>举报种类</text>
+    </view>
+    <view class="button blue" data-type="2" data-name="保密规定" bindtap='details'>
+      <image src="../../image/index/secrecy.png"></image>
+      <text>保密规定</text>
+      {{kkk}}
+    </view>
+    <view class="button yellow" data-type="3" data-name="奖励规定" bindtap='details'>
+      <image src="../../image/index/reward.png"></image>
+      <text>奖励规定</text>
+      
+    </view>
+  </view>
+  <!-- 我要举报 -->
+  <image class="report" src="../../image/index/report.png" bindtap="report"></image>
+<view style="left:0;right:0;color:#999;font-size:30rpx;text-align:center;position:fixed;bottom:0;">硬汉科技</view>
+ 
+</view>

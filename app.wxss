@@ -1,0 +1,158 @@
+/**app.wxss**/
+
+@font-face {
+  font-family: 'iconfont'; /* project id 886633 */
+  src: url('//at.alicdn.com/t/font_886633_7alxt7uk5ue.eot');
+  src: url('//at.alicdn.com/t/font_886633_7alxt7uk5ue.eot?#iefix') format('embedded-opentype'),
+         url('//at.alicdn.com/t/font_886633_7alxt7uk5ue.woff') format('woff'),
+         url('//at.alicdn.com/t/font_886633_7alxt7uk5ue.ttf') format('truetype'),
+         url('//at.alicdn.com/t/font_886633_7alxt7uk5ue.svg#iconfont') format('svg');
+}
+
+.icon-iconfontnone:before {
+  content: "\e600";
+}
+
+.icon-duigou:before {
+  content: "\e613";
+}
+
+.icon-weibiaoti3:before {
+  content: "\e64b";
+}
+
+.icon-weixin:before {
+  content: "\e649";
+}
+
+.icon-question:before {
+  content: "\e682";
+}
+
+.icon-shangpinzhonglei:before {
+  content: "\e81e";
+}
+
+.icon-dizhi:before {
+  content: "\e679";
+}
+
+.icon-jiantou:before {
+  content: "\e606";
+}
+
+.icon-xinlihuodong:before {
+  content: "\e630";
+}
+
+.icon-home:before {
+  content: "\e601";
+}
+
+.icon-shou:before {
+  content: "\e65a";
+}
+
+.icon-r-jiantou:before {
+  content: "\e605";
+}
+
+.icon-gonggao:before {
+  content: "\e611";
+}
+
+.icon-zhengquan:before {
+  content: "\e697";
+}
+
+.icon-gerenzhongxin:before {
+  content: "\e6d0";
+}
+
+.icon-guanfangbanben:before {
+  content: "\eb63";
+}
+
+.icon-jibenxinxi:before {
+  content: "\e628";
+}
+
+.icon-dingwei:before {
+  content: "\e602";
+}
+
+.icon-gengduofenleicaidanzhongleimianxing:before {
+  content: "\e98b";
+}
+
+.icon-duiwu:before {
+  content: "\e62e";
+}
+
+.icon-wang:before {
+  content: "\e77a";
+}
+
+.icon-zhongguoyidong:before {
+  content: "\e621";
+}
+
+.icon-guanlituandui:before {
+  content: "\e925";
+}
+
+.icon-jiangliguanli:before {
+  content: "\e6ad";
+}
+
+.icon-sizhengjiaoyu:before {
+  content: "\e604";
+}
+
+.icon-dingwei1:before {
+  content: "\e60e";
+}
+
+.icon-jilu:before {
+  content: "\e80e";
+}
+
+.icon-gonggao1:before {
+  content: "\ea32";
+}
+
+.icon-baomizidian:before {
+  content: "\e689";
+}
+
+.icon-dongtai:before {
+  content: "\e612";
+}
+
+.icon-sousuo:before {
+  content: "\e655";
+}
+
+.icon-wuneirong:before {
+  content: "\e65f";
+}
+
+.icon-jibenxinxi1:before {
+  content: "\e6de";
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  box-sizing: border-box;
+}
+
+text, view, block {
+  box-sizing: border-box;
+}

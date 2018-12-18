@@ -1,0 +1,31 @@
+<!-- pages/index/report/report.wxml -->
+<view class="container report">
+  <text class="report_hearder">须知</text>
+  <text class="report_alarm red">如果您举报现行违法犯罪行为且情况紧急，请直接拨打110。</text>
+  <text class="report_alarm blue">欢迎使用山西省扫黑除恶办推出的微信小程序提供涉黑涉恶线索。</text>
+  <view class="section">
+    <text>一、举报范围:</text>
+    <text>1. 地域:发生在山西省内的涉黑涉恶案件。</text>
+    <text>2. 种类:详见首页举报种类列举的17类。</text>
+  </view>
+  <view class="section">
+    <text>二、保密承诺:</text>
+    <text>1. 您有权利不提供个人资料。</text>
+    <text>2. 如您愿意提供个人资料，我们将严格保密。</text>
+    <text>3. 您提供的信息经查证核实后，我们将给予奖励。</text>
+  </view>
+  <view class="section">
+    <text>三、虚假举报</text>
+    <text>1.严禁举报人借举报为名对他人进行诬告陷害，对借举报之名诬告陷害他人或虚报冒领奖金的，将移交公安机关依法予以处理。</text>
+    <text>2.对于故意报假警、报假案，扰乱公安机关工作秩序或者捏造事实诬告陷害他人，企图使他人受到刑事追究或者治安管理处罚的，公安机关将依据《刑法》《治安管理处罚法》等规定追究相关人员责任</text>
+  </view>
+  <checkbox-group bindchange="checkboxChange" wx:if="{{timedis}}">
+    <label class="checkbox">
+      <checkbox value="1" color="#0cd802" /> 阅读并同意以上须知
+    </label>
+  </checkbox-group>
+  <button hover-class="none" bindtap="submit" disabled="{{disabled}}">确认
+    <block wx:if="{{num>0}}">{{num}}</block>
+  </button>
+</view>
+<view style="left:0;right:0;color:#999;font-size:30rpx;text-align:center;position:fixed;bottom:0;">硬汉科技</view>

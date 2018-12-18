@@ -1,0 +1,44 @@
+<!-- pages/index/details/details.wxml -->
+<view class="container details">
+  <view class="selects">
+    <view class="select red {{type=='1'?'active':''}}" data-type="1" bindtap="select">
+      <text class="iconfont icon-gengduofenleicaidanzhongleimianxing"></text>
+      <!-- <image src="../../../image/index/details-type.png"></image> -->
+      <text>举报种类</text>
+    </view>
+    <view class="select blue {{type=='2'?'active':''}}" data-type="2" bindtap="select">
+      <text class="iconfont icon-baomizidian"></text>
+      <!-- <image src="../../../image/index/details-secrecy.png"></image> -->
+      <text>保密规定</text>
+    </view>
+    <view class="select yellow {{type=='3'?'active':''}}" data-type="3" bindtap="select">
+      <text class="iconfont icon-jiangliguanli"></text>
+      <!-- <image src="../../../image/index/details-reward.png"></image> -->
+      <text>奖励规定</text>
+    </view>
+  </view>
+  <block wx:if="{{type=='1'}}">
+    <template is="details" data="{{...content.type}}"></template>
+  </block>
+  <block wx:if="{{type=='2'}}">
+    <template is="details" data="{{...content.secrecy}}"></template>
+  </block>
+  <block wx:if="{{type=='3'}}">
+    <view class="content" scroll-y='true' enable-back-to-top="true">
+      <image src="{{url}}upload/image/reward_banner.png" />
+      <view class="err">
+        <text class="iconfont icon-iconfontnone"></text>
+        <text class="text">暂无奖励规定</text>
+      </view>
+    </view>
+    <!-- <template is="details" data="{{...content.reward}}"></template> -->
+  </block>
+</view>
+<template name="details">
+  <view class="content" scroll-y='true' enable-back-to-top="true">
+    <image src="{{img}}" />
+    <text wx:if="{{h1}}" class="h1">{{h1}}</text>
+    <text class="text" wx:key="index" wx:for="{{text}}">{{text[index]}}</text>
+  </view>
+</template>
+<view style="left:0;right:0;color:#999;font-size:30rpx;text-align:center;position:fixed;bottom:0;">硬汉科技</view>

@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "component-form": "/components/form/form"
+    },
+    "navigationBarTitleText": "基本信息"
+}
