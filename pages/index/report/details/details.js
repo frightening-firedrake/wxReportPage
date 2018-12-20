@@ -118,7 +118,8 @@ Page({
             request: true,
             placeholder: "请输入举报内容",
             height: "260rpx",
-            value: ""
+            value: "",
+            maxlength:200
           },
           {
             label: '图片上传:',

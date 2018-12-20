@@ -58,7 +58,9 @@
             <text class="iconfont icon-r-jiantou"></text>
           </block>
           <block wx:if="{{formitem.type == 'textarea'}}">
-            <textarea bindblur="keepvalue" wx:if="{{play}}" disabled="{{formitem.disabled?'disabled':false}}" data-type="{{formitem.name}}" value="{{formitem.reqvalue||formitem.value}}" class="input textarea" name="{{formitem.name}}" placeholder="{{formitem.placeholder}}"></textarea>
+            <textarea bindblur="keepvalue" bindinput="textareaInput" data-maxlength='{{formitem.maxlength}}' wx:if="{{play}}" disabled="{{formitem.disabled?'disabled':false}}" data-type="{{formitem.name}}" value="{{formitem.reqvalue||formitem.value}}" class="input textarea"
+              maxlength="{{formitem.maxlength}}" name="{{formitem.name}}" placeholder="{{formitem.placeholder}}"></textarea>
+            <view style="font-size:30rpx;" wx:if="{{formitem.maxlength}}">{{Inputlength}}/{{formitem.maxlength}}</view>
           </block>
           <block wx:if="{{formitem.type == 'phone'}}">
             <input value="{{formitem.reqvalue}}" type="number" class="input" name="{{formitem.name}}" bindinput="entry" placeholder="{{formitem.placeholder}}" disabled='{{entry}}' />

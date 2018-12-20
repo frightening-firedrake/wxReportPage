@@ -62,7 +62,8 @@ Component({
     captcha: "",
     captchaImg: "",
     checkboxValue: "",
-    showImg:false
+    showImg:false,
+    Inputlength:0
   },
   ready: function() {
     let that = this
@@ -360,6 +361,13 @@ Component({
       //     })
       //   }
       // })
+    },
+    textareaInput:function(e){
+      //e.detail.cursor
+      //e.target.detaset.maxlength
+      this.setData({
+        Inputlength: e.detail.cursor
+      })
     },
     keepvalue: function(e) {
       var myEventDetail = {
