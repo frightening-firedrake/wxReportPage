@@ -1,17 +1,17 @@
 <!-- pages/index/details/details.wxml -->
 <view class="container details">
   <view class="selects">
-    <view class="select red {{type=='1'?'active':''}}" data-type="1" bindtap="select">
+    <view class="select red {{type=='1'?'active':''}}" data-type="1" bindtap="select" data-name="举报种类">
       <text class="iconfont icon-gengduofenleicaidanzhongleimianxing"></text>
       <!-- <image src="../../../image/index/details-type.png"></image> -->
       <text>举报种类</text>
     </view>
-    <view class="select blue {{type=='2'?'active':''}}" data-type="2" bindtap="select">
+    <view class="select blue {{type=='2'?'active':''}}" data-type="2" bindtap="select"  data-name="保密规定">
       <text class="iconfont icon-baomizidian"></text>
       <!-- <image src="../../../image/index/details-secrecy.png"></image> -->
       <text>保密规定</text>
     </view>
-    <view class="select yellow {{type=='3'?'active':''}}" data-type="3" bindtap="select">
+    <view class="select yellow {{type=='3'?'active':''}}" data-type="3" bindtap="select" data-name="奖励规定">
       <text class="iconfont icon-jiangliguanli"></text>
       <!-- <image src="../../../image/index/details-reward.png"></image> -->
       <text>奖励规定</text>

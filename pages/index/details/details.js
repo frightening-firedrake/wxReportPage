@@ -120,5 +120,8 @@ Page({
     this.setData({
       type: e.currentTarget.dataset.type
     })
+    wx.setNavigationBarTitle({
+      title: e.currentTarget.dataset.name
+    })
   }
 })

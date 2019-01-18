@@ -159,6 +159,7 @@
   align-items: center;
   /* justify-content: space-between; */
   justify-content: flex-start;
+  position:relative;
 }
 
 .component .form .submit,.form--component .form--form .form--submit {
@@ -263,10 +264,12 @@
 .component .form .formonly .textarea ,.form--component .form--form .form--formonly .form--textarea {
   padding-top: 20rpx;
   width: 0;
+  height:80%;
   min-height:88rpx;
   box-sizing: border-box; 
   line-height: 2;
   z-index: 0;
+  
 }
 
 .component .form .slottext,.form--component .form--form .form--slottext {

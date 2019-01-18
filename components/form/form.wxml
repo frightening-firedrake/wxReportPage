@@ -15,7 +15,7 @@
         <text wx:if="{{item.slot}}" class="slottext ">{{item.slot}}</text>
       </view>
       <block wx:for="{{item.form}}" wx:key="{{index}}" wx:for-item="formitem">
-        <view class="{{formitem.type == 'photo'||formitem.type == 'video'?'photoformonly':'formonly'}}" style="align-items:{{formitem.type == 'textarea'?'flex-start':''}}; height:{{formitem.height}};padding-right:{{formitem.type=='phone'||formitem.type=='resultMap'?0:''}}">
+        <view class="{{formitem.type == 'photo'||formitem.type == 'video'?'photoformonly':'formonly'}}" style="align-items:{{formitem.type == 'textarea'?'flex-start':''}}; flex-wrap:{{formitem.type == 'textarea'?'wrap':''}}; height:{{formitem.height}};padding-right:{{formitem.type=='phone'||formitem.type=='resultMap'?0:''}}">
           <view class="inputhearder" wx:if="{{formitem.type == 'photo'||formitem.type == 'video'}}">
             <view class='text'>
               <text class="label">{{formitem.label}}</text>
@@ -60,7 +60,7 @@
           <block wx:if="{{formitem.type == 'textarea'}}">
             <textarea bindblur="keepvalue" bindinput="textareaInput" data-maxlength='{{formitem.maxlength}}' wx:if="{{play}}" disabled="{{formitem.disabled?'disabled':false}}" data-type="{{formitem.name}}" value="{{formitem.reqvalue||formitem.value}}" class="input textarea"
               maxlength="{{formitem.maxlength}}" name="{{formitem.name}}" placeholder="{{formitem.placeholder}}"></textarea>
-            <view style="font-size:30rpx;" wx:if="{{formitem.maxlength}}">{{Inputlength}}/{{formitem.maxlength}}</view>
+            <view style="width:100%;text-align:right;font-size:30rpx;color:#999;" wx:if="{{formitem.maxlength}}">{{Inputlength}}/{{formitem.maxlength}}</view>
           </block>
           <block wx:if="{{formitem.type == 'phone'}}">
             <input value="{{formitem.reqvalue}}" type="number" class="input" name="{{formitem.name}}" bindinput="entry" placeholder="{{formitem.placeholder}}" disabled='{{entry}}' />

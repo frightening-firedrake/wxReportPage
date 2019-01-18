@@ -161,7 +161,7 @@ App({
     userInfo: null,
     state: false,
     configUrl: "https://report.ityyedu.com/reportingSystem/",
-    // configUrl: 'https://192.168.0.101:8443/reportingSystem/',
+    // configUrl: 'http://192.168.1.252:8083/reportingSystem/',
     token: ""
   }
 })
