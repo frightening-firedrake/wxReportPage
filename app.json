@@ -26,12 +26,12 @@
         "iconPath": "image/index/about.png",
         "selectedIconPath": "image/index/about_active.png"
       }
-    ]
+    ] 
   },
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#1b1d67",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white"
   }
 }

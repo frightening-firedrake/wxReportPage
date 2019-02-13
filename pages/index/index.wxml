@@ -8,31 +8,70 @@
     <button class="UserInfo" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">授权登录</button>
   </view>
 </view>
-
+<view class="classitem" wx:if="{{classitem}}">
+  <view class="zhezhao"></view>
+  <view class="content">
+    <view class="close" bindtap="close">
+      <icon type="clear" class="clear" size="60rpx" />
+    </view>
+    <template is="classitem" data="{{...content[type]}}" />
+  </view>
+</view>
 <view class="container home">
   <!-- 背景 -->
   <view class="background">
     <!-- <image src="../../image/index/bakcgorund.png"></image> -->
   </view>
   <!-- 按钮 -->
-  <view class="buttons">
-    <view class="button red" data-type="1" data-name="举报种类" bindtap='details'>
+  <view class="buttons red">
+    <view class="button" data-type="1" data-name="举报种类" bindtap='details'>
       <image src="../../image/index/type.png"></image>
       <text>举报种类</text>
     </view>
     <view class="button blue" data-type="2" data-name="保密规定" bindtap='details'>
       <image src="../../image/index/secrecy.png"></image>
       <text>保密规定</text>
-      {{kkk}}
     </view>
     <view class="button yellow" data-type="3" data-name="奖励规定" bindtap='details'>
       <image src="../../image/index/reward.png"></image>
       <text>奖励规定</text>
-      
     </view>
   </view>
   <!-- 我要举报 -->
-  <image class="report" src="../../image/index/report.png" bindtap="report"></image>
-<view style="left:0;right:0;color:#999;font-size:30rpx;text-align:center;position:fixed;bottom:0;">硬汉科技</view>
- 
+  <!-- <image class="report" src="../../image/index/report.png" bindtap="report"></image> -->
+  <view class="report">
+    <navigator url="report/report" hover-class="navigator-hover" class="navigator">
+      <view class="navigator-text">我要举报</view>
+      <view class="navigator-arrow"></view>
+    </navigator>
+    <view class="onekey">
+      <image src="../../image/index/onekey.png"></image>
+      <view class="onekeytext">
+        <text class="block">一键举报</text>
+        <text>您的举报信息
+我们会为您严格保密
+</text>
+      </view>
+    </view>
+  </view>
+  <view style="left:0;right:0;color:#999;font-size:30rpx;text-align:center;position:fixed;bottom:0;">硬汉科技</view>
+  <template name="classitem">
+    <block wx:if="{{type==3}}">
+      <view class="content" scroll-y='true' enable-back-to-top="true">
+        <image src="{{img}}" />
+        <view class="err">
+          <text class="iconfont icon-iconfontnone"></text>
+          <text class="text">暂无奖励规定</text>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <image src="{{img}}" />
+      <scroll-view class="contenttext" scroll-y="true" enable-back-to-top="true">
+        <text wx:if="{{h1}}" class="h1">{{h1}}</text>
+        <text class="text" wx:key="index" wx:for="{{text}}">{{text[index]}}</text>
+      </scroll-view>
+    </block>
+
+  </template>
 </view>
