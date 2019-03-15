@@ -1,10 +1,17 @@
 //app.js
 App({
   onLaunch: function() {
+    wx.authorize({
+      scope: 'scope.userLocation',
+      success() {
+        // 用户已经同意小程序使用录音功能，后续调用 wx.startRecord 接口不会弹窗询问
+
+      }
+    })
     this.login()
     wx.showShareMenu({
       withShareTicket: true,
-      success:function(res){
+      success: function(res) {
         console.log(res)
       }
     })
@@ -50,6 +57,32 @@ App({
     return new Promise((resolve, reject) => {
       wx.request({
         url: this.globalData.configUrl + url,
+        data: data,
+        method: "POST",
+        // application/x-www-form-urlencoded
+        header: {
+          "content-type": "application/x-www-form-urlencoded",
+          "Authorization": this.globalData.token
+        },
+        success: function(res) {
+          wx.hideLoading()
+          resolve(res)
+        },
+        fail: function(err) {
+          wx.hideLoading()
+          reject(err)
+        }
+      })
+    })
+
+  },
+  catchpost(url, data, header = {}) {
+    wx.showLoading({
+      title: "加载中",
+    })
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url: "https://report.ityyedu.com/reportingSystem/" + url,
         data: data,
         method: "POST",
         // application/x-www-form-urlencoded
@@ -136,7 +169,7 @@ App({
           }
 
           // that.get("wechat/userInfo", params).then(res => {
-          that.get("wechat/getOpenId", params).then(res => {
+          that.get("getOpenId", params).then(res => {
             if (res.data) {
               that.globalData.userInfo = {
                 openid: res.data
@@ -160,8 +193,9 @@ App({
   globalData: {
     userInfo: null,
     state: false,
-    configUrl: "https://report.ityyedu.com/reportingSystem/",
-    // configUrl: 'http://192.168.1.252:8083/reportingSystem/',
+    configUrl: "https://report.ityyedu.com/reportingSystem/wechat/",
+    // configUrl: 'http://192.168.1.244:8083/reportingSystem/wechat/',
+    uploadUrl: 'https://report.ityyedu.com/reportingSystem/',
     token: ""
   }
 })

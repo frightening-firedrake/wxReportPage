@@ -2,6 +2,16 @@
 
 /** 修改button默认的点击态样式类**/
 
+.background {
+  margin-top: 238rpx;
+  background-color: #fff;
+  padding-top: 59rpx;
+  box-shadow: 0px 5px 15px 0px rgba(56, 55, 58, 0.1);
+  padding-bottom: 42rpx;
+  padding: 0 32rpx 42rpx 32rpx;
+  border-radius: 20px;
+}
+
 button {
   background-color: #4c75e1;
   width: 700rpx;
@@ -12,11 +22,17 @@ button {
   line-height: 100rpx;
   font-size: 44rpx;
   color: white;
+  border-radius: 6px;
+  margin-top: 29rpx;
 }
 
 .container.report {
   background-color: #f8f8f8;
   padding: 23rpx 24rpx;
+  background-image: url("https://report.ityyedu.com/reportingSystem/upload/image/report.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50% 0;
 }
 
 .container.report text {
@@ -24,18 +40,20 @@ button {
 }
 
 .container.report  .report_hearder {
-  font-size: 48rpx;
+  font-size: 72rpx;
   color: #333;
   text-align: center;
-  padding-top: 50rpx;
-  margin-bottom: 60rpx;
+  margin-bottom: 50rpx;
+  height: 165rpx;
+  line-height:165rpx;
+  border-bottom: 1px dashed #999;
 }
 
 .container.report   .report_alarm {
   text-indent: 2em;
   margin-bottom: 10rpx;
   line-height: 2;
-  font-size: 34rpx;
+  font-size: 32rpx;
 }
 
 .container.report   .report_alarm.red {
@@ -70,7 +88,7 @@ button {
 
 .container.report checkbox-group {
   text-align: right;
-  margin-bottom: 85rpx;
+  margin-top: 40rpx;
 }
 
 .container.report checkbox-group label {

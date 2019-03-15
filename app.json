@@ -7,8 +7,16 @@
     "pages/index/report/details/details",
     "pages/logs/record/record",
     "pages/logs/information/information",
-    "pages/logs/record/details/rescorddetails"
+    "pages/logs/record/details/rescorddetails",
+    "components/captcha/captcha",
+    "pages/logs/about/aboutus",
+    "pages/logs/message/message"
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序获取地址时展示"
+    }
+  },
   "tabBar": {
     "color": "#9d9d9d",
     "selectedColor": "#3c76ff",
@@ -26,7 +34,7 @@
         "iconPath": "image/index/about.png",
         "selectedIconPath": "image/index/about_active.png"
       }
-    ] 
+    ]
   },
   "window": {
     "backgroundTextStyle": "light",

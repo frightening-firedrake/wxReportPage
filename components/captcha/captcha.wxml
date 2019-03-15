@@ -1,0 +1,10 @@
+<!--components/captcha/captcha.wxml-->
+<view>
+  <view class="captcha">
+    <canvas canvas-id="firstcanvas" style="width:{{firstcanvas.firstwidth}}rpx;height:{{firstcanvas.firstheight}}rpx"></canvas>
+    <canvas canvas-id="canvas" style="left:{{canvasstyle.left}}rpx"></canvas>
+  </view>
+  <movable-area style="height:50px; width: 100%; background: red;">
+    <movable-view bindtouchend="end" style="height: 50px; width: 50px; background: blue;" x="{{x}}" y="{{y}}" bindchange="move" direction="horizontal">移动</movable-view>
+  </movable-area>
+</view>

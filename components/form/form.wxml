@@ -1,90 +1,169 @@
 <!-- components/form/form.wxml -->
 <view class="component">
   <form class="form" bindsubmit="submit">
-    <view class="viewconcent" wx:for="{{form}}" wx:key="{{index}}">
-      <view class="slotbackground">
-        <view wx:if="{{item.type == 'personal'}}" style="height:88rpx;">
-          <text style="margin-left:30rpx;color:#999999;font-size:24rpx;display:inline-block;line-height:88rpx;padding-right:24rpx;clear:both;">注：带有 <text style="color:red;">*</text> 的内容为必填内容</text>
-          <checkbox-group bindchange="checkboxChange" class="checkbox">
-            <label class="checkbox">
-              <checkbox value="1" color="#0cd802" /> 匿名提交
-            </label>
-          </checkbox-group>
-          <view style="clear:both"></view>
+    <view class="navigator-box" wx:for="{{form.formdata}}" wx:key="{{index}}">
+      <block wx:if="{{item.model == 'picture'}}">
+        <view class="navigator">
+          <view class="iconfont {{item.icon}}"></view>
+          <view class="navigator-text">{{item.name}}:</view>
+          <view class="navigator-arrowtext">
+            {{item.maxlength-form.check[item.model].length}}/{{item.maxlength}}
+          </view>
         </view>
-        <text wx:if="{{item.slot}}" class="slottext ">{{item.slot}}</text>
-      </view>
-      <block wx:for="{{item.form}}" wx:key="{{index}}" wx:for-item="formitem">
-        <view class="{{formitem.type == 'photo'||formitem.type == 'video'?'photoformonly':'formonly'}}" style="align-items:{{formitem.type == 'textarea'?'flex-start':''}}; flex-wrap:{{formitem.type == 'textarea'?'wrap':''}}; height:{{formitem.height}};padding-right:{{formitem.type=='phone'||formitem.type=='resultMap'?0:''}}">
-          <view class="inputhearder" wx:if="{{formitem.type == 'photo'||formitem.type == 'video'}}">
-            <view class='text'>
-              <text class="label">{{formitem.label}}</text>
-              <text class="label num">{{formitem.index}}/{{formitem.length}}</text>
+        <view class="navigator">
+          <image bindtap="preview" class="" src="{{imgaeUrl}}{{srcitem}}" data-item="{{srcitem}}" data-list="{{form.check[item.model]}}" wx:key="{{srcindex}}" wx:for="{{form.check[item.model]}}" wx:for-index="srcindex" wx:for-item="srcitem" />
+          <image class="" bindtap="addimage" wx:if="{{!(item.maxlength-form.check[item.model].length) == 0}}" src="../../image/index/prcture.png" />
+          <text class="imagetext">每张图片的大小不能超过1M</text>
+        </view>
+      </block>
+      <block wx:elif="{{item.model == 'video'}}">
+        <view class="navigator">
+          <view class="iconfont {{item.icon}}"></view>
+          <view class="navigator-text">{{item.name}}:</view>
+          <view class="navigator-arrowtext">
+            {{item.maxlength-form.check[item.model].length}}/{{item.maxlength}}
+          </view>
+        </view>
+        <view class="navigator">
+          <video src="{{videoUrl}}{{videoitem}}" wx:key="{{videoindex}}" wx:for="{{form.check[item.model]}}" wx:for-index="videoindex" wx:for-item="videoitem" controls></video>
+          <image class="" bindtap="addvideo" wx:if="{{!(item.maxlength-form.check[item.model].length) == 0}}" src="../../image/index/video.png" />
+          <text class="imagetext">每张视频的大小不能超过3M</text>
+        </view>
+      </block>
+      <block wx:elif="{{item.model == 'informContent'}}">
+        <view class="navigator">
+          <view class="iconfont {{item.icon}}"></view>
+          <view class="navigator-text">{{item.name}}:</view>
+          {{item.maxlength-form.check[item.model].length}}/{{item.maxlength}}
+        </view>
+      </block>
+      <block wx:else>
+        <view class="navigator">
+          <view class="iconfont {{item.icon}}"></view>
+          <view class="navigator-text">{{item.name}}:</view>
+          <switch name="{{item.model}}" checked bindchange="checkboxChange" wx:if="{{item.switch}}" />
+        </view>
+      </block>
+      <block wx:for="{{item.data}}" wx:key="{{idx}}" wx:for-index="idx" wx:for-item="itemdata">
+        <view class="navigator {{itemdata.class}}">
+          <view wx:if="{{itemdata.require}}">*</view>
+          <block wx:if="{{itemdata.type == 'regionselect'}}">
+            <picker name="{{itemdata.model}}" class="picker" mode="multiSelector" bindcolumnchange="bindcolumnchange" data-type="{{itemdata.model}}" bindcancel="bindcancel" bindchange="bindRegionChange" value="{{form.check[itemdata.model]}}" range-key="regionName"
+              range="{{form.data[itemdata.model]}}">
+              <text class="" decode="true">
+                {{itemdata.name}}：&nbsp;&nbsp;&nbsp;&nbsp;{{form.data[itemdata.model][0][form.check[itemdata.model][0]].regionName}},{{form.data[itemdata.model][1][form.check[itemdata.model][1]].regionName}},{{form.data[itemdata.model][2][form.check[itemdata.model][2]].regionName}}
+              </text>
+            </picker>
+            <view class="navigator-arrow"></view>
+          </block>
+          <block wx:elif="{{itemdata.type == 'map'}}">
+            <view class="navigator-text">{{itemdata.name}}:</view>
+            <view class="navigator-textarea">
+              <textarea name="{{itemdata.model}}" data-type="{{itemdata.model}}" bindinput="bindinput" value="{{form.check[itemdata.model]}}" placeholder="{{itemdata.placeholder}}" />
+              <image bindtap="chooseLocation" class="" src="../../image/index/map.png" />
             </view>
-            <block wx:if="{{formitem.type=='photo'}}">
-              <block wx:for="{{formitem.value}}" wx:key="{{index}}">
-                <image class="image" src="{{image}}{{item}}" bindtap="preview" data-src="{{item}}" data-list="{{formitem.value}}"></image>
-              </block>
-              <input hidden value="{{formitem.value}}" name="{{formitem.name}}" />
-              <text class="imgadd" wx:if="{{formitem.value.length<formitem.length}}" data-type="{{formitem}}" bindtap="addimage">+</text>
-            </block>
-            <block wx:if="{{formitem.type=='video'}}">
-              <block wx:for="{{formitem.value}}" wx:key="{{index}}">
-                <video class="image" src="{{video}}{{item}}" bindplay="play" bindpause="pause" bindfullscreenchange="plus"></video>
-              </block>
-              <input hidden value="{{formitem.value}}" name="{{formitem.name}}" />
-              <text class="imgadd" wx:if="{{formitem.value.length<formitem.length}}" data-type="{{formitem}}" bindtap="addvideo">+</text>
-            </block>
-            <text style="font-size:24rpx;color:#cccccc;text-align:right;display:block;margin-bottom:22rpx;">{{formitem.placeholder}}</text>
-          </view>
-          <view wx:else class="inputhearder" style="padding-top:{{formitem.type == 'textarea'?'30rpx':''}}">
-            <text wx:if="{{formitem.request}}" style="color:red;text-align:right;display:inline-block">*</text>
-            <text wx:else decode="true">&nbsp;&nbsp;</text>
-            <text class="font">{{formitem.label}}</text>
-          </view>
-          <block wx:if="{{formitem.type == 'map'}}">
-            <!-- <input class="input"  name="{{formitem.name}}" value="{{map}}" placeholder="{{formitem.placeholder}}"/> -->
-            <textarea bindblur="keepvalue" wx:if="{{play}}" data-type="{{formitem.name}}" class="input textarea" name="{{formitem.name}}" value="{{formitem.value}}" placeholder="{{formitem.placeholder}}"></textarea>
-            <text bindtap="tomap" class="iconfont {{formitem.icon}}" style="height:100%;line-height:{{formitem.height}}"></text>
           </block>
-          <block wx:if="{{formitem.type == 'select'}}">
-            <picker class="picker input" name="{{formitem.name}}" mode="selector" wx:if="{{formitem.value[formitem.reqvalue]}}" data-type="{{formitem}}" value="{{formitem.value[formitem.reqvalue]}}" range="{{formitem.value}}" data-type="{{formitem}}" bindchange="bindPickerChange">{{formitem.value[formitem.index]}}</picker>
-            <picker class="picker input" name="{{formitem.name}}" mode="selector" wx:else="{{formitem.value[formitem.index]}}" data-type="{{formitem}}" value="{{formitem.value[formitem.index]}}" range="{{formitem.value}}" data-type="{{formitem}}" bindchange="bindPickerChange">{{formitem.value[formitem.index]}}</picker>
-            <text class="iconfont {{formitem.icon}}"></text>
+          <block wx:elif="{{itemdata.type=='select'}}">
+            {{itemdata.name}}：
+            <picker name="{{itemdata.model}}" class="picker" data-type="{{itemdata.model}}" bindchange="selectchage" value="{{form.check[itemdata.model]}}" range-key="label" range="{{form.data[itemdata.model]}}">
+              <text class="pickertext" decode="true">
+                {{(form.data[itemdata.model][form.check[itemdata.model]].label)}}
+              </text>
+              <!-- <text class="navigator-text"> -->
+              <!-- </text> -->
+            </picker>
+            <view class="navigator-arrow"></view>
           </block>
-          <block wx:if="{{formitem.type == 'selectcontent'}}">
-            <picker class="picker input" name="{{formitem.name}}" mode="selector" data-type="{{formitem}}" value="{{formitem.value[formitem.index].name}}" range="{{formitem.value}}" range-key="label" bindchange="bindPickerChange">{{formitem.value[formitem.index].label}}</picker>
-            <text style="color:red" bindtap="selectcontent" data-type="{{formitem.value[formitem.index].name}}" class="iconfont icon-question"></text>
-            <text class="iconfont icon-r-jiantou"></text>
+          <block wx:elif="{{itemdata.type=='code'}}">
+            <view class="navigator-text">{{itemdata.name}}:</view>
+            <view class="navigator-input">
+              <input name="{{itemdata.model}}" data-type="{{itemdata.model}}" bindinput="bindinput" placeholder="请输入验证码" value="{{form.check[itemdata.model]}}" />
+              <image class="" bindtap="chang" wx:if="{{captchaImg}}" src="{{captchaImg}}" />
+              <text class="" wx:if="{{!captchaImg}}" bindtap="chang">请点击刷新</text>
+            </view>
           </block>
-          <block wx:if="{{formitem.type == 'textarea'}}">
-            <textarea bindblur="keepvalue" bindinput="textareaInput" data-maxlength='{{formitem.maxlength}}' wx:if="{{play}}" disabled="{{formitem.disabled?'disabled':false}}" data-type="{{formitem.name}}" value="{{formitem.reqvalue||formitem.value}}" class="input textarea"
-              maxlength="{{formitem.maxlength}}" name="{{formitem.name}}" placeholder="{{formitem.placeholder}}"></textarea>
-            <view style="width:100%;text-align:right;font-size:30rpx;color:#999;" wx:if="{{formitem.maxlength}}">{{Inputlength}}/{{formitem.maxlength}}</view>
+          <block wx:elif="{{itemdata.type=='context'}}">
+            <view class="navigator-textareacontent">
+              <textarea name="{{itemdata.model}}" placeholder="{{itemdata.placeholder}}" data-type="{{itemdata.model}}" bindinput="bindinput" maxlength="{{itemdata.maxlength}}" value="{{form.check[itemdata.model]}}" />
+              <!-- <view class="fontlength"></view> -->
+            </view>
           </block>
-          <block wx:if="{{formitem.type == 'phone'}}">
-            <input value="{{formitem.reqvalue}}" type="number" class="input" name="{{formitem.name}}" bindinput="entry" placeholder="{{formitem.placeholder}}" disabled='{{entry}}' />
-            <!-- <button hover-class="none" class="{{disabled?'codeno':'code'}}" formType="submit" data-type="codesubmit" disabled="{{disabled}}">{{code}}</button> -->
-          </block>
-          <block wx:if="{{formitem.type == 'id'}}">
-            <input value="{{formitem.reqvalue}}" type="idcard" class="input" name="{{formitem.name}}" placeholder="{{formitem.placeholder}}" />
-            <text class="iconfont {{formitem.icon}}"></text>
-          </block>
-          <block wx:if="{{formitem.type == 'resultMap'}}">
-            <input class="input" name="{{formitem.name}}" placeholder="{{formitem.placeholder}}" />
-            <image wx:if="{{!showImg}}" bindtap="chang" class="image" style="height:100%;width:215rpx;" alt="请点击刷新..." src='{{captchaImg}}' binderror="error"></image>
-            <text bindtap="chang" wx:if="{{showImg}}" style="width:215rpx;text-align:center;font-size:30rpx;color:red;">请点击刷新</text>
-          </block>
-          <block wx:if="{{formitem.type == ''}}">
-            <input value="{{formitem.reqvalue}}" disabled="{{formitem.disabled?'disabled':false}}" type="{{formitem.input||''}}" class="input" name="{{formitem.name}}" placeholder="{{formitem.placeholder}}" />
-            <text class="iconfont {{formitem.icon}}"></text>
+          <block wx:else>
+            <view class="navigator-about" wx:if="{{checkboxValue}}">
+              <input name="{{itemdata.model}}" data-type="{{itemdata.model}}" bindinput="bindinput" placeholder="{{itemdata.placeholder}}" value="{{form.check[itemdata.model]}}" />
+            </view>
           </block>
         </view>
       </block>
+      <!-- <view class="navigator">
+        <view>*</view>
+        <picker class="picker" mode="region" bindcancel="bindcancel" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+          <view class="navigator-text">线报地域：{{region[0]}}，{{region[1]}}，{{region[2]}}</view>
+        </picker>
+        <view class="navigator-arrow"></view>
+      </view>
+      <view class="navigator">
+        <view>*</view>
+        <view class="navigator-text">线索地址:</view>
+        <view class="navigator-textarea">
+          <textarea placeholder="" />
+          <image class="" src="../../image/index/map.png" />
+        </view>
+      </view>
     </view>
-    <block wx:if="{{submittype}}">
-      <button class="submit" formType="submit" data-type="submit" hover-class="none" style="display:{{buttonhidden?'none':'block'}}">提交</button>
+    <view class="navigator-box">
+      <view class="navigator">
+        <view class="iconfont icon-ziliaoku"></view>
+        <view class="navigator-text">举报详情</view>
+      </view>
+      <view class="navigator textareacontent">
+        <view class="navigator-textareacontent">
+          <textarea placeholder="" />
+          <view class="fontlength">1/200</view>
+        </view>
+      </view>
+    </view>
+    <view class="navigator-box">
+      <view class="navigator">
+        <view class="iconfont icon-ziliaoku"></view>
+        <view class="navigator-text">图片上传:</view>
+        <view class="navigator-arrowtext">0/10</view>
+      </view>
+      <view class="navigator">
+        <image class="" src="" />
+        <image class="" src="../../image/index/prcture.png" />
+        <text class="imagetext">每张图片的大小不能超过1M</text>
+      </view>
+      <view class="navigator">
+        <view>*</view>
+        <view class="navigator-text">验证码:</view>
+        <view class="navigator-input">
+          <input placeholder="请输入验证码" />
+          <image class="" src="../../image/index/map.png" />
+        </view>
+      </view>
+    </view>
+    <view class="navigator-box">
+      <view class="navigator">
+        <view class="iconfont icon-ziliaoku"></view>
+        <view class="navigator-text">个人信息</view>
+        <switch checked bindchange="switch1Change" />
+      </view>
+      <view class="navigator">
+        <view class="navigator-about">
+          <input placeholder="这是一个可以自动聚焦的input" />
+          <input placeholder="这是一个可以自动聚焦的input" />
+        </view>
+      </view> -->
+    </view>
+    <text class="careful">注：带有*的内容为必填内容</text>
+    <block>
+      <button class="submit" form-type="submit" data-type="submit" hover-class="none" style="display:{{buttonhidden?'none':'block'}}">
+        提交
+      </button>
     </block>
   </form>
 </view>
-<view style="left:0;right:0;color:#999;font-size:30rpx;text-align:center;position:fixed;bottom:0;">硬汉科技</view>
+<view style="left:0;right:0;color:red;font-size:30rpx;text-align:center;position:fixed;bottom:0;">
+  硬汉科技
+</view>

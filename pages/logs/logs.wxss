@@ -1,3 +1,7 @@
+page {
+  background-color: #f3f4f7;
+}
+
 .log-list {
   display: flex;
   flex-direction: column;
@@ -9,7 +13,55 @@
 }
 
 .userinfo {
-  background-color: #f8f8f8;
+  position: relative;
+  overflow: hidden;
+  /* border: 1px solid transparent; */
+}
+
+.background {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  width: 100%;
+  height: 400rpx;
+}
+
+.userinfo .about {
+  width: 680rpx;
+  height: 216rpx;
+  background-color: #fff;
+  margin: 0 auto;
+  position: relative;
+  margin-top: 269rpx;
+  border-radius: 20rpx;
+  border-top: 1px solid transparent;
+}
+
+.userinfo .about .about-img {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -101rpx;
+  margin: 0 auto;
+  border: 5px solid rgba(91, 168, 252, 0.5);
+  overflow: hidden;
+  box-sizing: normal;
+}
+
+.userinfo .about .about-text {
+  margin-top: 121rpx;
+  text-align: center;
+}
+
+.userinfo .about .about-text open-data[type="userNickName"] {
+  padding: 12rpx 45rpx;
+  width: 308rpx;
+  height: 59rpx;
+  background-color: #edeff9;
+  border-radius: 20rpx;
 }
 
 /**index.wxss**/
@@ -31,6 +83,7 @@
   z-index: 0;
 }
 
+/* 
 .userinfo-avatar {
   width: 171rpx;
   z-index: 3;
@@ -40,17 +93,17 @@
   margin: 20rpx;
   margin-top: 40rpx;
   border-radius: 50%;
-  /* background-color: rgba(255, 255, 255, 0.5); */
-  /* padding-top: 5rpx; */
-}
 
+} */
+
+/* 
 .userinfo-avatar .userinfo-avatar-img {
   width: 175rpx;
   height: 175rpx;
   border-radius: 50%;
   margin: 0 auto;
   display: block;
-}
+} */
 
 .userinfo-nickname {
   color: #aaa;
@@ -60,9 +113,18 @@
   margin-top: 200px;
 }
 
-.userinfo-content {
+.userinfo .userinfo-avatar {
+  width: 680rpx;
+  height: 216rpx;
+  position: relative;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 20rpx;
+}
+
+/* .userinfo-content {
   width: auto;
-  padding:0 40rpx;
+  padding: 0 40rpx;
   height: 54rpx;
   display: block;
   z-index: 2;
@@ -75,13 +137,11 @@
 }
 
 .userinfo-content open-data {
-  /* width: 184rpx; *//* height: 48rpx; *//* border-radius: 50rpx; *//* background-color: rgba(26, 68, 178, 1); *//* display: block; *//* margin: 0 auto; */
   font-size: 36rpx;
-  display:inline-block;
+  display: inline-block;
   color: white;
   text-align: center;
   line-height: 1.6;
-  /* margin-top: 2px; */
 }
 
 .userinfo-content::after {
@@ -94,10 +154,10 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom:0;
-  top:0;
+  bottom: 0;
+  top: 0;
   margin: auto;
-}
+} */
 
 .userinfo .xinxi {
   width: 100%;
@@ -130,4 +190,63 @@
 .userinfo .xinxi view .text {
   font-size: 30rpx;
   color: #333;
+}
+.about-information{
+  padding:0 35rpx;
+  margin-top:6rpx;
+}
+.about-information .navigator image{
+  width:43rpx;
+  height:39rpx;
+  margin-right:25rpx;
+}
+.about-information .navigator {
+  padding-left:31rpx;
+  padding-right:30rpx;
+  height:100rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  
+  background-color:#fff;
+}
+
+.about-information .navigator:before {
+  content: " ";
+  position: absolute;
+  left: 30rpx;
+  top: 0;
+  right: 30rpx;
+  height: 1px;
+  border-top: 1rpx dashed #d8d8d8;
+  color: #d8d8d8;
+}
+
+.about-information .navigator:first-child:before {
+  display: none;
+}
+
+.about-information .navigator-text {
+  flex: 1;
+  font-size:32rpx;
+}
+
+.about-information .navigator-arrow {
+  padding-right: 26rpx;
+  position: relative;
+}
+
+.about-information .navigator-arrow:after {
+  content: " ";
+  display: inline-block;
+  height: 18rpx;
+  width: 18rpx;
+  border-width: 2rpx 2rpx 0 0;
+  border-color: #888;
+  border-style: solid;
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: absolute;
+  top: 50%;
+  margin-top: -8rpx;
+  right: 28rpx;
 }

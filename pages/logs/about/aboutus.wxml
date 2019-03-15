@@ -1,0 +1,17 @@
+<!--pages/logs/about/aboutus.wxml-->
+<view class="container aboutus">
+  <view class="aboutuscontext">
+    <image src="../../../image/index/aboutus.png"></image>
+    <text class="h1">{{about.organizationName}}</text>
+    <text class="context">{{about.intro}}</text>
+  </view>
+  <view class="tel">
+    <view class="telitem">
+      <text class="label"><text class="left"> 联系电话: </text>{{about.phoneNum}}</text>
+    </view>
+    <view class="telitem">
+      <text class="label"><text class="left"> 服务地址: </text>{{about.serviceAddress}}</text>
+    </view>
+  </view>
+</view>
+<view style="left:0;right:0;color:red;font-size:30rpx;text-align:center;position:fixed;bottom:0;">硬汉科技</view>

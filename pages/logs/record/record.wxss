@@ -1,127 +1,128 @@
-/* pages/logs/record/record.wxss */
-
-.record {
-  background-color: #f8f8f8;
-}
-
-.record .record_background {
-  width: 100%;
-  height: 240rpx;
-}
-
-.record .record_background image {
-  width: 100%;
-  height: 100%;
-}
-
-.record .selects {
-  width: 100%;
-  height: 88rpx;
-  border: 1px solid #e1e1e1;
-  display: flex;
-  justify-content: space-around;
-}
-
-.record .selects .select {
-  width: 33.33%;
-  height: 100%;
+page {
   position: relative;
-  text-align: center;
-  line-height: 88rpx;
-  font-size: 30rpx;
-  color: #333;
+  background-color: #f3f4f7;
 }
 
-.record .selects .select.active {
-  color: #4c75e1;
-}
-
-.record .selects .select.active::after {
-  content: "";
+.progress {
   position: absolute;
-  width: 54rpx;
-  height: 6rpx;
-  background-color: #4c75e1;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: 0 auto;
+  left: 38rpx;
+  top: 55rpx;
+  border: 2rpx solid #e3e4e9;
+  width: 2rpx;
+  z-index: 2;
 }
 
-.record .selects_content {
+.record .recordul .itemli {
   width: 100%;
-  height: 100%;
-  background-color:white;
+  height: 190rpx;
+  background-color: #fff;
+  padding: 28rpx 25rpx 28rpx 58rpx;
+  position: relative;
 }
 
-.record .selects_content .select {
-  width: 100%;
-  height: 100%;
-}
-
-.record .selects_content .select .select_content {
-  width: 100%;
-  height: 88rpx;
-  background-color: #f8f8f8;
-  justify-content: space-around;
-  display: flex;
-  border: 1px solid #e1e1e1;
-  border-top: none;
-  border-bottom: none;
-}
-
-.record .selects_content .select .select_content text {
-  width: 50%;
-  height: 100%;
-  text-align: center;
-  line-height: 88rpx;
+.record .recordul .itemli.recordtitle {
+  height: 80rpx;
+  padding: 0;
+  padding-left: 60rpx;
+  color: #333;
   font-size: 30rpx;
-  color: #666;
 }
 
-.record .selects_content .select .select_fonts {
-  width: 100%;
-  height: auto;
-  border-bottom: 1px solid #e1e1e1;
+.record .recordul .itemli.recordtitle text {
+  display: inline-block;
+  height: 100%;
+  line-height: 80rpx;
+}
+
+.record .recordul .itemli.recordtitle::after {
+  content: "";
+  width: 26rpx;
+  height: 26rpx;
+  border: 2rpx solid #1a2070;
+  left: 26rpx;
+  top: 26rpx;
+  z-index: 3;
   background-color: white;
 }
 
-.record .selects_content .select .select_fonts .select_font {
-  width: 100%;
-  height: 88rpx;
-  border: 1px solid #e1e1e1;
-  border-bottom: none;
-  display: flex;
-  justify-content: space-around;
+.record .recordul .itemli::after {
+  content: "";
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  border: 1rpx solid #e3e4e9;
+  position: absolute;
+  left: 31rpx;
+  top: 39rpx;
+  background-color: #fff;
+  z-index: 3;
 }
 
-.record .selects_content .select .select_fonts .select_font text {
-  width: 50%;
-  height: 100%;
-  line-height: 88rpx;
-  font-size: 30rpx;
-  color: #666;
-  text-align: center;
-}
-
-.record .selects_content .select .err {
-  width: 100%;
-  /* height:370rpx; */
-  text-align: center;
-  padding-top: 100rpx;
-}
-
-.record .selects_content .select .err text {
-  display: block;
-  text-align: center;
-}
-
-.record .selects_content .select .err .iconfont {
-  font-size: 200rpx;
-  color: #cacaca;
-}
-
-.record .selects_content .select .err .text {
-  margin-top: 20rpx;
+.record .recordul .itemli .litop .time {
   font-size: 36rpx;
+  font-family: "DIN";
+  color: #1a237f;
+}
+
+.record .recordul .itemli .litop .state {
+  float: right;
+  font-size: 24rpx;
+  color: #fff;
+  width: 87rpx;
+  height: 32rpx;
+  border-radius: 10rpx;
+  line-height: 32rpx;
+  text-align: center;
+}
+
+.record .recordul .itemli .litop .state.yellow {
+  background-color: #fca225;
+}
+
+.record .recordul .itemli .litop .state.blue {
+  background-color: #4c75e1;
+}
+
+.record .recordul .itemli .litop .state.orgen {
+  background-color: #ef7b63;
+}
+
+.record .recordul .itemli .litop .state.green {
+  background-color: #76c299;
+}
+
+.record .recordul .itemli .litop .state.black {
+  background-color: #bcbfc0;
+}
+
+.record .recordul .itemli .libottom {
+  height: 79rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  font-size: 30rpx;
+  color: #333;
+  width: 100%;
+  margin-top:10rpx;
+}
+.record .recordconut{
+  padding:19rpx 0 0 31rpx;
+  position:relative;
+  font-size:24rpx;
+  color:#666666;
+  line-height:1;
+}
+.record .recordconut text{
+  margin-left:27rpx;
+}
+.record .recordconut::after{
+  content:"";
+  width:16rpx;
+  height:16rpx;
+  border-radius:50%;
+  background-color:#202573;
+  position:absolute;
+  left:33rpx;
+  top:25rpx;
 }

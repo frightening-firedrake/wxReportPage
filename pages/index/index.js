@@ -1,4 +1,3 @@
-//index.js
 var app = getApp()
 
 Page({
@@ -7,10 +6,10 @@ Page({
     classitem: false,
     content: {},
     type: "",
+    buttons: [],
   },
   onLoad: function(options) {
     let that = this
-    this.getfindall()
     wx.getSetting({
       success(res) {
         if (res.authSetting['scope.userInfo']) {
@@ -67,16 +66,41 @@ Page({
     }
     // console.log(er)
   },
+  photo: function() {
+
+  },
   details: function(e) {
+    let that = this
     let type = e.currentTarget.dataset.type
-    this.setData({
-      classitem: true,
-      type: type
+    console.log(type)
+    let buttons = [{
+          label: "findAllKind",
+          name: "举报种类"
+        },
+        {
+          label: 'findAllSecrecy',
+          name: "保密规定"
+        },
+        {
+          label: "findAllAward",
+          name: "奖励规定"
+        }
+      ],
+      button
+    app.post(type).then(res => {
+      button = buttons.filter((v, i) => {
+        return v.label != type
+      }, true)
+      res.data[0]['type'] = type
+      that.setData({
+        classitem: true,
+        type: type,
+        buttons: button,
+        content: res.data[0]
+      })
+    }, err => {
+      // console.log(err)
     })
-    // var url = `details/details?type=${list.currentTarget.dataset.type}&name=${list.currentTarget.dataset.name}`
-    // wx.navigateTo({
-    //   url: url
-    // })
   },
   close() {
     this.setData({
@@ -98,7 +122,7 @@ Page({
         }
       })
       that.setData({
-        content: str
+        content: str,
       })
     }, err => {
       // console.log(err)

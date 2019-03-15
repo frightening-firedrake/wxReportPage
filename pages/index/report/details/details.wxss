@@ -1,5 +1,1 @@
 /* pages/index/report/details/details.wxss */
-
-.container.reportdetails {
-  background-color: #f8f8f8;
-}

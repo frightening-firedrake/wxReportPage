@@ -1,3 +1,6 @@
 {
-  "navigationStyle": "custom"
+  "navigationBarTitleText": "山西省扫黑除恶举报平台",
+  "usingComponents": {
+    "captcha": "/components/captcha/captcha"
+  }
 }

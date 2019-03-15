@@ -1,50 +1,27 @@
 <!-- pages/logs/record/record.wxml -->
 <view class="container record">
-  <view class="record_background">
-    <image class="" src="../../../image/index/rocord.png"></image>
+  <view class="progress" style="height:{{height}}rpx"></view>
+  <view class="recordul">
+    <view class="itemli recordtitle">
+      <text>举报记录</text>
+    </view>
+    <view class="itemli" wx:for="{{content}}" wx:key="{{index}}">
+      <view class="litop">
+        <text class="time">{{item.createTime}}</text>
+        <text class="state yellow" wx:if="{{item.state==-1}}">待审核</text>
+        <text class="state blue" wx:if="{{item.state==1}}">已接案</text>
+        <text class="state green" wx:if="{{item.state==2}}">侦办中</text>
+        <text class="state black" wx:if="{{item.state==3}}">已结案</text>
+        <text class="state orgen" wx:if="{{item.state==4}}">未立案
+</text>
+      </view>
+      <view class="libottom">
+        <text>{{item.informContent}}</text>
+      </view>
+    </view>
   </view>
-  <view class="selects">
-    <view class="select {{status=='mouth'?'active':''}}" data-status="mouth" bindtap="setstatus">
-      <text>三个月</text>
-    </view>
-    <view class="select {{status=='year'?'active':''}}" data-status="year" bindtap="setstatus">
-      <text>一年</text>
-    </view>
-    <view class="select {{status=='all'?'active':''}}" data-status="all" bindtap="setstatus">
-      <text>全部</text>
-    </view>
-  </view>
-  <view class="selects_content">
-    <view class="select">
-      <block wx:if="{{result.length>0}}">
-        <view class="select_content">
-          <text>线报地域</text>
-          <text>举报时间</text>
-          <text>反馈信息</text>
-        </view>
-        <view class="select_fonts">
-          <view class="select_font" wx:for="{{resultlist}}" wx:key="{{index}}" bindtap='details' data-result="{{item}}">
-            <text class="">{{item.threadArea}}</text>
-            <text class="">{{item.createTime}}</text>
-            <text wx:if="{{item.state==-1}}">待审核</text>
-            <text wx:if="{{item.state==1}}">已接案</text>
-            <text wx:if="{{item.state==2}}">侦办中</text>
-            <text wx:if="{{item.state==3}}">已结案</text>
-            <text wx:if="{{item.state==4}}">未立案</text>
-          </view>
-        </view>
-      </block>
-      <block wx:else>
-        <view class="err">
-          <text class="iconfont icon-iconfontnone"></text>
-          <text class="text">没有举报记录</text>
-        </view>
-      </block>
-    </view>
-    <!-- <view class="select">
-            
-        </view> -->
-    <!-- <view class="select"></view> -->
+  <view class="recordconut">
+    <text>您当前的举报记录一共有{{content.length}}条，感谢你提供的每一次线索</text>
   </view>
 </view>
-<view style="left:0;right:0;color:#999;font-size:30rpx;text-align:center;position:fixed;bottom:0;">硬汉科技</view>
+<view style="left:0;right:0;color:red;font-size:30rpx;text-align:center;position:fixed;bottom:0;">硬汉科技</view>

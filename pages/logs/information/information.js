@@ -10,95 +10,73 @@ Page({
     prodid: "",
     buttonhidden: false,
     submitState: "saveInformer",
-    form: [{
-      slot: "个人基本信息",
-      form: [{
-          label: "姓名:",
-
-          name: "name",
-          placeholder: "请输入姓名",
-          type: "",
-          reqvalue: ""
-        },
+    form: {
+      check: {
+        name: "",
+        phone: "",
+        idCard: "",
+        region: "",
+      },
+      formdata: [
         {
-          label: "身份证:",
-
-          name: "idCard",
-          placeholder: "请输入身份证",
-          type: "id",
-          reqvalue: ""
-        },
-        {
-          label: "工作单位:",
-          name: "job",
-
-          placeholder: "请输入工作单位",
-          type: "",
-          reqvalue: ""
-        },
-        {
-          label: "居住地区域:",
-          name: "place",
-
-          type: "select",
-          icon: "icon-r-jiantou",
-          index: 0,
-          value: ["山西省"],
-          reqvalue: ""
-        },
-        {
-          label: "居住地详址:",
-          name: "place_content",
-          placeholder: "请输入居住地详址",
-          type: "",
-
-          reqvalue: ""
-        },
-        {
-          label: "其他联系方式:",
-          placeholder: "QQ、微信、邮箱",
-          name: "otherContectWay",
-          type: "",
-          reqvalue: ""
-        },
-        {
-          label: "手机号:",
-          type: "phone",
-          placeholder: "请输入手机号",
-          name: "phone",
-
-          reqvalue: ""
-        },
-        {
-          label: "验证码:",
-          request:true,
-          placeholder: "请输入验证码",
-          name: "resultMap",
-          type: "resultMap",
-          reqvalue: ""
+          model: "about",
+          icon: "icon-guanliyuan",
+          name: "个人基本信息",
+          data: [
+            {
+              model: "name",
+              placeholder: "请输入姓名",
+            },
+            {
+              model: "phone",
+              placeholder: "请输入手机号",
+            },
+            {
+              model: "idCard",
+              placeholder: "请输入身份证号",
+            },
+            {
+              model: "region",
+              require: true,
+              name: "详细地址",
+              type: "map"
+            },
+            {
+              model: "code",
+              name: "验证码",
+              type: "code",
+              require: true
+            }
+          ]
         }
       ]
-    }]
+    }
+  },
+  location(res) {
+    this.setData({
+      "form.check.region": res.detail.value
+    })
+  },
+  text(res) {
+    console.log(res)
+    let data = {}
+    data["form.check." + res.detail.value.type] = res.detail.value.value
+    this.setData(data)
   },
   submit(e) {
-    // console.log(e)
-    let data = e.detail.event
+    let data = e.detail.value
     app.getstorage("userInfo").then(res => {
-      app.post("wechat/" + this.data.submitState, {
+      app.post(this.data.submitState, {
         openId: res.openid,
         informerName: data.name,
         idCard: data.idCard,
-        otherContectWay: data.otherContectWay,
-        workPlace: data.job,
-        livingArea: data.place,
-        address: data.place_content,
         phoneNumber: data.phone
       }).then(res => {
         if (res.data.success) {
           wx.showModal({
             title: "提示",
             content: "提交成功",
-            success: function(res) {
+            success: function (res) {
               if (res.confirm) {
                 wx.navigateBack({
                   delta: 1
@@ -112,7 +90,7 @@ Page({
           wx.showModal({
             title: "提示",
             content: "提交失败",
-            success: function(res) {
+            success: function (res) {
               if (res.confirm) {
                 wx.navigateBack({
                   delta: 1
@@ -129,10 +107,10 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     let that = this
     app.getstorage("userInfo").then(res => {
-      app.post("wechat/getInformer", {
+      app.post("getInformer", {
         openId: res.openid
       }).then(res => {
         if (res.data) {
@@ -140,28 +118,10 @@ Page({
           let form = {
             name: respon.encryptName,
             idCard: respon.encryptIdCard,
-            job: respon.workPlace,
-            place: respon.livingArea,
-            place_content: respon.address,
             phone: respon.encryptPhoneNumber
           }
-          for (let formi in form) {
-            that.data.form.forEach((v, i) => {
-              v.form.forEach((datav, datai) => {
-                if (datav.name == formi) {
-                  if (datav.name == "place") {
-                    datav.reqvalue = datav.value.indexOf(form[formi])
-                  } else {
-                    datav.reqvalue = form[formi]
-                  }
-                }
-              })
-            })
-          }
           that.setData({
-            form: that.data.form,
-            submitState: 'editInformer',
-            prodid: respon.id,
+            'form.check':form,
             buttonhidden: true
           })
         }
@@ -173,49 +133,49 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

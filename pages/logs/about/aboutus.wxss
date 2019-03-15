@@ -1,0 +1,61 @@
+/* pages/logs/about/aboutus.wxss */
+
+page {
+  background-color: #f3f4f7;
+}
+
+.aboutus {
+  background-color: #f3f4f7;
+}
+
+.aboutus .aboutuscontext {
+  background-color: #fff;
+  padding: 46rpx 41rpx 49rpx 41rpx;
+}
+
+.aboutus .aboutuscontext image {
+  width: 188rpx;
+  height: 157rpx;
+  display: block;
+  margin: 0 auto;
+}
+
+.aboutus .aboutuscontext .h1 {
+  font-size: 48rpx;
+  display: block;
+  text-align: center;
+  margin-top: 28rpx;
+}
+
+.aboutus .aboutuscontext .context {
+  font-size: 30rpx;
+  color: #666;
+  margin-top: 42rpx;
+}
+
+.aboutus .tel {
+  width: 100%;
+  background-color: #fff;
+  margin-top:16rpx;
+}
+
+.aboutus .tel .telitem {
+  width: 100%;
+  height: 100rpx;
+  border-bottom: 1px solid #e1e3ea;
+  padding: 0 40rpx;
+  line-height:100rpx;
+}
+
+.aboutus .tel .telitem .label {
+  font-size: 30rpx;
+  width:100%;
+  overflow: hidden;
+  display:block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color:#666666;
+}
+.aboutus .tel .telitem .left{
+  color:#333333;
+}

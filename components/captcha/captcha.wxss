@@ -1,0 +1,9 @@
+/* components/captcha/captcha.wxss */
+.captcha{
+  margin-top:79rpx;
+  height:150px;
+  position:relative;
+}
+.captcha canvas{
+  position: absolute;
+}

@@ -1,16 +1,38 @@
 <!-- logs.wxml -->
 <view class="container userinfo">
-  <view class="userInfo_avatar">
-    <view class="userinfo-avatar">
+
+  <image class="background" src="https://report.ityyedu.com/reportingSystem/upload/image/about.png"></image>
+  <view class="about">
+    <view class="about-img">
       <open-data class="userinfo-avatar-img" type="userAvatarUrl"></open-data>
-      <!-- <image class="userinfo-avatar-img" src="{{userInfo.avatarUrl||'../../image/index/user.png'}}" mode="cover"></image> -->
     </view>
-    <view class="userinfo-content">
+    <view class="about-text">
       <open-data type="userNickName"></open-data>
     </view>
-    <image class="background" src="../../image/index/login.png"></image>
   </view>
-  <view class="xinxi">
+  <view class="about-information">
+    <view class="navigator" bindtap="message">
+      <image src="../../image/index/message.png"></image>
+      <view class="navigator-text">我的消息</view>
+      <view class="navigator-arrow"></view>
+    </view>
+    <view class="navigator" bindtap="information">
+      <image src="../../image/index/aboutinfor.png"></image>
+      <view class="navigator-text">基本信息</view>
+      <view class="navigator-arrow"></view>
+    </view>
+    <view class="navigator" bindtap="record">
+      <image src="../../image/index/inforrecord.png"></image>
+      <view class="navigator-text">举报记录</view>
+      <view class="navigator-arrow"></view>
+    </view>
+    <view class="navigator" bindtap="aboutus">
+      <image src="../../image/index/aboutme.png"></image>
+      <view class="navigator-text">关于我们</view>
+      <view class="navigator-arrow"></view>
+    </view>
+  </view>
+  <!-- <view class="xinxi">
     <view bindtap="information">
       <text class="iconfont icon-jibenxinxi1"></text>
       <text class="text">基本信息</text>
@@ -19,8 +41,9 @@
       <text class="iconfont icon-jilu"></text>
       <text class="text">举报记录</text>
     </view>
-  </view>
-<view style="left:0;right:0;color:#999;font-size:30rpx;text-align:center;position:fixed;bottom:0;">硬汉科技</view>  
+  </view> -->
+  <view style="left:0;right:0;color:red;font-size:30rpx;text-align:center;position:fixed;bottom:0;">硬汉科技</view>
+ 
 
   <!-- <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">

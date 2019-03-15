@@ -20,6 +20,16 @@ Page({
       url: 'record/record'
     })
   },
+  aboutus: function() {
+    wx.navigateTo({
+      url: 'about/aboutus'
+    })
+  },
+  message:function(){
+    wx.navigateTo({
+      url: 'message/message'
+    })
+  },
   information: function() {
     wx.navigateTo({
       url: 'information/information'

@@ -3500,7 +3500,7 @@ const checkId = function(pId) {
   var Wi = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
   var Checker = [1, 9, 8, 7, 6, 5, 4, 3, 2, 1, 1];
   if (pId.length != 15 && pId.length != 18) return {
-    text: "身份证号共有 15 码或18位",
+    text: "身份证号共有15码或18位",
     flag: false
   };
   var Ai = pId.length == 18 ? pId.substring(0, 17) : pId.slice(0, 6) + "19" + pId.slice(6, 16);

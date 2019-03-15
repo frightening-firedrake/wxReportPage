@@ -11,8 +11,8 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.5.2",
-	"appid": "wx34f0abb780bc5072",
+	"libVersion": "2.6.2",
+	"appid": "wx3825d63db8b3975c",
 	"projectname": "reportPage",
 	"debugOptions": {
 		"hidedInDevtools": []

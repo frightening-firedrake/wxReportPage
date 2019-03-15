@@ -1,4 +1,4 @@
-// pages/index/report/report.js
+// pages/logs/about/aboutus.js
 let app = getApp()
 Page({
 
@@ -6,21 +6,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    disabled: true,
-    timedis: false,
-    textcontent: ""
+    about: {
+      intro: "",
+      organizationName: "",
+      phoneNum: "",
+      serviceAddress: ""
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    let t,
-      that = this
-    app.post("findAllNotice").then(res => {
-      this.setData({
-        textcontent: res.data[0].textContent
-      })
+    app.post("findAllAbout").then(res => {
+        this.setData({
+          about:res.data[0]
+        })
     })
   },
 
@@ -71,26 +72,5 @@ Page({
    */
   onShareAppMessage: function() {
 
-  },
-  checkboxChange: function(e) {
-    if (e.detail.value[0] == '1') {
-      this.setData({
-        disabled: false
-      })
-    } else {
-      this.setData({
-        disabled: true
-      })
-    }
-  },
-  submit() {
-    wx.navigateTo({
-      url: 'details/details',
-      success: (result) => {
-
-      },
-      fail: () => {},
-      complete: () => {}
-    });
   }
 })

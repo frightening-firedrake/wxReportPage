@@ -1,4 +1,2 @@
 <!-- pages/index/report/details/details.wxml -->
-<view class="container reportdetails">
-  <component-form form="{{form}}" prodid="{{prodid}}" anonymity="{{anonymity}}" bind:keepvalue="keepvalue" bind:submit="submit"  bind:addimage="addimage" bind:picker="picker" bind:myevent="map" bind:selectcontent="selectcontent"></component-form>
-</view>
+<formdetails bindsubmit="submit" bindcolumnchange="columnchange" bindaddvideo="addvideo" bindaddimg="addimg" bindtext="text" bindregionChange="regionChange" bindselectchage="selectchage" bindlocation="location" bindbindcancel="bindcancel" buttonhidden="{{buttonhidden}}" form="{{form}}"></formdetails>
