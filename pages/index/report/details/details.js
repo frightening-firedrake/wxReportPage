@@ -169,6 +169,11 @@ Page({
     params["informType"] = this.data.form.data.informType[res.detail.value.informType].label
     params["industryField"] = this.data.form.data.industryField[res.detail.value.industryField].label
     // params["threadAreaId"] = this.data.form.data.threadAreaId[2][res.detail.value.threadAreaId[2]].id
+    // console.log('zzz')
+    // console.log(this.data.form.data.threadAreaId)
+    // console.log(this.data.form.data.threadAreaId[2])
+    // console.log(res.detail.value.threadAreaId)
+    // console.log(res.detail.value.threadAreaId[2])
     params['threadAreaId'] = this.data.form.data.threadAreaId[2][res.detail.value.threadAreaId[2]].id
     params['picture'] = this.data.form.check.picture
     params["video"] = this.data.form.check.video
@@ -254,7 +259,7 @@ Page({
     region = this.data.regionlist.filter((i, v) => {
       return i.pId == pId
     })
-    console.log(res, region)
+    console.log(res, region, res.detail.value)
     if (res.detail.value.column == 0) {
       this.setData({
         "form.data.threadAreaId[1]": region,
@@ -322,11 +327,14 @@ Page({
       let child = res.data.filter((i, v) => {
         return i.pId == data[0].id
       })
+      let child2 = res.data.filter((i, v) => {
+        return i.pId == child[0].id
+      })
       this.setData({
         regionlist: res.data,
         "form.data.threadAreaId[0]": data,
         "form.data.threadAreaId[1]": child,
-        "form.data.threadAreaId[2]": [],
+        "form.data.threadAreaId[2]": child2
       })
       // console.log(this.data)
     })

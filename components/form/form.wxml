@@ -51,7 +51,7 @@
             <picker name="{{itemdata.model}}" class="picker" mode="multiSelector" bindcolumnchange="bindcolumnchange" data-type="{{itemdata.model}}" bindcancel="bindcancel" bindchange="bindRegionChange" value="{{form.check[itemdata.model]}}" range-key="regionName"
               range="{{form.data[itemdata.model]}}">
               <text class="" decode="true">
-                {{itemdata.name}}：&nbsp;&nbsp;&nbsp;&nbsp;{{form.data[itemdata.model][0][form.check[itemdata.model][0]].regionName}},{{form.data[itemdata.model][1][form.check[itemdata.model][1]].regionName}},{{form.data[itemdata.model][2][form.check[itemdata.model][2]].regionName}}
+                {{itemdata.name}}：&nbsp;&nbsp;&nbsp;&nbsp;{{form.data[itemdata.model][0][form.check[itemdata.model][0]].regionName}}{{form.data[itemdata.model][1][form.check[itemdata.model][1]].regionName?",":""}}{{form.data[itemdata.model][1][form.check[itemdata.model][1]].regionName}}{{form.data[itemdata.model][2][form.check[itemdata.model][2]].regionName?",":""}}{{form.data[itemdata.model][2][form.check[itemdata.model][2]].regionName}}
               </text>
             </picker>
             <view class="navigator-arrow"></view>
