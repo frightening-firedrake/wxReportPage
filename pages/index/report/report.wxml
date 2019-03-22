@@ -1,6 +1,7 @@
 <!-- pages/index/report/report.wxml -->
 <view class="container report">
   <view class="background">
+    <text class="titleH">举报须知</text>
    <rich-text nodes="{{textcontent}}"></rich-text>
 <!-- 
     <text class="report_hearder">举报须知</text>

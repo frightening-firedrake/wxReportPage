@@ -18,6 +18,7 @@ Page({
         openId: res.openid
       }
       app.post("getInformation", params).then(res => {
+        console.log(res)
         let information = res.data.filter((i, v) => {
           return i.state != -1
         })

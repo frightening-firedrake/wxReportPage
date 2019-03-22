@@ -92,6 +92,7 @@ Page({
         return v.label != type
       }, true)
       res.data[0]['type'] = type
+      console.log(res)
       that.setData({
         classitem: true,
         type: type,

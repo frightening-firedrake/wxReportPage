@@ -4,6 +4,7 @@ const util = require('../../utils/util.js')
 const app = getApp()
 Page({
   data: {
+    newMessage:true,
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,

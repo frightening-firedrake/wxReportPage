@@ -65,7 +65,7 @@
 
 
   <template name="classitem">
-    <block wx:if="{{type=='findAllAward'}}">
+    <block wx:if="{{type=='findAllAward11'}}">
       <image src="https://report.ityyedu.com/reportingSystem/upload/image/reward_banner.png" />
       <scroll-view class="contenttext" scroll-y="true" enable-back-to-top="true">
         <!-- <text wx:if="{{h1}}" class="h1">{{h1}}</text> -->
@@ -78,6 +78,7 @@
     <block wx:else>
       <image wx:if="{{type == 'findAllKind'}}" src="https://report.ityyedu.com/reportingSystem/upload/image/type_banner.png" />
       <image wx:if="{{type == 'findAllSecrecy'}}" src="https://report.ityyedu.com/reportingSystem/upload/image/secrecy_banner.png" />
+      <image wx:if="{{type=='findAllAward'}}" src="https://report.ityyedu.com/reportingSystem/upload/image/reward_banner.png" />
       <scroll-view class="contenttext" scroll-y="true" enable-back-to-top="true">
         <!-- <text wx:if="{{h1}}" class="h1">{{h1}}</text> -->
         <rich-text nodes="{{textContent}}" bindtap="tap"></rich-text>

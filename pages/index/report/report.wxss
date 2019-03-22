@@ -33,6 +33,7 @@ button {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: 50% 0;
+  margin-bottom:25rpx;
 }
 
 .container.report text {
@@ -93,4 +94,13 @@ button {
 
 .container.report checkbox-group label {
   font-size: 24rpx;
+}
+.container.report .titleH{
+  text-align: center;
+  font-size:72rpx;
+  color:#333;
+  padding-top:59rpx;
+  padding-bottom:39rpx;
+  border-bottom:1rpx dotted #999;
+  margin-bottom:50rpx;
 }
