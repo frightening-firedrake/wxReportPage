@@ -5,7 +5,7 @@
     <view class="itemli recordtitle">
       <text>举报记录</text>
     </view>
-    <view class="itemli" wx:for="{{content}}" wx:key="{{index}}">
+    <view  hover-class='ui-list-hover' class="itemli" wx:for="{{content}}" wx:key="{{index}}" bindtap="details" data-id="{{item.id}}" data-state="{{item.state}}" data-result="{{item}}">
       <view class="litop">
         <text class="time">{{item.createTime}}</text>
         <text class="state yellow" wx:if="{{item.state==-1}}">待审核</text>
@@ -21,7 +21,7 @@
     </view>
   </view>
   <view class="recordconut">
-    <text>您当前的举报记录一共有{{content.length}}条，感谢你提供的每一次线索</text>
+    <text>您当前的举报记录一共有{{content.length}}条，感谢你提供的每一条线索</text>
   </view>
 </view>
 <view style="left:0;right:0;color:red;font-size:30rpx;text-align:center;position:fixed;bottom:0;">硬汉科技</view>

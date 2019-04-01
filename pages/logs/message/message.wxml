@@ -1,18 +1,15 @@
 <!-- pages/logs/message/message.wxml -->
 <view class="container message">
   <view class="messagerl">
-    <view class="messageli" wx:for="{{information}}" wx:key="{{index}}">
+    <view class="messageli" bindtap="details" hover-class='ui-list-hover' data-result="{{item}}" wx:for="{{information}}" wx:key="{{index}}">
       <view class="messagetitle">
-        <text class="name" wx:if="{{item.state!==4}}">已接案通知</text>
+        <text class="name blue" wx:if="{{item.state!==4}}">已接案通知</text>
         <text class="name" wx:if="{{item.state==4}}">未立案通知</text>
         <text class="time">{{item.createTime}}</text>
       </view>
       <view class="context">
         <text>
-          您于{{item.createTime}}举报的案件未立案。以下是反馈
-<!-- 信息：您的本次举报 -->
-信息：
-          <text>{{item.feedbackInformation}}</text>
+          您于{{item.createTime}}举报的案件未立案。以下是反馈信息：<text>{{item.feedbackInformation}}</text>
           <!-- <block wx:if="{{item.state == 1}}">已接案</block> -->
           <!-- <block wx:if="{{item.state == 3}}">已结案</block> -->
           <!-- 感谢您的举报！ -->

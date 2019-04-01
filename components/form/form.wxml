@@ -11,7 +11,7 @@
           </view>
         </view>
         <view class="navigator">
-          <image bindtap="preview" class="" src="{{imgaeUrl}}{{srcitem}}" data-item="{{srcitem}}" data-list="{{form.check[item.model]}}" wx:key="{{srcindex}}" wx:for="{{form.check[item.model]}}" wx:for-index="srcindex" wx:for-item="srcitem" />
+          <image bindtap="preview" class="" src="{{srcitem}}" data-item="{{srcitem}}" data-list="{{form.check[item.model]}}" wx:key="{{srcindex}}" wx:for="{{form.check[item.model]}}" wx:for-index="srcindex" wx:for-item="srcitem" />
           <image class="" bindtap="addimage" wx:if="{{!(item.maxlength-form.check[item.model].length) == 0}}" src="../../image/index/prcture.png" />
           <text class="imagetext">每张图片的大小不能超过1M</text>
         </view>
@@ -25,7 +25,7 @@
           </view>
         </view>
         <view class="navigator">
-          <video src="{{videoUrl}}{{videoitem}}" wx:key="{{videoindex}}" wx:for="{{form.check[item.model]}}" wx:for-index="videoindex" wx:for-item="videoitem" controls></video>
+          <video src="{{videoitem}}" wx:key="{{videoindex}}" wx:for="{{form.check[item.model]}}" wx:for-index="videoindex" wx:for-item="videoitem" controls></video>
           <image class="" bindtap="addvideo" wx:if="{{!(item.maxlength-form.check[item.model].length) == 0}}" src="../../image/index/video.png" />
           <text class="imagetext">每张视频的大小不能超过3M</text>
         </view>
@@ -40,19 +40,18 @@
       <block wx:else>
         <view class="navigator">
           <view class="iconfont {{item.icon}}"></view>
-          <view class="navigator-text">{{item.name}}:</view>
+          <view class="navigator-text">{{item.name}}: <text style="color:#999;" wx:if="{{item.model=='useras'&&!checkboxValue}}">匿名</text></view>
           <switch name="{{item.model}}" checked bindchange="checkboxChange" wx:if="{{item.switch}}" />
         </view>
       </block>
       <block wx:for="{{item.data}}" wx:key="{{idx}}" wx:for-index="idx" wx:for-item="itemdata">
-        <view class="navigator {{itemdata.class}}">
+        <!-- <view class="navigator {{itemdata.class}}"> -->
+        <view class="navigator {{itemdata.class}}"  wx:if="{{item.model!=='useras'||checkboxValue}}">
           <view wx:if="{{itemdata.require}}">*</view>
           <block wx:if="{{itemdata.type == 'regionselect'}}">
             <picker name="{{itemdata.model}}" class="picker" mode="multiSelector" bindcolumnchange="bindcolumnchange" data-type="{{itemdata.model}}" bindcancel="bindcancel" bindchange="bindRegionChange" value="{{form.check[itemdata.model]}}" range-key="regionName"
               range="{{form.data[itemdata.model]}}">
-              <text class="" decode="true">
-                {{itemdata.name}}：&nbsp;&nbsp;&nbsp;&nbsp;{{form.data[itemdata.model][0][form.check[itemdata.model][0]].regionName}}{{form.data[itemdata.model][1][form.check[itemdata.model][1]].regionName?",":""}}{{form.data[itemdata.model][1][form.check[itemdata.model][1]].regionName}}{{form.data[itemdata.model][2][form.check[itemdata.model][2]].regionName?",":""}}{{form.data[itemdata.model][2][form.check[itemdata.model][2]].regionName}}
-              </text>
+              <text class="" decode="true">{{itemdata.name}}：&nbsp;&nbsp;{{form.data[itemdata.model][0][form.check[itemdata.model][0]].regionName}}{{form.data[itemdata.model][1][form.check[itemdata.model][1]].regionName?",":""}}{{form.data[itemdata.model][1][form.check[itemdata.model][1]].regionName}}{{form.data[itemdata.model][2][form.check[itemdata.model][2]].regionName?",":""}}{{form.data[itemdata.model][2][form.check[itemdata.model][2]].regionName}}</text>
             </picker>
             <view class="navigator-arrow"></view>
           </block>
@@ -64,17 +63,16 @@
             </view>
           </block>
           <block wx:elif="{{itemdata.type=='select'}}">
-            {{itemdata.name}}：
+            <!-- {{itemdata.name}}： -->
+            <view class="navigator-texts">{{itemdata.name}}:</view>
             <picker name="{{itemdata.model}}" class="picker" data-type="{{itemdata.model}}" bindchange="selectchage" value="{{form.check[itemdata.model]}}" range-key="label" range="{{form.data[itemdata.model]}}">
-              <text class="pickertext" decode="true">
-                {{(form.data[itemdata.model][form.check[itemdata.model]].label)}}
-              </text>
+              <text class="pickertext" decode="true">{{(form.data[itemdata.model][form.check[itemdata.model]].label)}}</text>
               <!-- <text class="navigator-text"> -->
               <!-- </text> -->
             </picker>
             <view class="navigator-arrow"></view>
           </block>
-          <block wx:elif="{{itemdata.type=='code'}}">
+          <block wx:elif="{{itemdata.type=='code'}}" >
             <view class="navigator-text">{{itemdata.name}}:</view>
             <view class="navigator-input">
               <input name="{{itemdata.model}}" data-type="{{itemdata.model}}" bindinput="bindinput" placeholder="请输入验证码" value="{{form.check[itemdata.model]}}" />
@@ -156,9 +154,9 @@
         </view>
       </view> -->
     </view>
-    <text class="careful">注：带有*的内容为必填内容</text>
+    <text style="display:{{buttonhidden?'none':'block'}}" class="careful">注：带有*的内容为必填内容,匿名举报时关闭个人信息右侧开关</text>
     <block>
-      <button class="submit" form-type="submit" data-type="submit" hover-class="none" style="display:{{buttonhidden?'none':'block'}}">
+      <button class="submit" form-type="submit" data-type="submit" hover-class="ui-share-hover" style="display:{{buttonhidden?'none':'block'}}">
         提交
       </button>
     </block>

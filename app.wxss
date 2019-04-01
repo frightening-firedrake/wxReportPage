@@ -30,3 +30,14 @@
 text, view, block {
   box-sizing: border-box;
 }
+
+.ui-share-hover{
+  opacity: 0.9!important;
+  transform: scale(0.9,0.9)!important;
+}
+.ui-list-hover{
+  background:#eee!important;
+}
+.ui-reverse-color-hover{
+  background-color:#ddd!important;
+}

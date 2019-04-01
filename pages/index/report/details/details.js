@@ -129,7 +129,7 @@ Page({
           model: "video",
           maxlength: 3,
           num: 0,
-          icon: "icon-tuwenxiangqing",
+          icon: "icon-gaoqingshexiang",
           name: "视频上传",
           data: [{
             model: "code",

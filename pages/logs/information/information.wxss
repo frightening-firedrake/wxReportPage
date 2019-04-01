@@ -1,1 +1,5 @@
 /* pages/logs/information/information.wxss */
+page{
+  min-height:100%;
+  background:#F2F3F9;
+}

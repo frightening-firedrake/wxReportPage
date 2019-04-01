@@ -13,7 +13,8 @@ Page({
   },
   details: function(e) {
     wx.navigateTo({
-      url: 'details/rescorddetails?result=' + JSON.stringify(e.currentTarget.dataset.result),
+      url: 'details/rescorddetails?result=' + JSON.stringify(e.currentTarget.dataset.result)
+      // url: "details/rescorddetails?id=" + e.currentTarget.dataset.id + "&state=" + e.currentTarget.dataset.state
     })
   },
   setstatus: function(e) {

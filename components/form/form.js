@@ -35,7 +35,6 @@ Component({
     checkboxValue: true,
     imgaeUrl: app.globalData.uploadUrl + "upload/barcode/",
     videoUrl: app.globalData.uploadUrl + "upload/video/",
-
   },
   ready: function() {
     let that = this
@@ -164,7 +163,7 @@ Component({
         success(res) {
           // console.log(res)
           if (res.size / 1024 / 1024 > 6) {
-            wx.showModal({
+            wx.that.showModal({
               title: "提示",
               content: "文件大于6M,请重新改上传",
             })
@@ -186,7 +185,7 @@ Component({
               },
               success(res) {
                 wx.hideLoading()
-                that.commontrigger("addvideo", res.data)
+                that.commontrigger("addvideo", that.data.videoUrl+res.data)
                 //do something
               }
             })
@@ -204,7 +203,7 @@ Component({
         success(res) {
           // console.log(res.tempFilePaths)
           if (res.tempFiles[0].size / 1024 / 1024 > 1) {
-            wx.showModal({
+            wx.that.showModal({
               title: "提示",
               content: "文件大于1M,请重新改上传",
             })
@@ -226,7 +225,7 @@ Component({
               },
               success(res) {
                 wx.hideLoading()
-                that.commontrigger("addimg", res.data)
+                that.commontrigger("addimg", that.data.imgaeUrl+res.data)
                 // var myEventDetail = {
                 //   event: e.currentTarget.dataset.type,
                 //   type: [res.data]
@@ -243,16 +242,24 @@ Component({
         }
       })
     },
+    showModal(error) {
+      wx.showModal({
+        content: error,
+        showCancel: false,
+      })
+    },
     submit(e) {
+      let that=this
       let subflag = true
       let formobj = {}
       if ("idCard" in e.detail.value) {
         var flag = utils.checkId(e.detail.value.idCard)
         if (!flag.flag) {
-          wx.showToast({
-            title: flag.text,
-            icon: "none"
-          })
+          // wx.showToast({
+          //   title: flag.text,
+          //   icon: "none"
+          // })
+          that.showModal(flag.text)
           return false
         }
       }
@@ -269,15 +276,41 @@ Component({
       }
       if (e.detail.value.code == this.data.captcha) {
         for (var obj in formobj) {
-          console.log(e.detail.value[obj], obj)
+          // console.log(e.detail.value[obj], obj)
           if (e.detail.value[obj] == "") {
             subflag = false
             let req = this.forform(obj)
-            console.log(req)
-            wx.showToast({
-              title: "请输入" + req.name,
-              icon: "none"
-            })
+            // console.log(req)
+            // wx.showToast({
+            //   title: "请输入" + req.name,
+            //   icon: "none"
+            // })
+            that.showModal("请输入" + req.name)
+            return false
+            
+            if (obj =="phoneNumber"){
+              
+              
+            }
+          } else if (obj == "phoneNumber") {
+            if (/^1[34578]\d{9}$/.test(e.detail.value.phoneNumber)) {
+            } else {
+              that.showModal("请输入正确的手机号")
+              return false
+            }
+          } else if (obj == "phone") {
+            if (/^1[34578]\d{9}$/.test(e.detail.value.phoneNumber)) {
+            } else {
+              that.showModal("请输入正确的手机号")
+              return false
+            }
+          }  else if (e.detail.value.informContent==""){
+            // wx.showToast({
+            //   title: "请输入举报详情",
+            //   icon: "none"
+            // })
+            that.showModal("请输入举报详情")
+
             return false
           } else {
             subflag = true
@@ -288,10 +321,11 @@ Component({
           this.commontrigger("submit", data)
         }
       } else {
-        wx.showToast({
-          title: "验证码错误,请重新输入",
-          icon: "none"
-        })
+        // wx.showToast({
+        //   title: "验证码错误,请重新输入",
+        //   icon: "none"
+        // })
+        that.showModal("验证码错误,请重新输入")
         return false
       }
 

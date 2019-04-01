@@ -4,7 +4,7 @@ const util = require('../../utils/util.js')
 const app = getApp()
 Page({
   data: {
-    newMessage:true,
+    newMessage:false,
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
@@ -36,6 +36,52 @@ Page({
       url: 'information/information'
     })
   },
+  // getMessage(){
+  //   console.log('开始连接')
+  //   let socketOpen = false
+  //   wx.connectSocket({
+  //     url: app.globalData.configUrls + "newInformation"
+  //   })
+
+  //   wx.onSocketOpen( (res)=> {
+  //     socketOpen = true
+  //     sendSocketMessage()
+  //   })
+
+  //   function sendSocketMessage() {
+  //     if (socketOpen) {
+  //       wx.sendSocketMessage({
+  //         openId: app.globalData.userInfo.openId
+  //       })
+  //     } else {
+
+  //     }
+  //   }
+  //   wx.onSocketMessage((res)=>{
+  //     console.log(res)
+  //   })
+  //   wx.onSocketError((err)=>{
+  //     console.log('error',err)
+  //   })
+  //   wx.onSocketClose((close)=>{
+  //     console.log('close')
+  //   })
+  // },
+  getMessage2(){
+    let that = this
+    app.getstorage("userInfo").then(res => {
+      app.post("newInformation", {
+        openId: res.openid
+      }).then(res => {
+          that.setData({
+            newMessage: res.data.success
+          })
+        
+
+      })
+    })
+  },
+
   onLoad: function() {
     wx.showShareMenu({
       withShareTicket: true,
@@ -43,6 +89,7 @@ Page({
         console.log(res)
       }
     })
+    
     // if (app.globalData.userInfo) {
     //   this.setData({
     //     userInfo: app.globalData.userInfo,
@@ -71,6 +118,9 @@ Page({
       }
     })
     // }
+  },
+  onShow(){
+    this.getMessage2()
   },
   getUserInfo: function(e) {
     // console.log(e)

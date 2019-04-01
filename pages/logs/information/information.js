@@ -70,7 +70,8 @@ Page({
         openId: res.openid,
         informerName: data.name,
         idCard: data.idCard,
-        phoneNumber: data.phone
+        phoneNumber: data.phone,
+        address: data.region
       }).then(res => {
         if (res.data.success) {
           wx.showModal({
@@ -110,19 +111,25 @@ Page({
   onLoad: function (options) {
     let that = this
     app.getstorage("userInfo").then(res => {
-      app.post("getInformer", {
+      app.post("decodeInformer", {
         openId: res.openid
       }).then(res => {
         if (res.data) {
           let respon = res.data
           let form = {
-            name: respon.encryptName,
-            idCard: respon.encryptIdCard,
-            phone: respon.encryptPhoneNumber
+            name: respon.informerName,
+            idCard: respon.idCard,
+            phone: respon.phoneNumber,
+            region: respon.address,
           }
           that.setData({
             'form.check':form,
-            buttonhidden: true
+            // buttonhidden: true
+            submitState: "editInformer",
+          })
+        }else{
+          that.setData({
+            submitState: "saveInformer",
           })
         }
 

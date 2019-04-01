@@ -247,7 +247,8 @@
 }
 .navigator .picker .pickertext{
   line-height:1;
-  padding-bottom:15rpx;
+  padding:10rpx 0;
+  /* padding-bottom:15rpx; */
 }
 
 .navigator:first-child:before {
@@ -261,7 +262,13 @@
   width: 151rpx;
   margin-left: 5rpx;
 }
-
+.navigator-texts {
+  font-size: 30rpx;
+  flex: 0 0 auto;
+  float: left;
+  width: 151rpx;
+  margin-left: 5rpx;
+}
 .navigator-arrow {
   padding-right: 26rpx;
   position: relative;

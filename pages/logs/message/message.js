@@ -8,7 +8,12 @@ Page({
   data: {
     information: ""
   },
-
+  details: function (e) {
+    wx.navigateTo({
+      url: '/pages/logs/record/details/rescorddetails?result=' + JSON.stringify(e.currentTarget.dataset.result)
+      // url: "details/rescorddetails?id=" + e.currentTarget.dataset.id + "&state=" + e.currentTarget.dataset.state
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -17,7 +22,7 @@ Page({
       let params = {
         openId: res.openid
       }
-      app.post("getInformation", params).then(res => {
+      app.post("updateReadState", params).then(res => {
         console.log(res)
         let information = res.data.filter((i, v) => {
           return i.state != -1

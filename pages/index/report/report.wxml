@@ -29,7 +29,7 @@
       </label>
     </checkbox-group>
   </view>
-  <button hover-class="none" bindtap="submit" disabled="{{disabled}}">我知道了
+  <button hover-class="ui-share-hover" bindtap="submit" disabled="{{disabled}}">我知道了
   </button>
 </view>
 <view style="left:0;right:0;color:red;font-size:30rpx;text-align:center;position:fixed;bottom:0;">硬汉科技</view>
