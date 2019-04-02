@@ -661,7 +661,7 @@ Page({
         })
       }
     }
-    this.getCaptcha()
+    // this.getCaptcha()
     this.getAllIndustry()
     this.getThreadArea()
   },

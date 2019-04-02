@@ -38,7 +38,7 @@
         </view>
       </block>
       <block wx:else>
-        <view class="navigator">
+        <view class="navigator {{item.name=='个人信息'?'uzl':''}}">
           <view class="iconfont {{item.icon}}"></view>
           <view class="navigator-text">{{item.name}}: <text style="color:#999;" wx:if="{{item.model=='useras'&&!checkboxValue}}">匿名</text></view>
           <switch name="{{item.model}}" checked bindchange="checkboxChange" wx:if="{{item.switch}}" />
@@ -46,8 +46,8 @@
       </block>
       <block wx:for="{{item.data}}" wx:key="{{idx}}" wx:for-index="idx" wx:for-item="itemdata">
         <!-- <view class="navigator {{itemdata.class}}"> -->
-        <view class="navigator {{itemdata.class}}"  wx:if="{{item.model!=='useras'||checkboxValue}}">
-          <view wx:if="{{itemdata.require}}">*</view>
+        <view class="navigator {{itemdata.class}} {{itemdata.model=='phoneNumber'?'noborder':''}}"  wx:if="{{item.model!=='useras'||checkboxValue}}">
+          <view wx:if="{{itemdata.require}}" style="color:red;" >*</view>
           <block wx:if="{{itemdata.type == 'regionselect'}}">
             <picker name="{{itemdata.model}}" class="picker" mode="multiSelector" bindcolumnchange="bindcolumnchange" data-type="{{itemdata.model}}" bindcancel="bindcancel" bindchange="bindRegionChange" value="{{form.check[itemdata.model]}}" range-key="regionName"
               range="{{form.data[itemdata.model]}}">
@@ -154,7 +154,7 @@
         </view>
       </view> -->
     </view>
-    <text style="display:{{buttonhidden?'none':'block'}}" class="careful">注：带有*的内容为必填内容,匿名举报时关闭个人信息右侧开关</text>
+    <text style="display:{{buttonhidden?'none':'block'}}" class="careful">注：带有<text style="color:red;">*</text>的内容为必填内容,匿名举报时关闭个人信息右侧开关</text>
     <block>
       <button class="submit" form-type="submit" data-type="submit" hover-class="ui-share-hover" style="display:{{buttonhidden?'none':'block'}}">
         提交

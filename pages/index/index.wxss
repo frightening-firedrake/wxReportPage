@@ -31,7 +31,8 @@ page {
 .classitem .zhezhao {
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  /* background-color: rgba(0, 0, 0, 0.6); */
+  background-color: rgba(0, 0, 0, 0.3);
   position: absolute;
   left: 0;
   right: 0;
@@ -42,17 +43,42 @@ page {
 
 .classitem .content {
   width: 630rpx;
-  height: 1050rpx;
+  /* height: 1050rpx; */
   border-radius: 10rpx;
   /* background-color: #fff; */
   position: absolute;
-  bottom: 0;
-  top: 0;
+  bottom: 30rpx;
+  top: 30rpx;
   left: 0;
   right: 0;
   margin: auto;
   z-index: 3;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.classitem .content::after {
+  content: "";
+  width: 35rpx;
+  height: 35rpx;
+  border-radius: 50%;
+  background-color: #11175B;
+  position: absolute;
+  left: -17.5rpx;
+  top: 223rpx;
+}
+
+.classitem .content::before {
+  content: "";
+  width: 35rpx;
+  height: 35rpx;
+  border-radius: 50%;
+  background-color: #11175B;
+  position: absolute;
+  right: -17.5rpx;
+  top: 223rpx;
+  z-index: 999;
 }
 
 .classitem .content .itembutton {
@@ -62,28 +88,32 @@ page {
   border-radius: 10rpx;
   padding-top: 9rpx 0;
   text-align: center;
+  flex:0 0 auto;
+  display: flex;
+  overflow: hidden;
 }
 
 .classitem .content .itembutton .button {
   width: 207rpx;
   height: 100%;
-  line-height: 70rpx;
+  line-height: 80rpx;
   color: #4c75e1;
   font-size: 28rpx;
-  display: inline-block;
+  /* display: inline-block; */
   border-right: 1px solid #fff;
+  flex:1 1 auto;
 }
 
 .classitem .content .itembutton .button:last-child {
   border: none;
 }
 
-.classitem .content .contenttext::after {
+/* .classitem .content .contenttext::after {
   content: "";
   width: 35rpx;
   height: 35rpx;
   border-radius: 50%;
-  background-color: #112265;
+  background-color: #11175B;
   position: absolute;
   left: -17.5rpx;
   top: -17.5rpx;
@@ -94,11 +124,11 @@ page {
   width: 35rpx;
   height: 35rpx;
   border-radius: 50%;
-  background-color: #112265;
+  background-color: #11175B;
   position: absolute;
   right: -17.5rpx;
   top: -17.5rpx;
-}
+} */
 
 .classitem .content .close {
   position: relative;
@@ -117,11 +147,14 @@ page {
 
 .classitem .content .contenttext {
   width: 100%;
-  height: 725rpx;
-  padding: 0 15rpx;
+  height: 600rpx;
+  padding:20rpx 30rpx 10rpx;
   position: relative;
   background-color: #fff;
   box-sizing: border-box;
+  flex:1 1 auto;
+  border-bottom-left-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
 }
 
 .classitem .content image {
@@ -130,7 +163,7 @@ page {
   display: block;
   border-top-left-radius: 10rpx;
   border-top-right-radius: 10rpx;
-  border-bottom: 1px dashed #3987ea;
+  border-bottom: 1rpx dashed #3987ea;
 }
 
 .classitem .content .contenttext .h1 {
@@ -176,6 +209,7 @@ page {
   width: 100%;
   height: 240rpx;
   display: block;
+  flex: 0 0 auto;
 }
 
 /* .classitem .content .content .h1 {
@@ -251,6 +285,11 @@ page {
 }
 
 .container.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom:30rpx;
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -285,7 +324,7 @@ page {
   height: 150rpx;
   padding: 0 35rpx;
   /* margin-bottom: 20rpx; */
-  margin-top: 42rpx;
+  /* margin-top: 42rpx; */
   display: flex;
   align-items: center; /*垂直居中*/
   justify-content: space-between;
@@ -351,18 +390,19 @@ page {
   display: block;
   /* margin-top: 45rpx; */
   padding: 0 35rpx;
-  margin-top: 31rpx;
+  /* margin-top: 31rpx; */
 }
 
 .container.home .report .onekey {
   width: 100%;
-  height: 242rpx;
+  /* height: 242rpx; */
   background-color: white;
   border-bottom-left-radius: 20rpx;
   border-bottom-right-radius: 20rpx;
   font-size: 0;
-  padding-top: 54rpx;
+  /* padding-top: 54rpx; */
   text-align: center;
+  padding:50rpx 0;
 }
 
 .container.home .report .onekey image {
@@ -400,10 +440,11 @@ page {
   border-top-left-radius: 20rpx;
   border-top-right-radius: 20rpx;
   opacity: 1;
+  /* overflow: hidden; */
 }
 
 .container.home .report .navigator .navigator-text {
-  border-bottom: 1px solid #bcbcc0;
+  border-bottom: 1px solid rgba(121,121,121,0.5);
 }
 
 .navigator-arrow:after {
@@ -419,4 +460,13 @@ page {
   top: 50%;
   margin-top: -8rpx;
   right: 28rpx;
+}
+::-webkit-scrollbar{
+width: 0;
+height: 0;
+color: transparent;
+}
+.classitemAnimation{
+  transform: scale3d(0.01, 0.01, 0.01);
+  opacity:0;
 }

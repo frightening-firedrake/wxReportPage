@@ -2,6 +2,7 @@ var app = getApp()
 
 Page({
   data: {
+    animation: '',
     show: false,
     classitem: false,
     content: {},
@@ -99,14 +100,26 @@ Page({
         buttons: button,
         content: res.data[0]
       })
+      this.animation.scale3d(1, 1, 1).opacity(1).step();
+      this.setData({
+        animation: this.animation.export()
+      })
     }, err => {
       // console.log(err)
     })
   },
   close() {
+    let that=this;
+    this.animation.scale3d(0.01, 0.01, 0.01).opacity(0).step();
     this.setData({
-      classitem: false
+      animation: this.animation.export()
     })
+    setTimeout(function(){
+      that.setData({
+        classitem: false
+      })
+    },400)
+    
   },
   getfindall() {
     let that = this
@@ -133,5 +146,8 @@ Page({
     wx.navigateTo({
       url: 'report/report'
     })
+  },
+  onReady(){
+    this.animation = wx.createAnimation({})
   }
 })

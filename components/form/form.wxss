@@ -228,6 +228,9 @@
   border-top: 1rpx solid #d8d8d8;
   color: #d8d8d8;
 }
+.noborder:before {
+  display: none;
+}
 
 .navigator .picker {
   flex: 1;
@@ -256,7 +259,7 @@
 }
 
 .navigator-text {
-  font-size: 30rpx;
+  font-size: 34rpx;
   flex: 1;
   float: left;
   width: 151rpx;
@@ -413,8 +416,8 @@
 }
 
 .navigator switch {
-  width: 86rpx;
-  height: 55rpx;
+  /* width: 86rpx; */
+  /* height: 55rpx; */
   line-height: 1;
   margin-right: 20rpx;
 }
@@ -457,4 +460,7 @@
   color: #fff;
   font-size: 44rpx;
   letter-spacing: 8px;
+}
+.uzl{
+
 }

@@ -67,7 +67,7 @@
         <view class="navigator-textl">举报信息:</view>
       </view>
       <view class="navigator">
-        <view>*</view>
+        <view style="color:red;">*</view>
         <view class="navigator-text">线报地域：</view>
         <picker disabled='{{!editMode}}' bindchange="bindRegionChange" bindcolumnchange="bindcolumnchange" class="picker" data-type="threadAreaId" mode="multiSelector" name="threadAreaId" range="{{threadAreaId}}" range-key="regionName" value="{{threadAreaValues}}" type="threadAreaId" key="regionName">
           <text class="{{editMode?'pickertext':'pickertext readOnly'}}">{{threadAreaId[0][threadAreaValues[0]].regionName}}{{threadAreaId[1][threadAreaValues[1]].regionName?",":""}}{{threadAreaId[1][threadAreaValues[1]].regionName}}{{threadAreaId[2][threadAreaValues[2]].regionName?",":""}}{{threadAreaId[2][threadAreaValues[2]].regionName}}</text>
@@ -75,7 +75,7 @@
         <view class="navigator-arrow"></view>
       </view>
       <view class="navigator">
-        <view>*</view>
+        <view style="color:red;">*</view>
         <view class="navigator-text">线索地址:</view>
         <view class="navigator-textarea">
           <textarea class="{{editMode?'':'readOnly'}}" disabled='{{!editMode}}' data-type="clueAddress" name="clueAddress" placeholder="请输入详细地址" value="{{result.clueAddress}}">
@@ -84,7 +84,7 @@
         </view>
       </view>
       <view class="navigator">
-        <view>*</view>
+        <view style="color:red;">*</view>
         <view class="navigator-text">行业领域:</view>
         <picker  disabled='{{!editMode}}' bindchange="industryFieldchage" class="picker" data-type="industryField" name="industryField" range="{{industryField}}" range-key="label" value="{{industryFieldIndex}}" type="industryField">
         <text class="{{editMode?'pickertext':'pickertext readOnly'}}">{{industryField[industryFieldIndex].label}}</text>
@@ -92,7 +92,7 @@
         <view class="navigator-arrow"></view>
       </view>
       <view class="navigator">
-        <view>*</view>
+        <view style="color:red;">*</view>
         <view class="navigator-text">举报类别:</view>
         <picker  disabled='{{!editMode}}' bindchange="informTypechange" class="picker" data-type="informType" name="informType" range="{{informType}}" range-key="label" value="{{informTypeIndex}}" type="informType">
         <text class="{{editMode?'pickertext':'pickertext readOnly'}}">{{informType[informTypeIndex].label}}</text>
@@ -141,11 +141,11 @@
       </view>
 
       <view wx:if='{{editMode}}' class="navigator">
-        <view>*</view>
+        <view style="color:red;">*</view>
         <view class="navigator-text">验证码:</view>
         <view class="navigator-input">
           <input  data-type="code" name="code" placeholder="请输入验证码"></input>
-          <image bindtap="getCaptcha" src="{{captchaImg}}"></image>
+          <image wx:if="{{captchaImg}}" bindtap="getCaptcha" src="{{captchaImg}}"></image>
           <text class="" wx:if="{{!captchaImg}}" bindtap="getCaptcha">请点击刷新</text>
         </view>
       </view>
@@ -156,22 +156,22 @@
       <view class="navigator">
         <view class="iconfont icon-guanliyuan"></view>
         <view class="navigator-textl">个人信息: <text style="color:#999;" wx:if="{{!useras}}">匿名</text></view>
-        <switch  wx:if='{{editMode&&!informerId}}' checked="{{useras}}" bindchange="switchChange" name="useras" ></switch>
+        <switch  wx:if='{{editMode}}' checked="{{useras}}" bindchange="switchChange" name="useras" ></switch>
       </view>
       <view class="navigator" wx:if="{{useras}}">
-        <view>*</view>
+        <view style="color:red;">*</view>
         <view class="navigator-about">
           <input class="{{editMode?'':'readOnly'}}" disabled='{{!editMode||informerId}}' data-type="informerName" name="informerName" placeholder="请输入姓名" value="{{result.informerName}}" type="informerName"></input>
         </view>
       </view>
-      <view class="navigator" wx:if="{{useras}}">
-        <view>*</view>
+      <view class="navigator noborder" wx:if="{{useras}}">
+        <view style="color:red;">*</view>
         <view class="navigator-about">
           <input class="{{editMode?'':'readOnly'}}" disabled='{{!editMode||informerId}}' data-type="phoneNumber" name="phoneNumber" placeholder="请输入手机号" value="{{result.phoneNumber}}" type="number"></input>
         </view>
       </view>
     </view>
-    <text wx:if="{{editMode}}" class="careful">注：带有*的内容为必填内容,匿名举报时关闭个人信息右侧开关</text>
+    <text wx:if="{{editMode}}" class="careful">注：带有<text style="color:red;">*</text>的内容为必填内容,匿名举报时关闭个人信息右侧开关</text>
     <button wx:if="{{editMode}}" class="submit" data-type="submit" form-type="submit" hover-class="ui-share-hover" style="display:block" role="button"  type="submit" >重新提交</button>
   </form>
 </view>
