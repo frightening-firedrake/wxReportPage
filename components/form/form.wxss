@@ -225,7 +225,7 @@
   left: 0;
   right: 30rpx;
   height: 1px;
-  border-top: 1rpx solid #d8d8d8;
+  border-top: 1rpx solid #E1E1E1;
   color: #d8d8d8;
 }
 .noborder:before {
