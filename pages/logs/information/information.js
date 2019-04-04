@@ -9,6 +9,7 @@ Page({
   data: {
     prodid: "",
     buttonhidden: false,
+    Informer: false,    
     submitState: "saveInformer",
     form: {
       check: {

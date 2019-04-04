@@ -1,7 +1,7 @@
 <!-- <component-form form="{{form}}" submittype="{{false}}"></component-form> -->
 <!-- <formdetails bindsubmit="submit" bindcolumnchange="columnchange" bindaddvideo="addvideo" bindaddimg="addimg" bindtext="text" bindregionChange="regionChange" bindselectchage="selectchage" bindlocation="location" bindbindcancel="bindcancel" buttonhidden="{{buttonhidden}}" form="{{form}}"></formdetails> -->
 <!-- <formdetails form="{{form[0].form}}" submittype="{{false}}"></formdetails> -->
-<view class="progress" wx:if="{{result.state==4}}">
+<view  class="progress {{hide?'hide':''}}" wx:if="{{result.state==4}}">
   <view class="circleBox blue">
     <view class="circle">
       <view class="line">
@@ -22,7 +22,7 @@
   </view>
 </view>
 
-<view class="progress" wx:if="{{result.state!==4}}">
+<view class="progress {{hide?'hide':''}}" wx:if="{{result.state!==4}}">
   <view class="circleBox blue">
     <view class="circle">
       <view class="line2">
@@ -53,7 +53,7 @@
     <text>已结案</text>  
   </view>
 </view>
-<view class="component">
+<view class="component {{hide?'hide':''}}">
   <view class="navigator-box">
     <view class="navigator">
       <view class="navigator-text">反馈信息:</view>
@@ -86,16 +86,16 @@
       <view class="navigator">
         <view style="color:red;">*</view>
         <view class="navigator-text">行业领域:</view>
-        <picker  disabled='{{!editMode}}' bindchange="industryFieldchage" class="picker" data-type="industryField" name="industryField" range="{{industryField}}" range-key="label" value="{{industryFieldIndex}}" type="industryField">
-        <text class="{{editMode?'pickertext':'pickertext readOnly'}}">{{industryField[industryFieldIndex].label}}</text>
+        <picker  disabled='{{true||!editMode}}' bindchange="industryFieldchage" class="picker" data-type="industryField" name="industryField" range="{{industryField}}" range-key="label" value="{{industryFieldIndex}}" type="industryField">
+        <text bindtap="showList" data-type="industryField"  class="{{editMode?'pickertext':'pickertext readOnly'}}">{{industryField[industryFieldIndex].label}}</text>
         </picker>
         <view class="navigator-arrow"></view>
       </view>
       <view class="navigator">
         <view style="color:red;">*</view>
         <view class="navigator-text">举报类别:</view>
-        <picker  disabled='{{!editMode}}' bindchange="informTypechange" class="picker" data-type="informType" name="informType" range="{{informType}}" range-key="label" value="{{informTypeIndex}}" type="informType">
-        <text class="{{editMode?'pickertext':'pickertext readOnly'}}">{{informType[informTypeIndex].label}}</text>
+        <picker disabled='{{true||!editMode}}' bindchange="informTypechange" class="picker" data-type="informType" name="informType" range="{{informType}}" range-key="label" value="{{informTypeIndex}}" type="informType">
+        <text  bindtap="showList" data-type="informType" class="{{editMode?'pickertext':'pickertext readOnly'}}">{{informType[informTypeIndex].label}}</text>
         </picker>
         <view class="navigator-arrow"></view>
       </view>
@@ -104,7 +104,7 @@
       <view class="navigator">
         <view class="iconfont icon-fuzhiwenjian"></view>
         <view class="navigator-textl">举报详情:</view>
-        {{result.informContent.length}}/{{textLength}}
+        {{textLength-result.informContent.length}}/{{textLength}}
       </view>
       <view class="navigator textareacontent">
         <view class="navigator-textareacontent">
@@ -119,7 +119,7 @@
 
         <view class="iconfont icon-tuwenxiangqing"></view>
         <view class="navigator-textl">图片上传:</view>
-        <view class="navigator-arrowtext">{{imgList.length}}/{{imgLength}}</view>
+        <view class="navigator-arrowtext">{{imgLength-imgList.length}}/{{imgLength}}</view>
       </view>
       <view class="navigator">
         <image bindtap="previewIMG" class="" src="{{item}}" data-src="{{item}}"  wx:key="{{index}}" wx:for="{{imgListShow}}" />
@@ -132,7 +132,7 @@
       <view class="navigator">
         <view class="iconfont icon-gaoqingshexiang"></view>
         <view class="navigator-textl">视频上传:</view>
-        <view class="navigator-arrowtext">{{videoList.length}}/{{videoLength}}</view>
+        <view class="navigator-arrowtext">{{videoLength-videoList.length}}/{{videoLength}}</view>
       </view>
       <view class="navigator">
         <video bindplay="videoPlayer" id="{{item}}" data-src="{{item}}" src="{{item}}" wx:key="{{index}}" wx:for="{{videoListShow}}" bindfullscreenchange="fullscreenchange"  controls></video>
@@ -177,4 +177,25 @@
 </view>
 <view style="left:0;right:0;color:red;font-size:30rpx;text-align:center;position:fixed;bottom:0;">
   硬汉科技
+</view>
+<view class="selectListWrap {{show?'show':''}}" animation="{{animation1}}">
+  <view class="selectList">
+    <view class="selectHeader">
+      <view style="font-size:58rpx;margin-top:8rpx;" class="iconfont icon-shanchanghangye"></view>
+      <view class="title">行业领域</view>
+      <view class="return"  bindtap='hide'>取消</view>
+    </view>
+    <view bindtap='industryFieldchage2' data-type="industryField" data-index="{{index}}" data-label="{{item.label}}" hover-class='ui-list-hover' wx:for="{{industryField}}" wx:key="{{index}}" class="selectItem">{{item.label}}</view>
+  </view>
+</view>
+
+<view class="selectListWrap {{show?'show':''}}" animation="{{animation2}}">
+  <view class="selectList">
+    <view class="selectHeader">
+      <view style="font-size:40rpx;margin-right:8rpx;" class="iconfont icon-leibie"></view>
+      <view class="title">举报类别</view>
+      <view class="return"  bindtap='hide'>取消</view>
+    </view>
+    <view bindtap='informTypechange2' data-type="informType" data-index="{{index}}" data-label="{{item.label}}" hover-class='ui-list-hover' wx:for="{{informType}}" wx:key="{{index}}" class="selectItem">{{item.label}}</view>
+  </view>
 </view>

@@ -21,12 +21,17 @@ Component({
       }
     },
     buttonhidden: Boolean,
+    Informer: Boolean,
   },
 
   /**
    * 组件的初始数据
    */
   data: {
+    animation1: '',
+    animation2:'',
+    hide:false,
+    show:false,
     region: ['山西省', "太原市", "小店区"],
     customItem: "全部",
     showImg: true,
@@ -55,6 +60,8 @@ Component({
         })
       }
     })
+    this.animation1 = wx.createAnimation({ duration: 200,})
+    this.animation2 = wx.createAnimation({ duration: 200,})
   },
   /**
    * 组件的方法列表
@@ -68,6 +75,7 @@ Component({
       this.triggerEvent(triggername, myEventDetail, myEventOption)
     },
     selectchage(e) {
+      console.log(e)
       this.commontrigger("selectchage", {
         value: e.detail.value,
         type: e.currentTarget.dataset.type
@@ -139,9 +147,12 @@ Component({
     },
     preview: function(e) {
       // console.log(e.currentTarget.dataset.list)
+      var urls = e.currentTarget.dataset.list.map((v)=>{
+        return this.data.imgaeUrl+v
+      })
       wx.previewImage({
         current: e.currentTarget.dataset.item,
-        urls: e.currentTarget.dataset.list
+        urls: urls,
       })
 
     },
@@ -185,7 +196,7 @@ Component({
               },
               success(res) {
                 wx.hideLoading()
-                that.commontrigger("addvideo", that.data.videoUrl+res.data)
+                that.commontrigger("addvideo", res.data)
                 //do something
               }
             })
@@ -225,7 +236,7 @@ Component({
               },
               success(res) {
                 wx.hideLoading()
-                that.commontrigger("addimg", that.data.imgaeUrl+res.data)
+                that.commontrigger("addimg",res.data)
                 // var myEventDetail = {
                 //   event: e.currentTarget.dataset.type,
                 //   type: [res.data]
@@ -249,6 +260,7 @@ Component({
       })
     },
     submit(e) {
+      console.log(e)
       let that=this
       let subflag = true
       let formobj = {}
@@ -288,15 +300,14 @@ Component({
             that.showModal("请输入" + req.name)
             return false
             
-            if (obj =="phoneNumber"){
-              
-              
-            }
           } else if (obj == "phoneNumber") {
-            if (/^1[34578]\d{9}$/.test(e.detail.value.phoneNumber)) {
-            } else {
-              that.showModal("请输入正确的手机号")
-              return false
+            if (!that.data.Informer){
+              if (/^1[34578]\d{9}$/.test(e.detail.value.phoneNumber)) {
+
+              } else {
+                that.showModal("请输入正确的手机号")
+                return false
+              }
             }
           } else if (obj == "phone") {
             if (/^1[34578]\d{9}$/.test(e.detail.value.phoneNumber)) {
@@ -342,6 +353,64 @@ Component({
       //   })
       // }
 
+    },
+    selectChange2(e){
+      if (e.currentTarget.dataset.type =="industryField"){
+        this.setData({
+          "form.check.industryField": e.currentTarget.dataset.index
+        })
+      }else{
+        this.setData({
+          "form.check.informType": e.currentTarget.dataset.index
+        })
+      }
+      this.commontrigger("selectchage", {
+        value: e.currentTarget.dataset.index,
+        type: e.currentTarget.dataset.type
+      })
+      this.hide()
+    },
+    showList(e){
+      let that = this;
+      this.setData({
+        "show": true
+      })
+      this.setData({
+        "animation1": this.animation1.export()
+      })
+      var type = e.currentTarget.dataset.type 
+      if (type =="industryField"){
+        this.animation1.left(0).right(0).step();
+        this.setData({
+          "animation1": this.animation1.export()
+        })
+      }else{
+        this.animation2.left(0).right(0).step();
+        this.setData({
+          "animation2": this.animation2.export()
+        })
+      }
+      
+      setTimeout(function () {
+        that.setData({
+          hide: true
+        })
+      }, 200)
+    },
+    hide(){
+      let that=this;
+      this.animation1.left("100%").right("-100%").step();
+      this.animation2.left("100%").right("-100%").step();
+      this.setData({
+        "animation1": this.animation1.export(),
+        "animation2": this.animation2.export(),
+        hide: false,
+      })
+      setTimeout(function () {
+        that.setData({
+          show: false
+        })
+      }, 200)
     },
     forform(roles) {
       for (var role = 0; role < this.properties.form.formdata.length; role++) {

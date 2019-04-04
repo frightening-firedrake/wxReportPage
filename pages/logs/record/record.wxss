@@ -111,7 +111,7 @@ page {
   margin-top:10rpx;
 }
 .record .recordconut{
-  padding:19rpx 0 0 31rpx;
+  padding:19rpx 0 25rpx 31rpx;
   position:relative;
   font-size:24rpx;
   color:#666666;

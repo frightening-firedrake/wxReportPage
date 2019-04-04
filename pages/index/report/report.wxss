@@ -28,12 +28,11 @@ button {
 
 .container.report {
   background-color: #f8f8f8;
-  padding: 23rpx 24rpx;
+  padding: 23rpx 24rpx 50rpx;
   background-image: url("https://report.ityyedu.com/reportingSystem/upload/image/report.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: 50% 0;
-  margin-bottom:25rpx;
 }
 
 .container.report text {

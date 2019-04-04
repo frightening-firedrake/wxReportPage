@@ -7,6 +7,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    animation1: '',
+    animation2: '',
+    hide: false,
+    show: false,
     region: ['山西省', "太原市", "小店区"],
     editMode:false,
     customItem: "全部",
@@ -308,6 +312,18 @@ Page({
   informTypechange(e){
     this.setData({
       "informTypeIndex": e.detail.value
+    })
+  },
+  industryFieldchage2(e) {
+    this.hide()
+    this.setData({
+      "industryFieldIndex": e.currentTarget.dataset.index
+    })
+  },
+  informTypechange2(e) {
+    this.hide()
+    this.setData({
+      "informTypeIndex": e.currentTarget.dataset.index
     })
   },
   //举报详情
@@ -620,6 +636,48 @@ Page({
 
       })
   },
+  showList(e) {
+    if (!this.data.editMode) {
+      return
+    }
+    this.setData({
+      "show": true
+    })
+    let that = this;
+    var type = e.currentTarget.dataset.type
+    if (type == "industryField") {
+      this.animation1.left(0).right(0).step();
+      this.setData({
+        "animation1": this.animation1.export()
+      })
+    } else {
+      this.animation2.left(0).right(0).step();
+      this.setData({
+        "animation2": this.animation2.export()
+      })
+    }
+
+    setTimeout(function () {
+      that.setData({
+        hide: true
+      })
+    }, 200)
+  },
+  hide() {
+    var that=this;
+    this.animation1.left("100%").right("-100%").step();
+    this.animation2.left("100%").right("-100%").step();
+    this.setData({
+      "animation1": this.animation1.export(),
+      "animation2": this.animation2.export(),
+      hide: false,
+    })
+    setTimeout(function () {
+      that.setData({
+        show: false
+      })
+    }, 200)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -669,7 +727,10 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {},
+  onReady: function() {
+    this.animation1 = wx.createAnimation({ duration: 200,})
+    this.animation2 = wx.createAnimation({ duration: 200,})
+  },
 
   /**
    * 生命周期函数--监听页面显示

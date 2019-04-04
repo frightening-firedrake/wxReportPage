@@ -1,181 +1,5 @@
 /* pages/logs/record/details/rescorddetails.wxss */
-@font-face {
-  font-family: 'iconfont'; /* project id 886633 */
-  /* src: url('//at.alicdn.com/t/font_886633_4wjkl8y41zk.eot'); */
-  src: url('//at.alicdn.com/t/font_886633_4wjkl8y41zk.eot?#iefix') format('embedded-opentype'),
-         url('//at.alicdn.com/t/font_886633_4wjkl8y41zk.woff2') format('woff2'),
-         url('//at.alicdn.com/t/font_886633_4wjkl8y41zk.woff') format('woff'),
-         url('//at.alicdn.com/t/font_886633_4wjkl8y41zk.ttf') format('truetype'),
-         url('//at.alicdn.com/t/font_886633_4wjkl8y41zk.svg#iconfont') format('svg');
-}
 
-.icon-fuzhiwenjian:before {
-  content: "\e603";
-}
-
-.icon-ziliaoku:before {
-  content: "\e607";
-}
-
-.icon-guanliyuan:before {
-  content: "\e608";
-}
-
-.icon-guanli:before {
-  content: "\e609";
-}
-
-.icon-wenben:before {
-  content: "\e60a";
-}
-
-.icon-tuwenxiangqing:before {
-  content: "\e60b";
-}
-
-.icon-gaoqingshexiang:before {
-  content: "\e60c";
-}
-
-.icon-iconfontnone:before {
-  content: "\e600";
-}
-
-.icon-duigou:before {
-  content: "\e613";
-}
-
-.icon-weibiaoti3:before {
-  content: "\e64b";
-}
-
-.icon-weixin:before {
-  content: "\e649";
-}
-
-.icon-question:before {
-  content: "\e682";
-}
-
-.icon-shangpinzhonglei:before {
-  content: "\e81e";
-}
-
-.icon-dizhi:before {
-  content: "\e679";
-}
-
-.icon-jiantou:before {
-  content: "\e606";
-}
-
-.icon-xinlihuodong:before {
-  content: "\e630";
-}
-
-.icon-shipin:before {
-  content: "\e615";
-}
-
-.icon-home:before {
-  content: "\e601";
-}
-
-.icon-shou:before {
-  content: "\e65a";
-}
-
-.icon-r-jiantou:before {
-  content: "\e605";
-}
-
-.icon-gonggao:before {
-  content: "\e611";
-}
-
-.icon-zhengquan:before {
-  content: "\e697";
-}
-
-.icon-gerenzhongxin:before {
-  content: "\e6d0";
-}
-
-.icon-guanfangbanben:before {
-  content: "\eb63";
-}
-
-.icon-jibenxinxi:before {
-  content: "\e628";
-}
-
-.icon-dingwei:before {
-  content: "\e602";
-}
-
-.icon-gengduofenleicaidanzhongleimianxing:before {
-  content: "\e98b";
-}
-
-.icon-duiwu:before {
-  content: "\e62e";
-}
-
-.icon-wang:before {
-  content: "\e77a";
-}
-
-.icon-zhongguoyidong:before {
-  content: "\e621";
-}
-
-.icon-guanlituandui:before {
-  content: "\e925";
-}
-
-.icon-jiangliguanli:before {
-  content: "\e6ad";
-}
-
-.icon-sizhengjiaoyu:before {
-  content: "\e604";
-}
-
-.icon-dingwei1:before {
-  content: "\e60e";
-}
-
-.icon-jilu:before {
-  content: "\e80e";
-}
-
-.icon-diqufenbu:before {
-  content: "\e60d";
-}
-
-.icon-gonggao1:before {
-  content: "\ea32";
-}
-
-.icon-baomizidian:before {
-  content: "\e689";
-}
-
-.icon-dongtai:before {
-  content: "\e612";
-}
-
-.icon-sousuo:before {
-  content: "\e655";
-}
-
-.icon-wuneirong:before {
-  content: "\e65f";
-}
-
-.icon-jibenxinxi1:before {
-  content: "\e6de";
-}
 
 .iconfont {
   font-family: "iconfont" !important;
@@ -184,9 +8,9 @@
 }
 
 .component {
-  padding: 14rpx 12rpx;
+  padding: 14rpx 12rpx 40rpx;
   background-color: #f2f3f9;
-  margin-bottom:25rpx;
+  /* margin-bottom:25rpx; */
 }
 
 .component .form {
@@ -250,7 +74,7 @@
   display: inline-block;
 }
 .navigator .picker .pickertext{
-  line-height:1;
+  line-height:44rpx;
   padding:10rpx 0;
   /* padding-bottom:15rpx; */
 }
@@ -299,30 +123,36 @@
 }
 
 .navigator .navigator-textarea {
-  width: 513rpx;
+  width: 480rpx;
   height: 151rpx;
   background-color: #f1f1f1;
   border-radius: 20rpx;
   margin: 12rpx 0;
   flex: 1;
+  display: flex;
+  align-items: center;
+  padding-right:17rpx;
 }
 
 .navigator .navigator-textarea textarea {
   width: 426rpx;
   height: 100%;
   box-sizing: border-box;
-  display: inline-block;
-  vertical-align: middle;
+  /* display: inline-block; */
+  /* vertical-align: middle; */
   line-height: 1;
   padding: 30rpx 0 0 17rpx;
   font-size: 30rpx;
+  flex:1;
 }
 
 .navigator .navigator-textarea image {
   width: 70rpx;
   height: 66rpx;
+  margin-right:17rpm;
+  flex:0 0 auto;
   margin:0;
-  vertical-align: middle;
+  /* vertical-align: middle; */
 }
 
 .navigator .navigator.textareacontent {
@@ -333,12 +163,12 @@
   width: 702rpx;
   height: 200rpx;
   background-color: #f1f1f1;
-  margin: 12rpx 0 22rpx 0;
+  margin: 12rpx 0 22rpx -22rpx;
   border-radius: 20rpx;
 }
 
 .navigator .navigator-textareacontent textarea {
-  padding: 30rpx 0 0 41rpx;
+  padding: 30rpx 41rpx 0 41rpx;
   box-sizing: border-box;
   font-size: 30rpx;
   line-height: 1;
@@ -565,4 +395,62 @@
 }
 .readOnly{
   color:#999!important;
+}
+.selectListWrap{
+  position: absolute;
+  top:0;
+  left:100%;
+  right:-100%;
+  bottom:0;
+  z-index: 9999;
+  padding:14rpx;
+  background-color: #f2f3f9;
+  overflow: auto;
+  display: none;
+}
+.selectListWrap .selectList{
+  background-color: #ffffff;
+	border-radius: 10rpx;
+  padding:0 12rpx 32rpx;
+}
+.selectListWrap .selectList .selectHeader{
+  height:86rpx;
+  border-bottom:1rpx solid #e1e1e1;
+  font-size:34rpx;
+  color:#333333;
+  display: flex;
+  align-items: center;
+}
+.selectListWrap .selectList .selectHeader .iconfont{
+  flex:0 0 auto;
+}
+.selectListWrap .selectList .selectHeader .title{
+  flex:1;
+}
+.selectListWrap .selectList .selectHeader .return{
+  flex:0 0 auto;
+  font-size:28rpx;
+  color:#888;
+  width:4em;
+  text-align: center;
+  line-height:86rpx;
+}
+.selectListWrap .selectList .selectItem{
+  min-height:86rpx;
+  border-bottom:1rpx solid #e1e1e1;
+  font-size:30rpx;
+  color:#333333;
+  display: flex;
+  align-items: center;
+  line-height:54rpx;
+  padding:0 44rpx;
+}
+.ui-list-hover{
+  background:#eee!important;
+}
+.hide{
+  display: none!important;
+}
+.show{
+  display: block!important;
 }

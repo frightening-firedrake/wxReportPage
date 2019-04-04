@@ -1,5 +1,5 @@
 <!-- components/form/form.wxml -->
-<view class="component">
+<view class="component {{hide?'hide':''}}">
   <form class="form" bindsubmit="submit">
     <view class="navigator-box" wx:for="{{form.formdata}}" wx:key="{{index}}">
       <block wx:if="{{item.model == 'picture'}}">
@@ -11,7 +11,7 @@
           </view>
         </view>
         <view class="navigator">
-          <image bindtap="preview" class="" src="{{srcitem}}" data-item="{{srcitem}}" data-list="{{form.check[item.model]}}" wx:key="{{srcindex}}" wx:for="{{form.check[item.model]}}" wx:for-index="srcindex" wx:for-item="srcitem" />
+          <image bindtap="preview" class="" src="{{imgaeUrl+srcitem}}" data-item="{{imgaeUrl+srcitem}}" data-list="{{form.check[item.model]}}" wx:key="{{srcindex}}" wx:for="{{form.check[item.model]}}" wx:for-index="srcindex" wx:for-item="srcitem" />
           <image class="" bindtap="addimage" wx:if="{{!(item.maxlength-form.check[item.model].length) == 0}}" src="../../image/index/prcture.png" />
           <text class="imagetext">每张图片的大小不能超过1M</text>
         </view>
@@ -25,7 +25,7 @@
           </view>
         </view>
         <view class="navigator">
-          <video src="{{videoitem}}" wx:key="{{videoindex}}" wx:for="{{form.check[item.model]}}" wx:for-index="videoindex" wx:for-item="videoitem" controls></video>
+          <video src="{{videoUrl+videoitem}}" wx:key="{{videoindex}}" wx:for="{{form.check[item.model]}}" wx:for-index="videoindex" wx:for-item="videoitem" controls></video>
           <image class="" bindtap="addvideo" wx:if="{{!(item.maxlength-form.check[item.model].length) == 0}}" src="../../image/index/video.png" />
           <text class="imagetext">每张视频的大小不能超过3M</text>
         </view>
@@ -56,17 +56,17 @@
             <view class="navigator-arrow"></view>
           </block>
           <block wx:elif="{{itemdata.type == 'map'}}">
-            <view class="navigator-text">{{itemdata.name}}:</view>
+            <view class="navigator-texts">{{itemdata.name}}:</view>
             <view class="navigator-textarea">
-              <textarea name="{{itemdata.model}}" data-type="{{itemdata.model}}" bindinput="bindinput" value="{{form.check[itemdata.model]}}" placeholder="{{itemdata.placeholder}}" />
+              <textarea  name="{{itemdata.model}}" data-type="{{itemdata.model}}" bindinput="bindinput" value="{{form.check[itemdata.model]}}" placeholder="{{itemdata.placeholder}}" />
               <image bindtap="chooseLocation" class="" src="../../image/index/map.png" />
             </view>
           </block>
           <block wx:elif="{{itemdata.type=='select'}}">
             <!-- {{itemdata.name}}： -->
             <view class="navigator-texts">{{itemdata.name}}:</view>
-            <picker name="{{itemdata.model}}" class="picker" data-type="{{itemdata.model}}" bindchange="selectchage" value="{{form.check[itemdata.model]}}" range-key="label" range="{{form.data[itemdata.model]}}">
-              <text class="pickertext" decode="true">{{(form.data[itemdata.model][form.check[itemdata.model]].label)}}</text>
+            <picker name="{{itemdata.model}}" class="picker" disabled='true' data-type="{{itemdata.model}}" bindchange="selectchage" value="{{form.check[itemdata.model]}}" range-key="label" range="{{form.data[itemdata.model]}}">
+              <text bindtap="showList" data-type="{{itemdata.model}}" class="pickertext" decode="true">{{(form.data[itemdata.model][form.check[itemdata.model]].label)}}</text>
               <!-- <text class="navigator-text"> -->
               <!-- </text> -->
             </picker>
@@ -164,4 +164,25 @@
 </view>
 <view style="left:0;right:0;color:red;font-size:30rpx;text-align:center;position:fixed;bottom:0;">
   硬汉科技
+</view>
+<view class="selectListWrap {{show?'show':''}}" animation="{{animation1}}">
+  <view class="selectList">
+    <view class="selectHeader">
+      <view style="font-size:58rpx;margin-top:8rpx;" class="iconfont icon-shanchanghangye"></view>
+      <view class="title">行业领域</view>
+      <view class="return"  bindtap='hide'>取消</view>
+    </view>
+    <view bindtap='selectChange2' data-type="industryField" data-index="{{index}}" data-label="{{item.label}}" hover-class='ui-list-hover' wx:for="{{form.data['industryField']}}" wx:key="{{index}}" class="selectItem">{{item.label}}</view>
+  </view>
+</view>
+
+<view class="selectListWrap {{show?'show':''}}" animation="{{animation2}}">
+  <view class="selectList">
+    <view class="selectHeader">
+      <view style="font-size:40rpx;margin-right:8rpx;" class="iconfont icon-leibie"></view>
+      <view class="title">举报类别</view>
+      <view class="return"  bindtap='hide'>取消</view>
+    </view>
+    <view bindtap='selectChange2' data-type="informType" data-index="{{index}}" data-label="{{item.label}}" hover-class='ui-list-hover' wx:for="{{form.data['informType']}}" wx:key="{{index}}" class="selectItem">{{item.label}}</view>
+  </view>
 </view>

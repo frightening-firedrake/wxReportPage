@@ -1,2 +1,2 @@
 <!-- pages/index/report/details/details.wxml -->
-<formdetails bindsubmit="submit" bindcolumnchange="columnchange" bindaddvideo="addvideo" bindaddimg="addimg" bindtext="text" bindregionChange="regionChange" bindselectchage="selectchage" bindlocation="location" bindbindcancel="bindcancel" buttonhidden="{{buttonhidden}}" form="{{form}}"></formdetails>
+<formdetails bindsubmit="submit" bindcolumnchange="columnchange" bindaddvideo="addvideo" bindaddimg="addimg" bindtext="text" bindregionChange="regionChange" bindselectchage="selectchage" bindlocation="location" bindbindcancel="bindcancel" buttonhidden="{{buttonhidden}}" Informer="{{Informer}}" form="{{form}}"></formdetails>
