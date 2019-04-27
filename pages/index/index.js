@@ -8,6 +8,7 @@ Page({
     content: {},
     type: "",
     buttons: [],
+    threadArea:[],
   },
   onLoad: function(options) {
     let that = this
@@ -35,6 +36,11 @@ Page({
           })
         }
       }
+    }),
+    app.post("getAll").then(res => {
+      this.setData({
+        threadArea:res.data
+      })
     })
   },
   onGotUserInfo(e) {
@@ -149,5 +155,24 @@ Page({
   },
   onReady(){
     this.animation = wx.createAnimation({})
-  }
+  },
+  threadAreaChange(e){
+    // console.log(e.detail.value)
+    if (this.data.threadArea[e.detail.value].reportNum){
+      wx.makePhoneCall({
+        phoneNumber: this.data.threadArea[e.detail.value].reportNum
+      })
+    }else{
+      wx.showModal({
+        title: '提示',
+        content: '您选择的地区暂未开通电话举报，如遇紧急情况请拨打110',
+        showCancel:false,
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          } 
+        }
+      })
+    }
+  },
 })

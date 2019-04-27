@@ -52,19 +52,32 @@
   </view>
   <!-- 我要举报 -->
   <!-- <image class="report" src="../../image/index/report.png" bindtap="report"></image> -->
-  <view class="report" bindtap="report">
+  <view class="report">
     <view hover-class="navigator-hover" class="navigator">
       <view class="navigator-text">我要举报</view>
       <view class="navigator-arrow"></view>
     </view>
     <view class="onekey">
-      <view hover-class="ui-share-hover">
+      <!-- <view hover-class="ui-share-hover">
         <image src="../../image/index/onekey.png"></image>
         <view class="onekeytext">
           <text class="block">一键举报</text>
           <text>您的举报信息
   我们会为您严格保密
   </text>
+        </view>
+      </view> -->
+      <view class="reportEnter">
+        <view class="reportBtn" hover-class="ui-share-hover">
+          <picker bindchange="threadAreaChange" value="0" range-key="regionName" range="{{threadArea}}">
+            <image src="../../image/index/phone.png"></image>
+            <text>电话举报</text>
+          </picker>
+        </view>
+        <view class="line"></view>
+        <view class="reportBtn" hover-class="ui-share-hover"  bindtap="report">
+          <image src="../../image/index/form.png"></image>
+          <text>自助举报</text>
         </view>
       </view>
     </view>
