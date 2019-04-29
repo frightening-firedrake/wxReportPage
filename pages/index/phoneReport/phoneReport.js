@@ -1,4 +1,5 @@
 // pages/index/phoneReport/phoneReport.js
+const pinyinUtil = require('../../../utils/pinyinUtil.js')
 var app = getApp()
 Page({
 
@@ -40,9 +41,16 @@ Page({
         }
         return item
       })
-        this.setData({
-          threadArea:threadArea
-        })
+      threadArea = threadArea.sort((a,b)=>{
+        if (pinyinUtil.getFirstLetter(a.regionName) > pinyinUtil.getFirstLetter(b.regionName)){
+          return 1
+        }else{
+          return -1
+        }
+      })
+      this.setData({
+        threadArea:threadArea
+      })
     })
   },
 

@@ -12,7 +12,7 @@ App({
     wx.showShareMenu({
       withShareTicket: true,
       success: function(res) {
-        console.log(res)
+        // console.log(res)
       }
     })
   },
