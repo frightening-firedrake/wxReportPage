@@ -1,4 +1,5 @@
 <!-- index.wxml -->
+<!-- 授权框 -->
 <view class="tashow" wx:if="{{show}}">
   <view class="zhezhao"></view>
   <view class="content">
@@ -8,6 +9,7 @@
     <button class="UserInfo" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">授权登录</button>
   </view>
 </view>
+<!-- 弹窗 -->
 <view class="classitem" wx:if="{{classitem}}">
   <view class="zhezhao"></view>
   <view class="content classitemAnimation"  animation="{{animation}}">
@@ -23,12 +25,12 @@
     </view>
   </view>
 </view>
-
+<!-- 主体 -->
 <view class="container home">
   <!-- 背景 -->
-  <view class="image">
+  <!-- <view class="image">
     <image src="https://report.ityyedu.com/reportingSystem/upload/image/logo.png"></image>
-  </view>
+  </view> -->
   <!-- 按钮 -->
   <view class="buttons red" >
     <view  class="button" data-type="findAllKind" data-name="举报种类" bindtap='details'>
@@ -54,8 +56,8 @@
   <!-- <image class="report" src="../../image/index/report.png" bindtap="report"></image> -->
   <view class="report">
     <view hover-class="navigator-hover" class="navigator">
-      <view class="navigator-text">我要举报</view>
-      <view class="navigator-arrow"></view>
+      <view class="navigator-text">我要举报<text>提供两种举报方式</text></view>
+      <!-- <view class="navigator-arrow"></view> -->
     </view>
     <view class="onekey">
       <!-- <view hover-class="ui-share-hover">
@@ -68,11 +70,11 @@
         </view>
       </view> -->
       <view class="reportEnter">
-        <view class="reportBtn" hover-class="ui-share-hover">
-          <picker bindchange="threadAreaChange" value="0" range-key="regionName" range="{{threadArea}}">
+        <view class="reportBtn" hover-class="ui-share-hover" bindtap="phoneReport">
+          <!-- <picker bindchange="threadAreaChange" value="0" range-key="regionName" range="{{threadArea}}"> -->
             <image src="../../image/index/phone.png"></image>
             <text>电话举报</text>
-          </picker>
+          <!-- </picker> -->
         </view>
         <view class="line"></view>
         <view class="reportBtn" hover-class="ui-share-hover"  bindtap="report">

@@ -10,7 +10,8 @@
     "pages/logs/record/details/rescorddetails",
     "components/captcha/captcha",
     "pages/logs/about/aboutus",
-    "pages/logs/message/message"
+    "pages/logs/message/message",
+    "pages/index/phoneReport/phoneReport"
   ],
   "permission": {
     "scope.userLocation": {
@@ -41,5 +42,6 @@
     "navigationBarBackgroundColor": "#1b1d67",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "white"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

@@ -1,0 +1,97 @@
+// pages/index/phoneReport/phoneReport.js
+var app = getApp()
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    threadArea: []
+  },
+  isFather(id,arr){
+    return arr.some((item)=>{
+      return item.pId==id
+    })
+  },
+  slideDown(e){
+    var index=this.data.threadArea.findIndex((item)=>{
+      return item.id == e.target.dataset.id
+    })
+    this.data.threadArea[index].slide = !this.data.threadArea[index].slide
+    this.setData({
+      threadArea: this.data.threadArea
+    })
+  },
+  makePhoneCall(e){
+    var phoneNum = e.target.dataset.num;
+    wx.makePhoneCall({
+      phoneNumber: phoneNum
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    app.post("getAll").then(res => {
+      var threadArea = res.data
+      threadArea.map((item)=>{
+        if (this.isFather(item.id, threadArea)){
+          item.slide=false
+        }
+        return item
+      })
+        this.setData({
+          threadArea:threadArea
+        })
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})

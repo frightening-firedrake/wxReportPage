@@ -36,11 +36,11 @@ Page({
           })
         }
       }
-    }),
-    app.post("getAll").then(res => {
-      this.setData({
-        threadArea:res.data
-      })
+    // }),
+    // app.post("getAll").then(res => {
+    //   this.setData({
+    //     threadArea:res.data
+    //   })
     })
   },
   onGotUserInfo(e) {
@@ -151,6 +151,11 @@ Page({
   report() {
     wx.navigateTo({
       url: 'report/report'
+    })
+  },
+  phoneReport() {
+    wx.navigateTo({
+      url: 'phoneReport/phoneReport'
     })
   },
   onReady(){

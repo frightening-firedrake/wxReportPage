@@ -1,0 +1,49 @@
+<!--pages/index/phoneReport/phoneReport.wxml-->
+<wxs src="./phoneReport.wxs" module="phoneReport" />
+<view class="listWrap">
+  <view class="listTitle">举报中心电话列表</view>
+  <view class="list">
+  <!-- 三层循环非递归第一层 -->
+    <view class="listItem" wx:for="{{threadArea}}" wx:key="itemS.id" wx:for-index="indexS" wx:for-item="itemS" wx:if="{{itemS.pId==-1}}">
+      <view class="row show">
+        <view class="sheng">省</view>
+        <view class="details">
+          <text class="name">{{itemS.regionName}}</text>
+          <text class="phone">{{itemS.reportNum}}</text>
+        </view>
+        <image class="phoneCall" data-num="{{itemS.reportNum}}" bindtap="makePhoneCall" src="/image/phone.png"></image>
+        <view class="arrBox">
+          <image data-id="{{itemS.id}}" wx:if="{{phoneReport.isFather(threadArea,itemS.id)}}" bindtap="slideDown" class="arr {{itemS.slide?'slide':''}}" src="/image/arr.png"></image>
+        </view>
+      </view>
+      <!-- 第二层 -->
+      <view class="listItem2" wx:for="{{threadArea}}" wx:key="itemSH.id" wx:for-index="indexSH" wx:for-item="itemSH" wx:if="{{itemSH.pId==itemS.id}}">
+        <view class="row  {{itemS.slide?'show':''}}">
+          <view class="shi">市</view>
+          <view class="details">
+            <text class="name">{{itemSH.regionName}}</text>
+            <text class="phone">{{itemSH.reportNum}}</text>
+          </view>
+          <image class="phoneCall" data-num="{{itemSH.reportNum}}" bindtap="makePhoneCall" src="/image/phone.png"></image>
+          <view class="arrBox">
+            <image data-id="{{itemSH.id}}" wx:if="{{phoneReport.isFather(threadArea,itemSH.id)}}" bindtap="slideDown" class="arr {{itemSH.slide?'slide':''}}" src="/image/arr.png"></image>
+          </view>
+        </view>
+        <!-- 第三层 -->
+        <view class="listItem2" wx:for="{{threadArea}}" wx:key="itemSHQ.id" wx:for-index="indexSHQ" wx:for-item="itemSHQ" wx:if="{{itemSHQ.pId==itemSH.id}}">
+          <view class="row {{itemSH.slide?'show':''}}">
+            <view class="qu">区</view>
+            <view class="details">
+              <text class="name">{{itemSHQ.regionName}}</text>
+              <text class="phone">{{itemSHQ.reportNum}}</text>
+            </view>
+            <image class="phoneCall" data-num="{{itemSHQ.reportNum}}" bindtap="makePhoneCall" src="/image/phone.png"></image>
+            <view class="arrBox">
+              <!-- <image class="arr" src="/image/arr.png"></image> -->
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

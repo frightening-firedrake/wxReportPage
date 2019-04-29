@@ -1,0 +1,21 @@
+var isFather = function (arr,id) {
+  return arr.some(function(item){
+    return item.pId == id
+  })
+}
+var slide = function (event,instance){
+  // const dom = instance.selectComponent('.arr')
+  console.log(event.instance.hasClass('slide'))
+  if(event.instance.hasClass('slide')){
+    event.instance.removeClass('slide')
+  }else{
+    event.instance.addClass('slide')
+  }
+  console.log(JSON.stringify(event))
+  console.log(JSON.stringify(instance))
+  return false 
+}
+  module.exports={
+    isFather: isFather,
+    slide: slide
+  };
