@@ -25,9 +25,23 @@ Page({
   },
   makePhoneCall(e){
     var phoneNum = e.target.dataset.num;
-    wx.makePhoneCall({
-      phoneNumber: phoneNum
-    })
+    console.log(phoneNum)
+    if (phoneNum){
+      wx.makePhoneCall({
+        phoneNumber: phoneNum
+      })
+    }else{
+      wx.showModal({
+        title: '提示',
+        content: '您选择的地区暂未开通电话举报，请尝试上一级举报中心进行举报，如遇紧急情况请拨打110',
+        showCancel: false,
+        success(res) {
+          if (res.confirm) {
+
+          }
+        }
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载
