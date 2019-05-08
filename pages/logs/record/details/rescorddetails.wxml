@@ -175,9 +175,7 @@
     <button wx:if="{{editMode}}" class="submit" data-type="submit" form-type="submit" hover-class="ui-share-hover" style="display:block" role="button"  type="submit" >重新提交</button>
   </form>
 </view>
-<view style="left:0;right:0;color:red;font-size:30rpx;text-align:center;position:fixed;bottom:0;">
-  硬汉科技
-</view>
+<!-- <view style="left:0;right:0;color:red;font-size:30rpx;text-align:center;position:fixed;bottom:0;">硬汉科技</view> -->
 <view class="selectListWrap {{show?'show':''}}" animation="{{animation1}}">
   <view class="selectList">
     <view class="selectHeader">

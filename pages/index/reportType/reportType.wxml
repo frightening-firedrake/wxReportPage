@@ -1,0 +1,7 @@
+<!--pages/index/reportType/reportType.wxml-->
+<view class="pageWrap">
+  <image src='../../../image/typeBanner.png'></image>
+  <view class="content">
+    <rich-text nodes="{{textContent}}"></rich-text>
+  </view>
+</view>

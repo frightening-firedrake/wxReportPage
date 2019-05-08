@@ -4,112 +4,38 @@
   <view class="zhezhao"></view>
   <view class="content">
     <image src="../../image/index/alert.png"></image>
-    <text class="font_content">欢迎您来到山西省</text>
-    <text class="font_content">公安厅扫黑除恶举报平台小程序</text>
+    <text class="font_content">欢迎您来到山西</text>
+    <text class="font_content">公安扫黑除恶举报平台小程序</text>
     <button class="UserInfo" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">授权登录</button>
   </view>
 </view>
-<!-- 弹窗 -->
-<view class="classitem" wx:if="{{classitem}}">
-  <view class="zhezhao"></view>
-  <view class="content classitemAnimation"  animation="{{animation}}">
-    <!-- <view class="close" bindtap="close">
-      <icon type="clear" class="clear" size="60rpx" color="white" />
-    </view> -->
-    <template is="classitem" data="{{...content}}" />
-    <view class="itembutton">
-      <block wx:for="{{buttons}}" wx:key="index">
-        <view  hover-class="ui-reverse-color-hover" class="button" bindtap="details" data-type="{{item.label}}" data-name="{{item.name}}">{{item.name}}</view>
-      </block>
-      <view class="button close" bindtap="close">关闭</view>
+<view class="pageWrap">
+  <view class="bg"></view>
+  <view class="menuList">
+    <view class="menu" style="border-right:1px solid #e1e1e1;border-bottom:1px solid #e1e1e1;">
+      <navigator url="/pages/index/report/report" class="menuWrap" hover-class='ui-share-hover'>
+        <image src="../../image/reportOnline.png"></image>
+        <text>自助举报</text>
+      </navigator>
     </view>
-  </view>
-</view>
-<!-- 主体 -->
-<view class="container home">
-  <!-- 背景 -->
-  <!-- <view class="image">
-    <image src="https://report.ityyedu.com/reportingSystem/upload/image/logo.png"></image>
-  </view> -->
-  <!-- 按钮 -->
-  <view class="buttons red" >
-    <view  class="button" data-type="findAllKind" data-name="举报种类" bindtap='details'>
-      <view hover-class='ui-share-hover'>
-        <image src="../../image/index/type.png"></image>
+    <view class="menu" style="border-bottom:1px solid #e1e1e1;">
+      <navigator url="/pages/index/phoneReport/phoneReport" class="menuWrap" hover-class='ui-share-hover'>
+        <image src="../../image/reportOnphone.png"></image>
+        <text>电话举报</text>
+      </navigator>
+    </view>
+    <view class="menu" style="border-right:1px solid #e1e1e1;">
+      <navigator  url="/pages/index/reportType/reportType" class="menuWrap" hover-class='ui-share-hover'>
+        <image src="../../image/reportType.png"></image>
         <text>举报种类</text>
-      </view>
+      </navigator>
     </view>
-    <view class="button blue" data-type="findAllSecrecy" data-name="保密规定" bindtap='details'>
-      <view hover-class='ui-share-hover'>
-        <image src="../../image/index/secrecy.png"></image>
-        <text>保密规定</text>
-      </view>
-    </view>
-    <view class="button yellow" data-type="findAllAward" data-name="奖励规定" bindtap='details'>
-      <view hover-class='ui-share-hover'>
-        <image src="../../image/index/reward.png"></image>
-        <text>奖励规定</text>
-      </view>
+    <view class="menu">
+      <navigator url="/pages/logs/record/record" class="menuWrap" hover-class='ui-share-hover'>
+        <image src="../../image/reportRecord.png"></image>
+        <text>举报记录</text>
+      </navigator>
     </view>
   </view>
-  <!-- 我要举报 -->
-  <!-- <image class="report" src="../../image/index/report.png" bindtap="report"></image> -->
-  <view class="report">
-    <view hover-class="navigator-hover" class="navigator">
-      <view class="navigator-text">我要举报<text>提供两种举报方式</text></view>
-      <!-- <view class="navigator-arrow"></view> -->
-    </view>
-    <view class="onekey">
-      <!-- <view hover-class="ui-share-hover">
-        <image src="../../image/index/onekey.png"></image>
-        <view class="onekeytext">
-          <text class="block">一键举报</text>
-          <text>您的举报信息
-  我们会为您严格保密
-  </text>
-        </view>
-      </view> -->
-      <view class="reportEnter">
-        <view class="reportBtn" hover-class="ui-share-hover" bindtap="phoneReport">
-          <!-- <picker bindchange="threadAreaChange" value="0" range-key="regionName" range="{{threadArea}}"> -->
-            <image src="../../image/index/phone.png"></image>
-            <text>电话举报</text>
-          <!-- </picker> -->
-        </view>
-        <view class="line"></view>
-        <view class="reportBtn" hover-class="ui-share-hover"  bindtap="report">
-          <image src="../../image/index/form.png"></image>
-          <text>自助举报</text>
-        </view>
-      </view>
-    </view>
-  </view>
-  <!-- <view style="left:0;right:0;color:red;font-size:30rpx;text-align:center;position:fixed;bottom:0;">硬汉科技</view> -->
-
-
-  <template name="classitem">
-    <block wx:if="{{type=='findAllAward11'}}">
-      <image src="https://report.ityyedu.com/reportingSystem/upload/image/reward_banner.png" />
-      <scroll-view class="contenttext" scroll-y="true" enable-back-to-top="true">
-        <!-- <text wx:if="{{h1}}" class="h1">{{h1}}</text> -->
-        <view class="err">
-          <text class="iconfont icon-iconfontnone"></text>
-          <text class="text">暂无奖励规定</text>
-        </view>
-      </scroll-view>
-    </block>
-    <block wx:else>
-      <image wx:if="{{type == 'findAllKind'}}" src="https://report.ityyedu.com/reportingSystem/upload/image/type_banner.png" />
-      <image wx:if="{{type == 'findAllSecrecy'}}" src="https://report.ityyedu.com/reportingSystem/upload/image/secrecy_banner.png" />
-      <image wx:if="{{type=='findAllAward'}}" src="https://report.ityyedu.com/reportingSystem/upload/image/reward_banner.png" />
-      <scroll-view class="contenttext" scroll-y="true" enable-back-to-top="true">
-        <!-- <text wx:if="{{h1}}" class="h1">{{h1}}</text> -->
-        <rich-text nodes="{{textContent}}" bindtap="tap"></rich-text>
-      </scroll-view>
-    </block>
-
-  </template>
-  
 </view>
- <view style="left:0;right:0;color:red;font-size:30rpx;text-align:center;position:fixed;bottom:0;">硬汉科技</view>
-<!-- <captcha></captcha> -->
+ <!-- <view style="left:0;right:0;color:red;font-size:30rpx;text-align:center;position:fixed;bottom:0;">硬汉科技</view> -->

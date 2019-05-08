@@ -1,0 +1,8 @@
+/* pages/index/reportType/reportType.wxss */
+image{
+  width:100%;
+  height:240rpx;
+}
+.content{
+  padding:30rpx;
+}

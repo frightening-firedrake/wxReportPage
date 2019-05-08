@@ -11,35 +11,17 @@
     "components/captcha/captcha",
     "pages/logs/about/aboutus",
     "pages/logs/message/message",
-    "pages/index/phoneReport/phoneReport"
+    "pages/index/phoneReport/phoneReport",
+    "pages/index/reportType/reportType"
   ],
   "permission": {
     "scope.userLocation": {
       "desc": "你的位置信息将用于小程序获取地址时展示"
     }
   },
-  "tabBar": {
-    "color": "#9d9d9d",
-    "selectedColor": "#3c76ff",
-    "backgroundColor": "#ffffff",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "image/index/home.png",
-        "selectedIconPath": "image/index/home_active.png"
-      },
-      {
-        "pagePath": "pages/logs/logs",
-        "text": "个人中心",
-        "iconPath": "image/index/about.png",
-        "selectedIconPath": "image/index/about_active.png"
-      }
-    ]
-  },
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#1b1d67",
+    "navigationBarBackgroundColor": "#3560d0",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "white"
   },

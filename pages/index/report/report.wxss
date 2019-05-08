@@ -102,4 +102,5 @@ button {
   padding-bottom:39rpx;
   border-bottom:1rpx dotted #999;
   margin-bottom:50rpx;
+  letter-spacing: 10rpx;
 }
