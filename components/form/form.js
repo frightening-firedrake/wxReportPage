@@ -83,11 +83,16 @@ Component({
     },
     //地址下拉框
     bindRegionChange(e) {
-      console.log(e)
+      // console.log(e)
+      e.detail.value[2]=e.detail.value[2] ? e.detail.value[2]:0
+      // console.log(e)
+      // return
       let data = e.detail.value
       this.commontrigger('regionChange', data)
     },
     bindcolumnchange(e) {
+      // console.log(e)
+      // return
       let data = e.detail
       this.commontrigger('columnchange', data)
     },
@@ -261,6 +266,10 @@ Component({
     },
     submit(e) {
       console.log(e)
+      // e.detail.value.threadAreaId[2] = e.detail.value.threadAreaId[2] ? e.detail.value.threadAreaId[2] : 0
+      // console.log(e)
+
+
       let that=this
       let subflag = true
       let formobj = {}
@@ -288,8 +297,12 @@ Component({
       }
       if (e.detail.value.code == this.data.captcha) {
         for (var obj in formobj) {
-          // console.log(e.detail.value[obj], obj)
-          if (e.detail.value[obj] == "") {
+          console.log(obj)
+          console.log(e.detail.value)
+          console.log(e.detail.value[obj])
+          // console.log(e.detail.value[obj].length)
+          if (obj !== "informerName" && obj !== "phoneNumber" && e.detail.value[obj] === "" || obj !== "informerName" && obj !== "phoneNumber"&&e.detail.value[obj].length == 0) {
+          // if (e.detail.value[obj] === "" ) {
             subflag = false
             let req = this.forform(obj)
             // console.log(req)
@@ -301,11 +314,22 @@ Component({
             return false
             
           } else if (obj == "phoneNumber") {
-            if (that.data.checkboxValue && that.data.Informer){
+            if (that.data.checkboxValue && !that.data.Informer) {
+            // if (that.data.checkboxValue){
               if (/^1[34578]\d{9}$/.test(e.detail.value.phoneNumber)) {
 
               } else {
                 that.showModal("请输入正确的手机号")
+                return false
+              }
+            }
+          } else if (obj == "informerName") {
+            // if (that.data.checkboxValue && !that.data.Informer) {
+            if (that.data.checkboxValue) {
+              if (e.detail.value.informerName) {
+
+              } else {
+                that.showModal("请输入姓名")
                 return false
               }
             }

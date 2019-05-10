@@ -162,7 +162,7 @@ Page({
     }
   },
   submit(res) {
-    console.log(res)
+    // console.log(res)
     let url = "saveInformation"
     let saveobj = {}
     let params = res.detail.value
@@ -175,7 +175,15 @@ Page({
     // console.log(this.data.form.data.threadAreaId[2])
     // console.log(res.detail.value.threadAreaId)
     // console.log(res.detail.value.threadAreaId[2])
-    params['threadAreaId'] = this.data.form.data.threadAreaId[2][res.detail.value.threadAreaId[2]].id
+    // params['threadAreaId'] = this.data.form.data.threadAreaId[2][res.detail.value.threadAreaId[2]].id
+
+    // console.log(this.data.form.data.threadAreaId)
+    // console.log(res.detail.value.threadAreaId)
+    res.detail.value.threadAreaId[2] = res.detail.value.threadAreaId[2] ? res.detail.value.threadAreaId[2]:0;
+    params['threadAreaId'] = this.data.form.data.threadAreaId[2][res.detail.value.threadAreaId[2]].id ? this.data.form.data.threadAreaId[2][res.detail.value.threadAreaId[2]].id : this.data.form.data.threadAreaId[1][res.detail.value.threadAreaId[1]].id ? this.data.form.data.threadAreaId[1][res.detail.value.threadAreaId[1]].id : this.data.form.data.threadAreaId[0][res.detail.value.threadAreaId[0]].id
+
+    // console.log(params['threadAreaId'])
+    // return
     params['picture'] = this.data.form.check.picture
     params["video"] = this.data.form.check.video
 
@@ -247,26 +255,31 @@ Page({
     this.setData(params)
   },
   regionChange(res) {
+    // console.log(res)
+    // return
     this.setData({
       "form.check.threadAreaId": res.detail.value
     })
   },
   columnchange(res) {
+
     this.setData({
       "form.check.threadAreaId": []
     })
-    var region
+    var region=[]
     let pId = this.data.form.data.threadAreaId[res.detail.value.column][res.detail.value.value].id
     region = this.data.regionlist.filter((i, v) => {
       return i.pId == pId
     })
-    console.log(res, region, res.detail.value)
+    // console.log(res, region, res.detail.value)
     if (res.detail.value.column == 0) {
+      region.push({ id: '', regionName: '' })
       this.setData({
         "form.data.threadAreaId[1]": region,
         "form.data.threadAreaId[2]": []
       })
     } else if (res.detail.value.column == 1) {
+      region.push({ id: '', regionName: '' })
       this.setData({
         "form.data.threadAreaId[2]": region,
       })
@@ -331,6 +344,9 @@ Page({
       let child2 = res.data.filter((i, v) => {
         return i.pId == child[0].id
       })
+      let emptyObj = { id: '', regionName: '' }
+      child.push(emptyObj)
+      child2.push(emptyObj)
       this.setData({
         regionlist: res.data,
         "form.data.threadAreaId[0]": data,

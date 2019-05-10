@@ -161,15 +161,15 @@
       <view class="navigator" wx:if="{{useras}}">
         <view style="color:red;">*</view>
         <view class="navigator-about">
-          <!-- <input class="{{editMode?'':'readOnly'}}" disabled='{{!editMode||informerId}}' data-type="informerName" name="informerName" placeholder="请输入姓名" value="{{result.informerName}}" type="informerName"></input> -->
-          <input class="{{editMode?'':'readOnly'}}" disabled='{{!editMode||!informerId}}' data-type="informerName" name="informerName" placeholder="请输入姓名" value="{{result.informerName}}" type="informerName"></input>
+          <input class="{{editMode?'':'readOnly'}}" disabled='{{!editMode?true:informerId?true:false}}' data-type="informerName" name="informerName" placeholder="请输入姓名" value="{{result.informerName}}" type="informerName"></input>
+          <!-- <input class="{{editMode?'':'readOnly'}}" disabled='{{!editMode||!informerId}}' data-type="informerName" name="informerName" placeholder="请输入姓名" value="{{result.informerName}}" type="informerName"></input> -->
         </view>
       </view>
       <view class="navigator noborder" wx:if="{{useras}}">
         <view style="color:red;">*</view>
         <view class="navigator-about">
-          <!-- <input class="{{editMode?'':'readOnly'}}" disabled='{{!editMode||informerId}}' data-type="phoneNumber" name="phoneNumber" placeholder="请输入手机号" value="{{result.phoneNumber}}" type="number"></input> -->
-          <input class="{{editMode?'':'readOnly'}}" disabled='{{!editMode||!informerId}}' data-type="phoneNumber" name="phoneNumber" placeholder="请输入手机号" value="{{result.phoneNumber}}" type="number"></input>
+          <input class="{{editMode?'':'readOnly'}}" disabled='{{!editMode?true:informerId?true:false}}' data-type="phoneNumber" name="phoneNumber" placeholder="请输入手机号" value="{{result.phoneNumber}}" type="number"></input>
+          <!-- <input class="{{editMode?'':'readOnly'}}" disabled='{{!editMode||!informerId}}' data-type="phoneNumber" name="phoneNumber" placeholder="请输入手机号" value="{{result.phoneNumber}}" type="number"></input> -->
         </view>
       </view>
     </view>

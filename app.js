@@ -196,7 +196,7 @@ App({
     configUrl: "https://report.ityyedu.com/reportingSystem/wechat/",
     uploadUrl: 'https://report.ityyedu.com/reportingSystem/',
     // configUrls: "ws://report.ityyedu.com/reportingSystem/wechat/",
-    // configUrl: 'https://192.168.1.244:8443/reportingSystem/wechat/',
+    // configUrl: 'http://192.168.1.244:8085/reportingSystem/wechat/',
     // configUrls: 'ws://192.168.1.244:8085/reportingSystem/wechat/',
     // uploadUrl: 'https://192.168.1.244:8085/reportingSystem/',
     // configUrl: 'http://192.168.1.244:8085/reportingSystem/wechat/',

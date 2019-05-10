@@ -115,7 +115,7 @@ Page({
     var that=this;
     var data = {};
     var url ="saveInformation";
-    data.threadAreaId = this.data.threadAreaId[2][e.detail.value.threadAreaId[2]].id
+    data.threadAreaId = this.data.threadAreaId[2][e.detail.value.threadAreaId[2]].id ? this.data.threadAreaId[2][e.detail.value.threadAreaId[2]].id : this.data.threadAreaId[1][e.detail.value.threadAreaId[1]].id ? this.data.threadAreaId[1][e.detail.value.threadAreaId[1]].id : this.data.threadAreaId[0][e.detail.value.threadAreaId[0]].id
     data.clueAddress = e.detail.value.clueAddress
     data.informContent = e.detail.value.informContent
     data.industryField = this.data.industryField[e.detail.value.industryField].label
@@ -225,6 +225,12 @@ Page({
         let pid = pids[2] ? pids[2] : child[0].id
         return i.pId == pid
       })
+      let emptyObj = {id:'',regionName:''}
+      child.push(emptyObj)
+      child2.push(emptyObj)
+      // console.log(data)
+      // console.log(child)
+      // console.log(child2)
       this.setData({
         regionlist: res.data,
         "threadAreaId[0]": data,
@@ -269,6 +275,8 @@ Page({
       let child2 = this.data.regionlist.filter((i, v) => {
         return i.pId == id
       })
+      let emptyObj = { id: '', regionName: '' }
+      child2.push(emptyObj)
       this.setData({
         "threadAreaId[2]": child2
       })
@@ -686,7 +694,7 @@ Page({
       app.post("getInformer", {
         openId: openres.openid
       }).then(res => {
-        console.log(res)
+        // console.log(res)
         this.setData({
           "result.informerName": res.data.encryptName,
           "result.phoneNumber": res.data.encryptPhoneNumber,
@@ -699,7 +707,7 @@ Page({
     this.initValidate();
     if (options.result){
       let params = JSON.parse(options.result)
-      console.log(params)
+      // console.log(params)
       this.setData({
         result: params
       })
