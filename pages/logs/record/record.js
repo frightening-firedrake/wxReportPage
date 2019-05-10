@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    height: 200 + 9 + 23
+    height: 25 + 23
   },
   details: function(e) {
     wx.navigateTo({

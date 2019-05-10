@@ -21,7 +21,8 @@
     </view>
   </view>
   <view class="recordconut">
-    <text>您当前的举报记录一共有{{content.length}}条，感谢你提供的每一条线索</text>
+    <text wx:if="{{content.length}}">您当前的举报记录一共有{{content.length}}条，感谢你提供的每一条线索</text>
+    <text wx:else>您当前的举报记录一共有0条，感谢你提供的每一条线索</text>
   </view>
 </view>
 <!-- <view style="left:0;right:0;color:red;font-size:30rpx;text-align:center;position:fixed;bottom:0;">硬汉科技</view> -->

@@ -51,7 +51,7 @@ Page({
       var threadArea = res.data
       threadArea.map((item)=>{
         if (this.isFather(item.id, threadArea)){
-          item.slide=false
+          item.slide = item.pId==-1?true:false
         }
         return item
       })

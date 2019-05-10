@@ -65,8 +65,8 @@
           <block wx:elif="{{itemdata.type=='select'}}">
             <!-- {{itemdata.name}}： -->
             <view class="navigator-texts">{{itemdata.name}}:</view>
-            <picker name="{{itemdata.model}}" class="picker" disabled='true' data-type="{{itemdata.model}}" bindchange="selectchage" value="{{form.check[itemdata.model]}}" range-key="label" range="{{form.data[itemdata.model]}}">
-              <text bindtap="showList" data-type="{{itemdata.model}}" class="pickertext" decode="true">{{(form.data[itemdata.model][form.check[itemdata.model]].label)}}</text>
+            <picker bindtap="showList" name="{{itemdata.model}}" class="picker" disabled='true' data-type="{{itemdata.model}}" bindchange="selectchage" value="{{form.check[itemdata.model]}}" range-key="label" range="{{form.data[itemdata.model]}}">
+              <text  data-type="{{itemdata.model}}" class="pickertext" decode="true">{{(form.data[itemdata.model][form.check[itemdata.model]].label)}}</text>
               <!-- <text class="navigator-text"> -->
               <!-- </text> -->
             </picker>

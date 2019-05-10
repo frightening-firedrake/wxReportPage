@@ -162,6 +162,7 @@ Page({
     }
   },
   submit(res) {
+    console.log(res)
     let url = "saveInformation"
     let saveobj = {}
     let params = res.detail.value

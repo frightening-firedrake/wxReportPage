@@ -86,16 +86,16 @@
       <view class="navigator">
         <view style="color:red;">*</view>
         <view class="navigator-text">行业领域:</view>
-        <picker  disabled='{{true||!editMode}}' bindchange="industryFieldchage" class="picker" data-type="industryField" name="industryField" range="{{industryField}}" range-key="label" value="{{industryFieldIndex}}" type="industryField">
-        <text bindtap="showList" data-type="industryField"  class="{{editMode?'pickertext':'pickertext readOnly'}}">{{industryField[industryFieldIndex].label}}</text>
+        <picker  bindtap="showList" disabled='{{true||!editMode}}' bindchange="industryFieldchage" class="picker" data-type="industryField" name="industryField" range="{{industryField}}" range-key="label" value="{{industryFieldIndex}}" type="industryField">
+        <text data-type="industryField"  class="{{editMode?'pickertext':'pickertext readOnly'}}">{{industryField[industryFieldIndex].label}}</text>
         </picker>
         <view class="navigator-arrow"></view>
       </view>
       <view class="navigator">
         <view style="color:red;">*</view>
         <view class="navigator-text">举报类别:</view>
-        <picker disabled='{{true||!editMode}}' bindchange="informTypechange" class="picker" data-type="informType" name="informType" range="{{informType}}" range-key="label" value="{{informTypeIndex}}" type="informType">
-        <text  bindtap="showList" data-type="informType" class="{{editMode?'pickertext':'pickertext readOnly'}}">{{informType[informTypeIndex].label}}</text>
+        <picker bindtap="showList" disabled='{{true||!editMode}}' bindchange="informTypechange" class="picker" data-type="informType" name="informType" range="{{informType}}" range-key="label" value="{{informTypeIndex}}" type="informType">
+        <text  data-type="informType" class="{{editMode?'pickertext':'pickertext readOnly'}}">{{informType[informTypeIndex].label}}</text>
         </picker>
         <view class="navigator-arrow"></view>
       </view>
@@ -161,13 +161,15 @@
       <view class="navigator" wx:if="{{useras}}">
         <view style="color:red;">*</view>
         <view class="navigator-about">
-          <input class="{{editMode?'':'readOnly'}}" disabled='{{!editMode||informerId}}' data-type="informerName" name="informerName" placeholder="请输入姓名" value="{{result.informerName}}" type="informerName"></input>
+          <!-- <input class="{{editMode?'':'readOnly'}}" disabled='{{!editMode||informerId}}' data-type="informerName" name="informerName" placeholder="请输入姓名" value="{{result.informerName}}" type="informerName"></input> -->
+          <input class="{{editMode?'':'readOnly'}}" disabled='{{!editMode||!informerId}}' data-type="informerName" name="informerName" placeholder="请输入姓名" value="{{result.informerName}}" type="informerName"></input>
         </view>
       </view>
       <view class="navigator noborder" wx:if="{{useras}}">
         <view style="color:red;">*</view>
         <view class="navigator-about">
-          <input class="{{editMode?'':'readOnly'}}" disabled='{{!editMode||informerId}}' data-type="phoneNumber" name="phoneNumber" placeholder="请输入手机号" value="{{result.phoneNumber}}" type="number"></input>
+          <!-- <input class="{{editMode?'':'readOnly'}}" disabled='{{!editMode||informerId}}' data-type="phoneNumber" name="phoneNumber" placeholder="请输入手机号" value="{{result.phoneNumber}}" type="number"></input> -->
+          <input class="{{editMode?'':'readOnly'}}" disabled='{{!editMode||!informerId}}' data-type="phoneNumber" name="phoneNumber" placeholder="请输入手机号" value="{{result.phoneNumber}}" type="number"></input>
         </view>
       </view>
     </view>

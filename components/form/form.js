@@ -301,7 +301,7 @@ Component({
             return false
             
           } else if (obj == "phoneNumber") {
-            if (!that.data.Informer){
+            if (that.data.checkboxValue && that.data.Informer){
               if (/^1[34578]\d{9}$/.test(e.detail.value.phoneNumber)) {
 
               } else {

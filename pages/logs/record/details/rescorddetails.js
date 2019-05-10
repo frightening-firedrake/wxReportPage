@@ -686,11 +686,14 @@ Page({
       app.post("getInformer", {
         openId: openres.openid
       }).then(res => {
-   
+        console.log(res)
         this.setData({
+          "result.informerName": res.data.encryptName,
+          "result.phoneNumber": res.data.encryptPhoneNumber,
           openId: openres.openid,
           informerId: res.data.id
         })
+        
       })
     })
     this.initValidate();
@@ -736,17 +739,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    app.getstorage("userInfo").then(openres => {
-      app.post("getInformer", {
-        openId: openres.openid
-      }).then(res => {
+    // app.getstorage("userInfo").then(openres => {
+    //   app.post("getInformer", {
+    //     openId: openres.openid
+    //   }).then(res => {
 
-        this.setData({
-          openId: openres.openid,
-          informerId: res.data.id
-        })
-      })
-    })
+    //     this.setData({
+    //       openId: openres.openid,
+    //       informerId: res.data.id
+    //     })
+    //   })
+    // })
   },
 
   /**
