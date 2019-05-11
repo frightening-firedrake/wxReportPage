@@ -2,7 +2,7 @@ const utils = require('../../utils/util.js')
 var app = getApp()
 Component({
   options: {
-    // addGlobalClass: true,
+    // addGlobalClass: true,//用来设置全局样式适用否
   },
   lifetimes: {
     attached() {
@@ -21,29 +21,29 @@ Component({
       }
     },
     buttonhidden: Boolean,
-    Informer: Boolean,
+    Informer: Boolean,//用于表单验证true时不验证个人新信息，因为加密的无法通过验证
   },
 
   /**
    * 组件的初始数据
    */
   data: {
-    animation1: '',
-    animation2:'',
+    animation1: '',//列表动画
+    animation2:'',//列表动画
     hide:false,
     show:false,
-    region: ['山西省', "太原市", "小店区"],
-    customItem: "全部",
-    showImg: true,
-    captchaImg: "",
-    captcha: "",
-    checkboxValue: true,
+    region: ['山西省', "太原市", "小店区"],//不知道的
+    customItem: "全部",//应该没用
+    showImg: true,//无验证码时显示提示语的控制开关
+    captchaImg: "",//验证码图
+    captcha: "",//验证码文字
+    checkboxValue: true,//实名匿名开关
     imgaeUrl: app.globalData.uploadUrl + "upload/barcode/",
     videoUrl: app.globalData.uploadUrl + "upload/video/",
   },
   ready: function() {
     let that = this
-    app.catchpost("captcha?d=" + new Date()).then(res => {
+    app.catchpost("captcha?d=" + new Date()).then(res => {//获取验证码
       let repon = res.data
       var array = wx.base64ToArrayBuffer(res.data.img);
       var base64 = wx.arrayBufferToBase64(array);
@@ -74,25 +74,21 @@ Component({
       const myEventOption = option // 触发事件的选项
       this.triggerEvent(triggername, myEventDetail, myEventOption)
     },
-    selectchage(e) {
-      console.log(e)
+    selectchage(e) {//呵呵不知道哪里用了
+      // console.log(e)
       this.commontrigger("selectchage", {
         value: e.detail.value,
         type: e.currentTarget.dataset.type
       })
     },
-    //地址下拉框
+    //线报地域下拉框
     bindRegionChange(e) {
-      // console.log(e)
+      // 处理某些意外情况出现的[1,2,null] To [1,2,0]
       e.detail.value[2]=e.detail.value[2] ? e.detail.value[2]:0
-      // console.log(e)
-      // return
       let data = e.detail.value
       this.commontrigger('regionChange', data)
     },
-    bindcolumnchange(e) {
-      // console.log(e)
-      // return
+    bindcolumnchange(e) {//列选择的变化
       let data = e.detail
       this.commontrigger('columnchange', data)
     },
@@ -104,7 +100,7 @@ Component({
       }
       this.commontrigger("text", data)
     },
-    //地址取消
+    //地址取消 有用吗？
     bindcancel(e) {
       let data = e.detail.value
       const myEventDetail = {
@@ -113,7 +109,7 @@ Component({
       const myEventOption = {} // 触发事件的选项
       this.triggerEvent('cancel', myEventDetail, myEventOption)
     },
-
+    //更换验证码
     chang: function() {
       this.setData({
         showImg: false
@@ -134,10 +130,9 @@ Component({
             captcha: repon.captcha
           })
         }
-        // repon.img.replace("↵","")
-
       })
     },
+    // 实名匿名切换
     checkboxChange: function(e) {
       let value = e.detail.value
       if (!value) {
@@ -150,8 +145,8 @@ Component({
         checkboxValue: value
       })
     },
+    // 预览图片
     preview: function(e) {
-      // console.log(e.currentTarget.dataset.list)
       var urls = e.currentTarget.dataset.list.map((v)=>{
         return this.data.imgaeUrl+v
       })
@@ -159,17 +154,17 @@ Component({
         current: e.currentTarget.dataset.item,
         urls: urls,
       })
-
     },
+    // 选择地图坐标
     chooseLocation() {
       let that = this
       wx.chooseLocation({
         success: function(res) {
-          // address
           that.commontrigger("location", res.address)
         }
       })
     },
+    // 上传视频
     addvideo: function(e) {
       const that = this
       wx.chooseVideo({
@@ -205,11 +200,11 @@ Component({
                 //do something
               }
             })
-
           }
         }
       })
     },
+    // 上传图片
     addimage: function(e) {
       const that = this
       wx.chooseImage({
@@ -217,7 +212,6 @@ Component({
         sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
         sourceType: ['album', 'camera'], // 可以指定来源是相册还是
         success(res) {
-          // console.log(res.tempFilePaths)
           if (res.tempFiles[0].size / 1024 / 1024 > 1) {
             wx.that.showModal({
               title: "提示",
@@ -253,27 +247,24 @@ Component({
             })
             // tempFilePath可以作为img标签的src属性显示图片
             // const tempFilePaths = res.tempFilePaths
-
           }
         }
       })
     },
+    // 显示错误信息的弹框
     showModal(error) {
       wx.showModal({
         content: error,
         showCancel: false,
       })
     },
+    // 提交数据
     submit(e) {
-      console.log(e)
-      // e.detail.value.threadAreaId[2] = e.detail.value.threadAreaId[2] ? e.detail.value.threadAreaId[2] : 0
       // console.log(e)
-
-
       let that=this
       let subflag = true
       let formobj = {}
-      if ("idCard" in e.detail.value) {
+      if ("idCard" in e.detail.value) {//验证身份证号
         var flag = utils.checkId(e.detail.value.idCard)
         if (!flag.flag) {
           // wx.showToast({
@@ -295,27 +286,15 @@ Component({
           }
         }
       }
-      if (e.detail.value.code == this.data.captcha) {
-        for (var obj in formobj) {
-          console.log(obj)
-          console.log(e.detail.value)
-          console.log(e.detail.value[obj])
-          // console.log(e.detail.value[obj].length)
-          if (obj !== "informerName" && obj !== "phoneNumber" && e.detail.value[obj] === "" || obj !== "informerName" && obj !== "phoneNumber"&&e.detail.value[obj].length == 0) {
-          // if (e.detail.value[obj] === "" ) {
+      if (e.detail.value.code == this.data.captcha) {//验证码
+        for (var obj in formobj) {//循环验证表单项跳过了个人信息，因为狗日的他们一会儿提交，一会儿不提交，一会儿加密，一会儿不加密
+          if (obj !== "informerName" && obj !== "phoneNumber" && e.detail.value[obj] === "" || obj !== "informerName" && obj !== "phoneNumber"&&e.detail.value[obj].length == 0) {//为空或数组[]
             subflag = false
             let req = this.forform(obj)
-            // console.log(req)
-            // wx.showToast({
-            //   title: "请输入" + req.name,
-            //   icon: "none"
-            // })
             that.showModal("请输入" + req.name)
             return false
-            
           } else if (obj == "phoneNumber") {
-            if (that.data.checkboxValue && !that.data.Informer) {
-            // if (that.data.checkboxValue){
+            if (that.data.checkboxValue && !that.data.Informer) {//实名且不加密时才验证
               if (/^1[34578]\d{9}$/.test(e.detail.value.phoneNumber)) {
 
               } else {
@@ -324,8 +303,7 @@ Component({
               }
             }
           } else if (obj == "informerName") {
-            // if (that.data.checkboxValue && !that.data.Informer) {
-            if (that.data.checkboxValue) {
+            if (that.data.checkboxValue) {//实名时验证
               if (e.detail.value.informerName) {
 
               } else {
@@ -333,19 +311,14 @@ Component({
                 return false
               }
             }
-          } else if (obj == "phone") {
+          } else if (obj == "phone") {//个人信息页已删
             if (/^1[34578]\d{9}$/.test(e.detail.value.phoneNumber)) {
             } else {
               that.showModal("请输入正确的手机号")
               return false
             }
           }  else if (e.detail.value.informContent==""){
-            // wx.showToast({
-            //   title: "请输入举报详情",
-            //   icon: "none"
-            // })
             that.showModal("请输入举报详情")
-
             return false
           } else {
             subflag = true
@@ -356,29 +329,11 @@ Component({
           this.commontrigger("submit", data)
         }
       } else {
-        // wx.showToast({
-        //   title: "验证码错误,请重新输入",
-        //   icon: "none"
-        // })
         that.showModal("验证码错误,请重新输入")
         return false
       }
-
-      // for(var i = 0;i<this.properties.form.length;i++){
-
-      // }
-      // if (e.detail.value.code != "" && e.detail.value.code == this.data.captcha) {
-      //   let data = e.detail.value
-      //   this.commontrigger("submit", data)
-      // } else {
-      //   wx.showToast({
-      //     title: "验证码错误,请重新输入",
-      //     icon: "none"
-      //   })
-      // }
-
     },
-    selectChange2(e){
+    selectChange2(e){//行业领域和举报类别选择
       if (e.currentTarget.dataset.type =="industryField"){
         this.setData({
           "form.check.industryField": e.currentTarget.dataset.index
@@ -392,9 +347,9 @@ Component({
         value: e.currentTarget.dataset.index,
         type: e.currentTarget.dataset.type
       })
-      this.hide()
+      this.hide()//隐藏列表页
     },
-    showList(e){
+    showList(e){//显示列表页
       let that = this;
       this.setData({
         "show": true
@@ -414,14 +369,14 @@ Component({
           "animation2": this.animation2.export()
         })
       }
-      
-      setTimeout(function () {
+      setTimeout(function () {//隐藏textarea因为这破玩意有层级bug没彻底解决
         that.setData({
           hide: true
         })
       }, 200)
     },
-    hide(){
+    hide(){//关闭列表页
+      // console.log('隐藏列表页')
       let that=this;
       this.animation1.left("100%").right("-100%").step();
       this.animation2.left("100%").right("-100%").step();
@@ -436,7 +391,7 @@ Component({
         })
       }, 200)
     },
-    forform(roles) {
+    forform(roles) {//不知道是个啥
       for (var role = 0; role < this.properties.form.formdata.length; role++) {
         if (this.properties.form.formdata[role].data == undefined) {
 

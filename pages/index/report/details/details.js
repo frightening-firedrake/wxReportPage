@@ -6,14 +6,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    regionlist: "",
-    buttonhidden: false,
-    Informer: false,
-    form: {
+    regionlist: "",//地区列表
+    buttonhidden: false,//是否隐藏提交按钮
+    Informer: false,//是否已提交过个人信息判断（提交过为true），关系到之后是否提交个人信息(true时不提交)，提交过所获取回的个人信息为加密（true时）将不进行表单验证
+    form: {//表单组件数据
       data: {
-        threadAreaId: [],
-        industryField: [],
-        informType: [{
+        threadAreaId: [],//线报地域
+        industryField: [],//行业领域
+        informType: [{//举报类型
             id: 1,
             label: '1、威胁政治安全特别是制度安全、政权安全以及向政治领域渗透的黑恶势力'
           },
@@ -64,16 +64,16 @@ Page({
         ]
       },
       check: {
-        clueAddress: "",
-        informContent: "",
-        threadAreaId: [],
-        industryField: "",
-        informType: "",
-        picture: [],
-        video: [],
-        code: "",
-        informerName: "",
-        phoneNumber: "",
+        clueAddress: "",//线索地址
+        informContent: "",//举报内容
+        threadAreaId: [],//线报地域 例如[0,0,0]
+        industryField: "",//行业领域
+        informType: "",//举报类型
+        picture: [],//图片列表集合
+        video: [],//视频列表集合
+        code: "",//验证码
+        informerName: "",//举报人名
+        phoneNumber: "",//举报电话
       },
       formdata: [{
           model: "report",
@@ -163,35 +163,22 @@ Page({
   },
   submit(res) {
     // console.log(res)
-    let url = "saveInformation"
+    let url = "saveInformation"//默认的提交地址
     let saveobj = {}
     let params = res.detail.value
-
+    // 下面是数据转化index To text
     params["informType"] = this.data.form.data.informType[res.detail.value.informType].label
     params["industryField"] = this.data.form.data.industryField[res.detail.value.industryField].label
-    // params["threadAreaId"] = this.data.form.data.threadAreaId[2][res.detail.value.threadAreaId[2]].id
-    // console.log('zzz')
-    // console.log(this.data.form.data.threadAreaId)
-    // console.log(this.data.form.data.threadAreaId[2])
-    // console.log(res.detail.value.threadAreaId)
-    // console.log(res.detail.value.threadAreaId[2])
-    // params['threadAreaId'] = this.data.form.data.threadAreaId[2][res.detail.value.threadAreaId[2]].id
-
-    // console.log(this.data.form.data.threadAreaId)
-    // console.log(res.detail.value.threadAreaId)
+    // 线报地域很坑爹三级联动后台只要最后一位有效id例如[1,2,3]取3 [1,2,0]取2 [1,0,0]取1是个容易出bug的地方l例如[1,2,null]所以下面处理了一下null换成0
     res.detail.value.threadAreaId[2] = res.detail.value.threadAreaId[2] ? res.detail.value.threadAreaId[2]:0;
     params['threadAreaId'] = this.data.form.data.threadAreaId[2][res.detail.value.threadAreaId[2]].id ? this.data.form.data.threadAreaId[2][res.detail.value.threadAreaId[2]].id : this.data.form.data.threadAreaId[1][res.detail.value.threadAreaId[1]].id ? this.data.form.data.threadAreaId[1][res.detail.value.threadAreaId[1]].id : this.data.form.data.threadAreaId[0][res.detail.value.threadAreaId[0]].id
-
-    // console.log(params['threadAreaId'])
-    // return
     params['picture'] = this.data.form.check.picture
     params["video"] = this.data.form.check.video
-
     app.getstorage("userInfo").then(openres => {
       //获取openid
       params["openId"] = openres.openid
-      if (!params.useras) {
-        url = "anonymitySaveInformation"
+      if (!params.useras) {//实名匿名举报useras
+        url = "anonymitySaveInformation"//匿名举报地址
         app.post(url, params).then(res => {
           if (res.data.success) {
             wx.redirectTo({
@@ -200,11 +187,12 @@ Page({
           }
         })
       } else {
-        if (this.data.Informer) {
-          app.post("getInformer", {
+        // 实名举报
+        if (this.data.Informer) {//是否已提交个人信息至数据库
+          app.post("getInformer", {//获取个人信息id
             openId: openres.openid
           }).then(res => {
-            if (params.useras) {
+            if (params.useras) {//实名举报需提交informerId即个人信息id
               params["informerId"] = res.data.id
             }
             app.post(url, params).then(res => {
@@ -216,7 +204,7 @@ Page({
             })
           })
         } else {
-          app.post("saveInformer", {
+          app.post("saveInformer", {//未已提交个人信息需先提交个人信息至数据库
             openId: params.openId,
             informerName: params.informerName,
             phoneNumber: params.phoneNumber
@@ -237,48 +225,40 @@ Page({
             })
           })
         }
-
       }
-
-      // saveInformer openid 姓名电话 return informerId 
-
-
     })
-
   },
   bindcancel(res) {
     console.log(res)
   },
-  selectchage(res) {
+  selectchage(res) {//组件通用选择事件更改对应数据
     let params = {}
     params["form.check." + res.detail.value.type] = res.detail.value.value
     this.setData(params)
   },
-  regionChange(res) {
-    // console.log(res)
-    // return
+  regionChange(res) {//线报地域确定
     this.setData({
       "form.check.threadAreaId": res.detail.value
     })
   },
-  columnchange(res) {
-
+  columnchange(res) {//线报地域列
     this.setData({
       "form.check.threadAreaId": []
     })
     var region=[]
     let pId = this.data.form.data.threadAreaId[res.detail.value.column][res.detail.value.value].id
+    // 查询父级id可能为空哦此处有bug无pId时赋值任意值
+    pId = pId ? pId:999999999999999;
     region = this.data.regionlist.filter((i, v) => {
       return i.pId == pId
     })
-    // console.log(res, region, res.detail.value)
-    if (res.detail.value.column == 0) {
-      region.push({ id: '', regionName: '' })
+    if (res.detail.value.column == 0) {//第一列滚动变化
+      region.push({ id: '', regionName: '' })//添加了一个空选项
       this.setData({
-        "form.data.threadAreaId[1]": region,
-        "form.data.threadAreaId[2]": []
+        "form.data.threadAreaId[1]": region,//根据第一列变化得出pid筛选第二列数据
+        "form.data.threadAreaId[2]": []//第三列置空
       })
-    } else if (res.detail.value.column == 1) {
+    } else if (res.detail.value.column == 1) {//第二列滚动变化
       region.push({ id: '', regionName: '' })
       this.setData({
         "form.data.threadAreaId[2]": region,
@@ -289,24 +269,24 @@ Page({
       // })
     }
   },
-  location(res) {
+  location(res) {//线索地址
     this.setData({
       "form.check.clueAddress": res.detail.value
     })
   },
-  text(res) {
+  text(res) {//不知道宇轩写着干啥的—_—,找到了是举报详情
     let data = {}
     data["form.check." + res.detail.value.type] = res.detail.value.value
     this.setData(data)
   },
-  addimg(res) {
+  addimg(res) {//添加图片
     let arr = this.data.form.check.picture
     arr.push(res.detail.value)
     this.setData({
       "form.check.picture": arr
     })
   },
-  addvideo(res) {
+  addvideo(res) {//添加录像
     let arr = this.data.form.check.video
     arr.push(res.detail.value)
     this.setData({
@@ -319,7 +299,7 @@ Page({
   onLoad: function(options) {
     let that = this
     app.getstorage("userInfo").then(res => {
-      app.post("getInformer", {
+      app.post("getInformer", {//获取用户信息
         openId: res.openid
       }).then(res => {
         if (res.data) {
@@ -333,7 +313,7 @@ Page({
 
       })
     })
-    //线报地域
+    //获取线报地域默认取值个列的第一个
     app.post("getAll").then(res => {
       let data = res.data.filter((i, v) => {
         return i.pId == -1
@@ -353,7 +333,6 @@ Page({
         "form.data.threadAreaId[1]": child,
         "form.data.threadAreaId[2]": child2
       })
-      // console.log(this.data)
     })
     //行业领域
     app.post("findAllIndustry").then(res => {
