@@ -174,11 +174,11 @@
       </view>
     </view>
     <text wx:if="{{editMode}}" class="careful">注：带有<text style="color:red;">*</text>的内容为必填内容,匿名举报时关闭个人信息右侧开关</text>
-    <button wx:if="{{editMode}}" class="submit" data-type="submit" form-type="submit" hover-class="ui-share-hover" style="display:block" role="button"  type="submit" >重新提交</button>
+    <button  hover-start-time='50' hover-stay-time='400' wx:if="{{editMode}}" class="submit" data-type="submit" form-type="submit" hover-class="ui-share-hover" style="display:block" role="button"  type="submit" >重新提交</button>
   </form>
 </view>
 <!-- <view style="left:0;right:0;color:red;font-size:30rpx;text-align:center;position:fixed;bottom:0;">硬汉科技</view> -->
-<view class="selectListWrap {{show?'show':''}}" animation="{{animation1}}">
+<view class="selectListWrap {{show1?'show':''}}" animation="{{animation1}}">
   <view class="selectList">
     <view class="selectHeader">
       <view style="font-size:58rpx;margin-top:8rpx;" class="iconfont icon-shanchanghangye"></view>
@@ -189,7 +189,7 @@
   </view>
 </view>
 
-<view class="selectListWrap {{show?'show':''}}" animation="{{animation2}}">
+<view class="selectListWrap {{show2?'show':''}}" animation="{{animation2}}">
   <view class="selectList">
     <view class="selectHeader">
       <view style="font-size:40rpx;margin-right:8rpx;" class="iconfont icon-leibie"></view>

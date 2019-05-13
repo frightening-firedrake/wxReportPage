@@ -30,8 +30,9 @@ Component({
   data: {
     animation1: '',//列表动画
     animation2:'',//列表动画
-    hide:false,
-    show:false,
+    hide:false,//隐藏textare
+    show1: false,//行业领域列表
+    show2:false,//举报类别列表
     region: ['山西省', "太原市", "小店区"],//不知道的
     customItem: "全部",//应该没用
     showImg: true,//无验证码时显示提示语的控制开关
@@ -351,19 +352,25 @@ Component({
     },
     showList(e){//显示列表页
       let that = this;
-      this.setData({
-        "show": true
-      })
-      this.setData({
-        "animation1": this.animation1.export()
-      })
+      // this.setData({
+      //   "show": true
+      // })
+      // this.setData({
+      //   "animation1": this.animation1.export()
+      // })
       var type = e.currentTarget.dataset.type 
       if (type =="industryField"){
+        this.setData({
+          "show1": true
+        })
         this.animation1.left(0).right(0).step();
         this.setData({
           "animation1": this.animation1.export()
         })
       }else{
+        this.setData({
+          "show2": true
+        })
         this.animation2.left(0).right(0).step();
         this.setData({
           "animation2": this.animation2.export()
@@ -387,7 +394,8 @@ Component({
       })
       setTimeout(function () {
         that.setData({
-          show: false
+          show1: false,
+          show2: false
         })
       }, 200)
     },

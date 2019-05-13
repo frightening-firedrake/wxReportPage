@@ -58,7 +58,7 @@ page {
   width: 35rpx;
   height: 35rpx;
   border-radius: 50%;
-  background-color: #11175B;
+  background-color: #254391;
   position: absolute;
   left: -17.5rpx;
   top: 223rpx;
@@ -69,7 +69,7 @@ page {
   width: 35rpx;
   height: 35rpx;
   border-radius: 50%;
-  background-color: #11175B;
+  background-color: #254391;
   position: absolute;
   right: -17.5rpx;
   top: 223rpx;

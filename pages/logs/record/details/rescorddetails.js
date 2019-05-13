@@ -10,7 +10,8 @@ Page({
     animation1: '',
     animation2: '',
     hide: false,
-    show: false,
+    show1: false,
+    show2: false,
     region: ['山西省', "太原市", "小店区"],
     editMode:false,
     customItem: "全部",
@@ -648,17 +649,20 @@ Page({
     if (!this.data.editMode) {
       return
     }
-    this.setData({
-      "show": true
-    })
     let that = this;
     var type = e.currentTarget.dataset.type
     if (type == "industryField") {
+      this.setData({
+        "show1": true
+      })
       this.animation1.left(0).right(0).step();
       this.setData({
         "animation1": this.animation1.export()
       })
     } else {
+      this.setData({
+        "show2": true
+      })
       this.animation2.left(0).right(0).step();
       this.setData({
         "animation2": this.animation2.export()
@@ -682,7 +686,8 @@ Page({
     })
     setTimeout(function () {
       that.setData({
-        show: false
+        show1: false,
+        show2: false
       })
     }, 200)
   },
