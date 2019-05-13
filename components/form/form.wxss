@@ -479,6 +479,7 @@
 .submit {
   width: 702rpx;
   height: 100rpx;
+  line-height: 100rpx;
   background:rgba(76,117,225,1);
   border-radius: 10rpx;
   margin-top: 29rpx;

@@ -156,7 +156,7 @@
     </view>
     <text style="display:{{buttonhidden?'none':'block'}}" class="careful">注：带有<text style="color:red;">*</text>的内容为必填内容,匿名举报时关闭个人信息右侧开关</text>
     <block>
-      <button class="submit" form-type="submit" data-type="submit" hover-class="ui-share-hover" style="display:{{buttonhidden?'none':'block'}}">
+      <button hover-start-time='50' hover-stay-time='400' class="submit" form-type="submit" data-type="submit" hover-class="ui-share-hover" style="display:{{buttonhidden?'none':'block'}}">
         提交
       </button>
     </block>

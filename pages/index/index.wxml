@@ -13,25 +13,27 @@
   <view class="bg"></view>
   <view class="menuList">
     <view class="menu" style="border-right:1px solid #e1e1e1;border-bottom:1px solid #e1e1e1;">
-      <navigator url="/pages/index/report/report" class="menuWrap" hover-class='ui-share-hover'>
+      <navigator hover-start-time='50' hover-stay-time='400' url="/pages/index/report/report" class="menuWrap" hover-class='ui-share-hover'>
         <image src="../../image/reportOnline.png"></image>
         <text>自助举报</text>
       </navigator>
     </view>
     <view class="menu" style="border-bottom:1px solid #e1e1e1;">
-      <navigator url="/pages/index/phoneReport/phoneReport" class="menuWrap" hover-class='ui-share-hover'>
+      <navigator hover-start-time='50' hover-stay-time='400' url="/pages/index/phoneReport/phoneReport" class="menuWrap" hover-class='ui-share-hover'>
         <image src="../../image/reportOnphone.png"></image>
         <text>电话举报</text>
       </navigator>
     </view>
-    <view class="menu" style="border-right:1px solid #e1e1e1;">
-      <navigator  url="/pages/index/reportType/reportType" class="menuWrap" hover-class='ui-share-hover'>
+    <view class="menu" style="border-right:1px solid #e1e1e1;"> 
+      <view data-type="findAllKind" data-name="举报种类" bindtap='details' class="menuWrap" hover-class='ui-share-hover'>
+      <!-- <navigator hover-start-time='50' hover-stay-time='400' url="/pages/index/reportType/reportType" class="menuWrap" hover-class='ui-share-hover'> -->
         <image src="../../image/reportType.png"></image>
         <text>举报种类</text>
-      </navigator>
+      <!-- </navigator> -->
+      </view>
     </view>
     <view class="menu">
-      <navigator url="/pages/logs/record/record" class="menuWrap" hover-class='ui-share-hover'>
+      <navigator hover-start-time='50' hover-stay-time='400' url="/pages/logs/record/record" class="menuWrap" hover-class='ui-share-hover'>
         <image src="../../image/reportRecord.png"></image>
         <text>举报记录</text>
       </navigator>
@@ -39,3 +41,39 @@
   </view>
 </view>
  <!-- <view style="left:0;right:0;color:red;font-size:30rpx;text-align:center;position:fixed;bottom:0;">硬汉科技</view> -->
+<!-- 这帮混蛋加了删，删了加 -->
+<!-- 弹窗 -->
+<view class="classitem" wx:if="{{classitem}}">
+  <view class="zhezhao"></view>
+  <view class="content classitemAnimation"  animation="{{animation}}">
+    <template is="classitem" data="{{...content}}" />
+    <view class="itembutton">
+      <block wx:for="{{buttons}}" wx:key="index">
+        <view  hover-class="ui-reverse-color-hover" class="button" bindtap="details" data-type="{{item.label}}" data-name="{{item.name}}">{{item.name}}</view>
+      </block>
+      <view class="button close" bindtap="close">关闭</view>
+    </view>
+  </view>
+</view>
+
+<template name="classitem">
+    <block wx:if="{{type=='findAllAward11'}}">
+      <image src="https://report.ityyedu.com/reportingSystem/upload/image/reward_banner.png" />
+      <scroll-view class="contenttext" scroll-y="true" enable-back-to-top="true">
+        <view class="err">
+          <text class="iconfont icon-iconfontnone"></text>
+          <text class="text">暂无奖励规定</text>
+        </view>
+      </scroll-view>
+    </block>
+    <block wx:else>
+      <image wx:if="{{type == 'findAllKind'}}" src="https://report.ityyedu.com/reportingSystem/upload/image/type_banner.png" />
+      <image wx:if="{{type == 'findAllSecrecy'}}" src="https://report.ityyedu.com/reportingSystem/upload/image/secrecy_banner.png" />
+      <image wx:if="{{type=='findAllAward'}}" src="https://report.ityyedu.com/reportingSystem/upload/image/reward_banner.png" />
+      <scroll-view class="contenttext" scroll-y="true" enable-back-to-top="true">
+        <!-- <text wx:if="{{h1}}" class="h1">{{h1}}</text> -->
+        <rich-text nodes="{{textContent}}" bindtap="tap"></rich-text>
+      </scroll-view>
+    </block>
+
+  </template>
