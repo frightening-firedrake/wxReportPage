@@ -31,7 +31,9 @@ Page({
       app.post("getInformation", {
         openId: res.openid
       }).then(res => {
-        let data = res.data
+        let data = res.data.sort((a,b)=>{
+          return new Date(b.createTime).getTime() - new Date(a.createTime).getTime()
+        })
         this.setData({
           height: 190 * data.length + 25+23,
           content: data
